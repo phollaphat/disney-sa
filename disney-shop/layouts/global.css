@@ -1,0 +1,9 @@
+@font-face {
+    font-family: "Inria Serif";
+    src: local("Inria Serif"),
+     url(~assets/Inria_Serif/InriaSerif-Regular.ttf) format("truetype");
+}
+
+html {
+    font-family: "Inria Serif";
+}
