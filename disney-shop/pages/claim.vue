@@ -1,8 +1,4 @@
 <template>
-<<<<<<< HEAD:disney-shop/pages/claim.vue
-    <div>
-        claim
-=======
     <div class="flex flex-col justify-start">
         <div class="h-screen py-8">
             <div class="container mx-auto px-4">
@@ -95,6 +91,5 @@
                 </div>
             </div>
         </div>
->>>>>>> ec25655f379bd216136e82b5e3dd37dce8a444d5:disney-shop/pages/checkout.vue
     </div>
 </template>

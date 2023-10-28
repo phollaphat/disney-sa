@@ -1,47 +1,50 @@
 <template>
     <div>
-        <div class="flex flex-row justify-items-center items-center gap-5">
-            <div class="p-10">
+        <div class="flex flex-row justify-items-center items-center gap-5 m-10">
+            <div class="w-1/7">
                 <img src="@/assets/Search.png" alt="" />
             </div>
-            <div>
+            
+            <div class="w-1/3">
                 <input required="" placeholder="   Searching..." type="text"
-                    class="h-[60px] w-[405px] bg-[#FFFDFD] rounded-[20px]" />
+                    class="h-[60px] w-full bg-[#FFFDFD] rounded-[20px]" />
             </div>
 
-            <div class="p-5">
-                <label class="popup">
-                    <input type="checkbox" />
-                    <div class="burger" tabindex="0">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                    <nav class="popup-window">
-                        <legend>เรียงตามลำดับ</legend>
-                        <ul>
-                            <li>
-                                <button>
-                                    <span>น้อยไปมาก</span>
-                                </button>
-                            </li>
-                            <li>
-                                <button>
-                                    <span>มากไปน้อย</span>
-                                </button>
-                            </li>
-                            <li>
-                                <button>
-                                    <span>ไม่มีสินค้า</span>
-                                </button>
-                            </li>
-                        </ul>
-                    </nav>
-                </label>
+            <div class="w-1/6">
+                <div class="w-full">
+                    <label class="popup">
+                        <input type="checkbox" />
+                        <div class="burger" tabindex="0">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <nav class="popup-window">
+                            <legend>เรียงตามลำดับ</legend>
+                            <ul>
+                                <li>
+                                    <button>
+                                        <span>น้อยไปมาก</span>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button>
+                                        <span>มากไปน้อย</span>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button>
+                                        <span>ไม่มีสินค้า</span>
+                                    </button>
+                                </li>
+                            </ul>
+                        </nav>
+                    </label>
+                </div>
             </div>
 
-            <div class="pl-[100px]">
-                <select name="" id="" class="bg-[#FFFDFD] w-[236px] h-[60px] rounded-[20px] pl-4">
+            <div class="w-1/5">
+                <select name="" id="" class="bg-[#FFFDFD] h-[60px] w-full rounded-[20px] pl-4">
                     <div>
                         <option value="">All</option>
                         <option value="">Scented Candle</option>
@@ -50,37 +53,30 @@
                 </select>
             </div>
 
-            <div class="pl-16">
-                <button
-                    class="bg-[#4D4C7D] hover:bg-[#363062] w-[150px] h-[60px] text-white rounded-[15px]">
-                    <div class="font-bold text-xl">Add Product</div>
+            <div class="w-1/6 ml-4">
+                <button class="drop-shadow-lg bg-[#5D12D2] h-[60px] w-5/6 rounded-[11px] text-lg font-semibold text-center hover:bg-[#9400FF] text-white">
+                    Add Product
                 </button>
             </div>
         </div>
 
-
-        <div class="flex justify-center">
-            <a href="product_detail">
-                <div class="flex flex-row justify-center">
-                    <div class="grid grid-cols-3 justify-items-center h-screen pt-1 gap-[90px]">
-                        <div class="card-product" v-for="i in 9">
-                            <div class="flex justify-center flex-col relative items-center">
-                                <div class="card-image">
-                                    <img src="@/assets/b180691f36bd713b8c69519b8637fb8b.png" alt=""
-                                        class="justify-items-center h-[290px] w-[290px] pt-2">
-                                </div>
-                                <div class="text-center mt-3 text-xs text-[#7D7C7C]">Scented Candle</div>
-                                <div class="text-center font-bold pt-2 text-xl">Pluto Scented Candle Collection</div>
-                                <div class="flex flex-row gap-5 mt-2 justify-start w-full">
-                                    <div class="text-xl ml-3 font-medium text-center">10 ชิ้น</div>
-                                    <div class="bg-[#5D9C59] rounded-full w-[21px] h-[21px] text-center mt-1"></div>
-                                </div>
-                            </div>
+        <div class="grid grid-cols-3 justify-items-center h-screen m-5 mt-20 gap-5">
+            <div class="bg-white w-5/6 rounded-[37px] p-[5%]" v-for="i in 9">
+                <a href="product_detail">
+                    <div class="flex justify-center flex-col relative items-center">
+                        <div class="card-image flex justify-center mt-3">
+                            <img src="@/assets/b180691f36bd713b8c69519b8637fb8b.png" alt=""
+                                class="justify-items-center h-4/5 w-4/5">
+                        </div>
+                        <div class="text-center mt-3 text-xs text-[#7D7C7C]">Scented Candle</div>
+                        <div class="text-center font-bold pt-1 text-2xl">Lord of the ring</div>
+                        <div class="flex flex-row gap-5 mt-2 ml-14 justify-start w-full">
+                            <div class="text-xl font-medium text-center">10 ชิ้น</div>
+                            <div class="bg-[#5D9C59] rounded-full w-[18px] h-[18px] text-center mt-1"></div>
                         </div>
                     </div>
-                </div>
-
-            </a>
+                </a>
+            </div>
         </div>
     </div>
 </template>

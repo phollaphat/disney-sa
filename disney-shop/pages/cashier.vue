@@ -1,47 +1,50 @@
 <template>
     <div>
-        <div class="flex flex-row justify-items-center items-center gap-5">
-            <div class="p-10">
+        <div class="flex flex-row justify-items-center items-center gap-5 m-10">
+            <div class="w-1/5">
                 <img src="@/assets/Search.png" alt="" />
             </div>
-            <div>
+            
+            <div class="w-4/5">
                 <input required="" placeholder="   Searching..." type="text"
-                    class="h-[60px] w-[405px] bg-[#FFFDFD] rounded-[20px]" />
+                    class="h-[60px] w-full bg-[#FFFDFD] rounded-[20px]" />
             </div>
 
-            <div class="p-5">
-                <label class="popup">
-                    <input type="checkbox" />
-                    <div class="burger" tabindex="0">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                    <nav class="popup-window">
-                        <legend>เรียงตามลำดับ</legend>
-                        <ul>
-                            <li>
-                                <button>
-                                    <span>น้อยไปมาก</span>
-                                </button>
-                            </li>
-                            <li>
-                                <button>
-                                    <span>มากไปน้อย</span>
-                                </button>
-                            </li>
-                            <li>
-                                <button>
-                                    <span>ไม่มีสินค้า</span>
-                                </button>
-                            </li>
-                        </ul>
-                    </nav>
-                </label>
+            <div class="w-1/3">
+                <div class="">
+                    <label class="popup">
+                        <input type="checkbox" />
+                        <div class="burger" tabindex="0">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <nav class="popup-window">
+                            <legend>เรียงตามลำดับ</legend>
+                            <ul>
+                                <li>
+                                    <button>
+                                        <span>น้อยไปมาก</span>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button>
+                                        <span>มากไปน้อย</span>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button>
+                                        <span>ไม่มีสินค้า</span>
+                                    </button>
+                                </li>
+                            </ul>
+                        </nav>
+                    </label>
+                </div>
             </div>
 
-            <div class="pl-[100px]">
-                <select name="" id="" class="bg-[#FFFDFD] w-[236px] h-[60px] rounded-[20px] pl-4">
+            <div class="w-2/5">
+                <select name="" id="" class="bg-[#FFFDFD] h-[60px] w-full rounded-[20px] pl-4">
                     <div>
                         <option value="">All</option>
                         <option value="">Scented Candle</option>
@@ -52,7 +55,7 @@
 
 
 
-            <div class="flex flex-row pl-[190px]">
+            <div class="flex flex-row w-1/2 justify-center">
                 <div>
                     <a href="shoping-cart">
                         <img src="@/assets/Basket_alt_3.png" alt="" class="pr-0">
@@ -66,26 +69,26 @@
             </div>
         </div>
 
-        <div class="grid grid-cols-3 justify-items-center h-screen pt-1 gap-5">
-            <div class="card" v-for="i in 9">
+        <div class="grid grid-cols-3 justify-items-center h-screen m-5 gap-5 mt-20">
+            <div class="bg-white w-5/6 rounded-[37px] p-[5%]" v-for="i in 9">
                 <div class="flex justify-center flex-col relative items-center">
-                    <div class="card-image">
+                    <div class="card-image flex justify-center mt-3">
                         <img src="@/assets/b180691f36bd713b8c69519b8637fb8b.png" alt=""
-                            class="justify-items-center h-[290px] w-[290px]">
+                            class="justify-items-center h-4/5 w-4/5">
                     </div>
                     <div class="text-center mt-3 text-xs text-[#7D7C7C]">Scented Candle</div>
                     <div class="text-center font-bold pt-1 text-2xl">Lord of the ring</div>
                     <div class="text-xl pt-1 text-center">1032 Baht</div>
-                    <div class="justify-center items-center pt-2">
+                    <div class="flex justify-center items-center pt-2 w-full">
                         <button
-                            class="bg-[#5D12D2] h-[40px] w-[300px] rounded-[11px] text-[14px] text-center drop-shadow-sm hover:bg-[#9400FF] text-white">
+                            class="bg-[#5D12D2] h-[40px] w-5/6 rounded-[11px] text-[14px] text-center drop-shadow-sm hover:bg-[#9400FF] text-white">
                             ADD TO ORDER
                         </button>
                     </div>
                 </div>
             </div>
         </div>
-        
+
     </div>
 </template>
 
@@ -369,22 +372,6 @@
         border-width: 0 0.15em 0.15em 0;
         border-radius: 0em;
         transform: rotate(45deg);
-    }
-
-    .card {
-        width: 360px;
-        height: 485px;
-        background: white;
-        border-radius: 37px;
-        padding: 7%;
-    }
-
-    .card-product {
-        width: 360px;
-        height: 430px;
-        background: white;
-        border-radius: 37px;
-        padding: 7%;
     }
 
     /* .card-image {
