@@ -3,15 +3,15 @@
         <div class="h-screen py-8">
             <div class="container mx-auto px-4">
                 <h1 class="text-[48px] text-[#FFFFFF] font-semibold mb-10 mx-auto w-[358px] bg-[#9985BB] text-center rounded-[20px] shadow-md">Payment Report</h1>
-                <div class="flex flex-col md:flex-row gap-4">
-                    <div class="md:w-3/4">
+                <div class="flex flex-col md:flex-row gap-5">
+                    <div class="md:w-full">
                         <table class="w-full">
                             
                                     <tr>
                                         <th class="text-left font-semibold">Date </th>
                                         <th class="text-left font-semibold">Alipay</th>
                                         <th class="text-left font-semibold">Cash</th>
-                                        <th class="text-left font-semibold">Credet/Debit Card </th>
+                                        <th class="text-left font-semibold">Credet/Debit Card</th>
                                         <th class="text-left font-semibold">QR</th>
                                         <th class="text-left font-semibold">All</th>
                                     </tr>

@@ -20,7 +20,6 @@
                                     <tr>
                                         <td class="py-4">
                                             <div class="flex items-center">
-                                                
                                                 <span class="font-semibold">Lord of the Ring</span>
                                             </div>
                                         </td>
@@ -87,6 +86,12 @@
                                 submit
                             </MenuLink>
                         </div>
+
+                        <div class="mt-4">
+                            <div class="bg-white rounded-lg shadow-md p-6">
+
+                            </div>
+                        </div> 
                     </div>
                 </div>
             </div>
