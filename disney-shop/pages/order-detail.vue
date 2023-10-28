@@ -1,12 +1,8 @@
 <template>
-<<<<<<< HEAD:disney-shop/pages/claim.vue
-    <div>
-        claim
-=======
     <div class="flex flex-col justify-start">
         <div class="h-screen py-8">
             <div class="container mx-auto px-4">
-                <h1 class="text-[48px] text-[#FFFFFF] font-semibold mb-10 mx-auto w-[358px] bg-[#9985BB] text-center rounded-[20px] shadow-md">Checkout</h1>
+                <h1 class="text-[48px] text-[#FFFFFF] font-semibold mb-10 mx-auto w-[358px] bg-[#9985BB] text-center rounded-[20px] shadow-md">Order</h1>
                 <div class="flex flex-col md:flex-row gap-4">
                     <div class="md:w-3/4">
                         <div class="bg-white rounded-lg shadow-md p-6 mb-4" v-for="i in 1">
@@ -38,9 +34,7 @@
                                             </div>
                                         </td>
                                         <td class="py-4">$19.99</td>
-                                        <td class="py-4">
-                                            <button class="py-2.5 px-6 rounded-lg text-sm font-medium bg-[#9985BB] text-white">Remove</button>
-                                        </td>
+                                        
                                     </tr>
                                     <!-- More product rows -->
                                 </tbody>
@@ -50,11 +44,22 @@
 
                        
                     <div class="md:w-1/4">
-                        <!-- <div class="mb-4">
+                        <div class="mb-4">
                             <div class="bg-white rounded-lg shadow-md p-6">
-
+                                <div class="flex justify-between mb-2">
+                                    <span>Order No.</span>
+                                    <span>CA001</span>
+                                </div> 
+                                <div class="flex justify-between mb-2">
+                                    <span>Date</span>
+                                    <span>28-10-2023</span>
+                                </div> 
+                                <div class="flex justify-between mb-2">
+                                    <span>Tel.</span>
+                                    <span>0841104459</span>
+                                </div>  
                             </div>
-                        </div>  -->
+                        </div> 
                         <div class="bg-white rounded-lg shadow-md p-6">
 
                             <h2 class="text-lg font-semibold mb-4">Summary</h2>
@@ -76,16 +81,13 @@
                                 <span class="font-semibold">$21.98</span>
                             </div>
 
+                            <div class="flex justify-between mb-2">
+                                <span class="font-semibold">Payment</span>
+                                <span class="font-semibold">Credit Card</span>
+                            </div>
+
                     
-                            <select name="" id="" class="bg-[#FFFDFD] w-[210px] h-[60px] rounded-[20px]">
-                                <div>
-                                    <option value="">Choose Payment</option>
-                                    <option value="">Alipay</option>
-                                    <option value="">Cash</option>
-                                    <option value="">Credit/Debit Card</option>
-                                    <option value="">Qr thai </option>
-                                </div>
-                            </select>
+                            
                             
                             <MenuLink to="/receipt" class="bg-[#9985BB] text-white py-2 px-4 rounded-lg mt-4 w-full text-center">
                                 submit
@@ -95,6 +97,5 @@
                 </div>
             </div>
         </div>
->>>>>>> ec25655f379bd216136e82b5e3dd37dce8a444d5:disney-shop/pages/checkout.vue
     </div>
 </template>
