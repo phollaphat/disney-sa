@@ -82,7 +82,7 @@
                                 </div>
                             </select>
                             
-                            <MenuLink to="/receipt" class="bg-[#9985BB] text-white py-2 px-4 rounded-lg mt-4 w-full text-center">
+                            <MenuLink to="" class="bg-[#9985BB] text-white py-2 px-4 rounded-lg mt-4 w-full text-center">
                                 submit
                             </MenuLink>
                         </div>
@@ -98,3 +98,13 @@
         </div>
     </div>
 </template>
+
+<script>
+    export default {
+        data() {
+            return {
+                currentDate: new Date().toDateString(),
+            };
+        },
+    };
+</script>

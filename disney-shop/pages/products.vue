@@ -41,35 +41,43 @@
             </div>
 
             <div class="pl-[100px]">
-                <select name="" id="" class="bg-[#FFFDFD] w-[236px] h-[60px] rounded-[20px]">
+                <select name="" id="" class="bg-[#FFFDFD] w-[236px] h-[60px] rounded-[20px] pl-4">
                     <div>
+                        <option value="">All</option>
                         <option value="">Scented Candle</option>
-                        <option value="">jewelry</option>
+                        <option value="">Jewelry</option>
                     </div>
                 </select>
             </div>
 
             <div class="pl-16">
                 <button
-                    class="cursor-pointer transition-all bg-[#F6E4E7] text-[#232946] px-6 py-2 rounded-lg border-red-400 border-b-[4px] hover:brightness-110 hover:-translate-y-[1px] hover:border-b-[6px] active:border-b-[2px] active:brightness-90 active:translate-y-[2px] w-[127px] h-[60px]">
-                    <div class="font-bold text-xl">Add</div>
+                    class="bg-[#4D4C7D] hover:bg-[#363062] w-[10px] h-[60px] text-white rounded-[15px]">
+                    <div class="font-bold text-xl">Add Product</div>
                 </button>
             </div>
         </div>
 
-        <div class="grid grid-cols-3 justify-items-center h-screen pt-1 gap-5 pb-10">
-                <div class="card" v-for="i in 9">
-                    <div class="card-image">
-                        <img src="@/assets/b180691f36bd713b8c69519b8637fb8b.png" alt="" class="">
-                    </div>
-                    <div class="flex justify-center flex-col relative">
-                        <div class="text-center font-bold pt-2 text-xl">Lord of the ring</div>
-                        <div class="text-xl text-center">1032 Baht</div>
-                        <div class=" bg-red-300 w-8 h-8 rounded-full text-center pt-1 absolute right-5 button-0">
-                            <button class="text-xl"> + </button>
+
+        <div class="flex justify-center">
+            <a href="product_detail">
+                <div class="flex flex-row justify-center">
+                    <div class="grid grid-cols-3 justify-items-center h-screen pt-1 gap-[90px]">
+                        <div class="card-product h-[400px]" v-for="i in 9">
+                            <div class="flex justify-center flex-col relative items-center">
+                                <div class="card-image">
+                                    <img src="@/assets/b180691f36bd713b8c69519b8637fb8b.png" alt=""
+                                        class="justify-items-center h-[290px] w-[290px] pt-2">
+                                </div>
+                                <div class="text-center mt-3 text-xs text-[#7D7C7C]">Scented Candle</div>
+                                <div class="text-center font-bold pt-2 text-2xl">Lord of the ring</div>
+                                <div class="text-xl pt-1 font-medium text-center">1032 Baht</div>
+                            </div>
                         </div>
                     </div>
                 </div>
+
+            </a>
         </div>
     </div>
 </template>
@@ -81,285 +89,12 @@
 <style>
     /* The design is inspired from the mockapi.io */
 
-    .popup {
-        --burger-line-height: 0.125em;
-        --burger-offset: 0.625em;
-        --burger-bg: rgba(0, 0, 0, 0.15);
-        --burger-color: #333;
-        --burger-line-border-radius: 0.1875em;
-        --burger-diameter: 2.125em;
-        --burger-btn-border-radius: calc(var(--burger-diameter) / 2);
-        --burger-line-transition: 0.3s;
-        --burger-transition: all 0.1s ease-in-out;
-        --burger-hover-scale: 1.1;
-        --burger-active-scale: 0.95;
-        --burger-enable-outrger-line-width: 1.125em;
-        --buline-color: var(--burger-bg);
-        --burger-enable-outline-width: 0.125em;
-        --burger-enable-outline-offset: var(--burger-enable-outline-width);
-        /* nav */
-        --nav-padding-x: 0.25em;
-        --nav-padding-y: 0.625em;
-        --nav-border-radius: 0.375em;
-        --nav-border-color: #ccc;
-        --nav-border-width: 0.0625em;
-        --nav-shadow-color: rgba(0, 0, 0, 0.2);
-        --nav-shadow-width: 0 1px 5px;
-        --nav-bg: #eee;
-        --nav-font-family: Menlo, Roboto Mono, monospace;
-        --nav-default-scale: 0.8;
-        --nav-active-scale: 1;
-        --nav-position-left: 0;
-        --nav-position-right: unset;
-        /* if you want to change sides just switch one property */
-        /* from properties to "unset" and the other to 0 */
-        /* title */
-        --nav-title-size: 0.625em;
-        --nav-title-color: #777;
-        --nav-title-padding-x: 1rem;
-        --nav-title-padding-y: 0.25em;
-        /* nav button */
-        --nav-button-padding-x: 1rem;
-        --nav-button-padding-y: 0.375em;
-        --nav-button-border-radius: 0.375em;
-        --nav-button-font-size: 12px;
-        --nav-button-hover-bg: #6495ed;
-        --nav-button-hover-text-color: #fff;
-        --nav-button-distance: 0.875em;
-        /* underline */
-        --underline-border-width: 0.0625em;
-        --underline-border-color: #ccc;
-        --underline-margin-y: 0.3125em;
-    }
-
-    /* popup settings 👆 */
-
-    .popup {
-        display: inline-block;
-        text-rendering: optimizeLegibility;
-        position: relative;
-    }
-
-    .popup input {
-        display: none;
-    }
-
-    .burger {
-        display: flex;
-        position: relative;
-        align-items: center;
-        justify-content: center;
-        background: var(--burger-bg);
-        width: var(--burger-diameter);
-        height: var(--burger-diameter);
-        border-radius: var(--burger-btn-border-radius);
-        border: none;
-        cursor: pointer;
-        overflow: hidden;
-        transition: var(--burger-transition);
-        outline: var(--burger-enable-outline-width) solid transparent;
-        outline-offset: 0;
-    }
-
-    .burger span {
-        height: var(--burger-line-height);
-        width: var(--burger-line-width);
-        background: var(--burger-color);
-        border-radius: var(--burger-line-border-radius);
-        position: absolute;
-        transition: var(--burger-line-transition);
-    }
-
-    .burger span:nth-child(1) {
-        top: var(--burger-offset);
-    }
-
-    .burger span:nth-child(2) {
-        bottom: var(--burger-offset);
-    }
-
-    .burger span:nth-child(3) {
-        top: 50%;
-        transform: translateY(-50%);
-    }
-
-    .popup-window {
-        transform: scale(var(--nav-default-scale));
-        visibility: hidden;
-        opacity: 0;
-        position: absolute;
-        padding: var(--nav-padding-y) var(--nav-padding-x);
-        background: var(--nav-bg);
-        font-family: var(--nav-font-family);
-        color: var(--nav-text-color);
-        border-radius: var(--nav-border-radius);
-        box-shadow: var(--nav-shadow-width) var(--nav-shadow-color);
-        border: var(--nav-border-width) solid var(--nav-border-color);
-        top: calc(var(--burger-diameter) + var(--burger-enable-outline-width) + var(--burger-enable-outline-offset));
-        left: var(--nav-position-left);
-        right: var(--nav-position-right);
-        transition: var(--burger-transition);
-        width: 157px;
-        height: 126px;
-        flex-shrink: 0;
-    }
-
-    .popup-window legend {
-        padding: var(--nav-title-padding-y) var(--nav-title-padding-x);
-        margin: 0;
-        color: var(--nav-title-color);
-        font-size: var(--nav-title-size);
-        text-transform: uppercase;
-    }
-
-    .popup-window ul {
-        margin: 0;
-        padding: 0;
-        list-style-type: none;
-    }
-
-    .popup-window ul button {
-        outline: none;
-        width: 100%;
-        border: none;
-        background: none;
-        display: flex;
-        align-items: center;
-        color: var(--burger-color);
-        font-size: var(--nav-button-font-size);
-        padding: var(--nav-button-padding-y) var(--nav-button-padding-x);
-        white-space: nowrap;
-        border-radius: var(--nav-button-border-radius);
-        cursor: pointer;
-        column-gap: var(--nav-button-distance);
-    }
-
-    .popup-window ul li:nth-child(1) svg,
-    .popup-window ul li:nth-child(2) svg {
-        color: cornflowerblue;
-    }
-
-    .popup-window ul li:nth-child(4) svg,
-    .popup-window ul li:nth-child(5) svg {
-        color: rgb(153, 153, 153);
-    }
-
-    .popup-window ul li:nth-child(7) svg {
-        color: red;
-    }
-
-    .popup-window hr {
-        margin: var(--underline-margin-y) 0;
-        border: none;
-        border-bottom: var(--underline-border-width) solid var(--underline-border-color);
-    }
-
-    /* actions */
-
-    .popup-window ul button:hover,
-    .popup-window ul button:focus-visible,
-    .popup-window ul button:hover svg,
-    .popup-window ul button:focus-visible svg {
-        color: var(--nav-button-hover-text-color);
-        background: var(--nav-button-hover-bg);
-    }
-
-    .burger:hover {
-        transform: scale(var(--burger-hover-scale));
-    }
-
-    .burger:active {
-        transform: scale(var(--burger-active-scale));
-    }
-
-    .burger:focus:not(:hover) {
-        outline-color: var(--burger-enable-outline-color);
-        outline-offset: var(--burger-enable-outline-offset);
-    }
-
-    .popup input:checked+.burger span:nth-child(1) {
-        top: 50%;
-        transform: translateY(-50%) rotate(45deg);
-    }
-
-    .popup input:checked+.burger span:nth-child(2) {
-        bottom: 50%;
-        transform: translateY(50%) rotate(-45deg);
-    }
-
-    .popup input:checked+.burger span:nth-child(3) {
-        transform: translateX(calc(var(--burger-diameter) * -1 - var(--burger-line-width)));
-    }
-
-    .popup input:checked~nav {
-        transform: scale(var(--nav-active-scale));
-        visibility: visible;
-        opacity: 1;
-    }
-
-    /* Hide the default checkbox */
-    .container input {
-        display: none;
-    }
-
-    .container {
-        display: block;
-        position: relative;
-        cursor: pointer;
-        font-size: 20px;
-        user-select: none;
-        -webkit-tap-highlight-color: transparent;
-    }
-
-    /* Create a custom checkbox */
-    .checkmark {
-        position: relative;
-        top: 0;
-        left: 0;
-        height: 1.3em;
-        width: 1.3em;
-        background-color: #2196f300;
-        border-radius: 0.25em;
-        transition: all 0.25s;
-    }
-
-    /* When the checkbox is checked, add a blue background */
-    .container input:checked~.checkmark {
-        background-color: #2196f3;
-    }
-
-    /* Create the checkmark/indicator (hidden when not checked) */
-    .checkmark:after {
-        content: "";
-        position: absolute;
-        transform: rotate(0deg);
-        border: 0.1em solid black;
-        left: 0;
-        top: 0;
-        width: 1.05em;
-        height: 1.05em;
-        border-radius: 0.25em;
-        transition: all 0.25s, border-width 0.1s;
-    }
-
-    /* Show the checkmark when checked */
-    .container input:checked~.checkmark:after {
-        left: 0.45em;
-        top: 0.25em;
-        width: 0.25em;
-        height: 0.5em;
-        border-color: #fff0 white white #fff0;
-        border-width: 0 0.15em 0.15em 0;
-        border-radius: 0em;
-        transform: rotate(45deg);
-    }
-
-    .card {
+    /* .card {
         width: 350px;
         height: 400px;
         background: white;
         border-radius: 37px;
-        padding: 7% 7% 7% 7%;
+        padding: 7% 7% 7% 6%;
     }
     .card-image {
         background-color: rgb(236, 236, 236);
@@ -371,7 +106,7 @@
 
     .card-image:hover {
         transform: scale(0.98);
-    }
+    } */
 
     /* 
     .category {
