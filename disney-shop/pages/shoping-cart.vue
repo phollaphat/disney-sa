@@ -68,7 +68,7 @@
                                     Coupon</button>
                             </div>
                             <hr class="my-3">
-                            <MenuLink to="/checkout"
+                            <MenuLink to="/"
                                 class="bg-[#5D12D2] hover:bg-[#9400FF] text-white py-2 px-4 rounded-lg mt-4 w-full text-center">
                                 checkout
                             </MenuLink>

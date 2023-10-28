@@ -52,7 +52,7 @@
 
             <div class="pl-16">
                 <button
-                    class="bg-[#4D4C7D] hover:bg-[#363062] w-[10px] h-[60px] text-white rounded-[15px]">
+                    class="bg-[#4D4C7D] hover:bg-[#363062] w-[150px] h-[60px] text-white rounded-[15px]">
                     <div class="font-bold text-xl">Add Product</div>
                 </button>
             </div>
@@ -63,15 +63,18 @@
             <a href="product_detail">
                 <div class="flex flex-row justify-center">
                     <div class="grid grid-cols-3 justify-items-center h-screen pt-1 gap-[90px]">
-                        <div class="card-product h-[400px]" v-for="i in 9">
+                        <div class="card-product" v-for="i in 9">
                             <div class="flex justify-center flex-col relative items-center">
                                 <div class="card-image">
                                     <img src="@/assets/b180691f36bd713b8c69519b8637fb8b.png" alt=""
                                         class="justify-items-center h-[290px] w-[290px] pt-2">
                                 </div>
                                 <div class="text-center mt-3 text-xs text-[#7D7C7C]">Scented Candle</div>
-                                <div class="text-center font-bold pt-2 text-2xl">Lord of the ring</div>
-                                <div class="text-xl pt-1 font-medium text-center">1032 Baht</div>
+                                <div class="text-center font-bold pt-2 text-xl">Pluto Scented Candle Collection</div>
+                                <div class="flex flex-row gap-5 mt-2 justify-start w-full">
+                                    <div class="text-xl ml-3 font-medium text-center">10 ชิ้น</div>
+                                    <div class="bg-[#5D9C59] rounded-full w-[21px] h-[21px] text-center mt-1"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
