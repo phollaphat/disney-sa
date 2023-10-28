@@ -78,7 +78,7 @@
                     <div class="text-xl pt-1 text-center">1032 Baht</div>
                     <div class="justify-center items-center pt-2">
                         <button
-                            class="bg-[#5D12D2] h-[40px] w-[300px] rounded-[10px] text-[14px] text-center drop-shadow-sm hover:bg-[#9400FF] text-white">
+                            class="bg-[#5D12D2] h-[40px] w-[300px] rounded-[11px] text-[14px] text-center drop-shadow-sm hover:bg-[#9400FF] text-white">
                             ADD TO ORDER
                         </button>
                     </div>
