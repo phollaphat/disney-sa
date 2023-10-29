@@ -37,7 +37,8 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $product = Product::Where('id', $id)->first();
+        return $product;
     }
 
     /**
