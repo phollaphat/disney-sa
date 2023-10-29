@@ -19,3 +19,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::resource('products', 'App\Http\Controllers\ProductController');
+Route::resource('productLists', 'App\Http\Controllers\ProductListController');
