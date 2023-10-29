@@ -87,9 +87,7 @@
 </template>
 
 <script setup lang="ts">
-    
     const { data: products, pending } = await useFetch<any>('http://localhost/api/products')
-
     
 </script>
 

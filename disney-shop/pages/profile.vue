@@ -13,7 +13,7 @@
                 Phone number
             </div>
             <div class="text-[32px] ">
-                065 449 3251
+                {{ user.tel }}
             </div>
             <div class="text-[40px] font-bold ">
                 Email
@@ -25,7 +25,7 @@
                 Role
             </div>
             <div class="text-[32px] ">
-                Manager
+                {{ user.role }}
             </div>
             <div class="flex justify-end pt-[100px]">
                 <button class="">Edit Profile</button>
