@@ -24,7 +24,13 @@
             <div class="flex flex-row justify-items-center items-center hover:bg-[#EEBBC3] rounded-lg"
                 :class="$route.name == 'reportDairy' ? 'bg-[#EEBBC3]' : ''">
                 <MenuLink to="/reportDairy"><img src="@/assets/File_dock_fill.png" alt="" /></MenuLink>
-                <MenuLink to="/reportDairy">Dairy Reports</MenuLink>
+                <MenuLink to="/reportDairy">Order Reports</MenuLink>
+            </div>
+
+            <div class="flex flex-row justify-items-center items-center hover:bg-[#EEBBC3] rounded-lg"
+                :class="$route.name == 'claim' ? 'bg-[#EEBBC3]' : ''">
+                <MenuLink to="/claim"><img src="@/assets/File_dock_fill.png" alt="" /></MenuLink>
+                <MenuLink to="/claim">Claim</MenuLink>
             </div>
 
             <div class="flex flex-row justify-items-center items-center hover:bg-[#EEBBC3] rounded-lg"
@@ -39,8 +45,25 @@
             
             <div class="flex flex-row justify-items-center items-center hover:bg-[#EEBBC3] rounded-lg">
                 <img src="@/assets/logout.svg" alt="" />
+                <button @click="onLogout">Logout</button>
                 <MenuLink to="/">Logout</MenuLink>
             </div>
         </div>
     </nav>
 </template>
+
+<script setup lang="ts">
+import { useAuthStore } from "~/stores/useAuthStore";
+
+const auth = useAuthStore()
+
+async function onLogout() {
+  const { data: response, error } = await useMyFetch<any>('auth/logout', {
+    method: 'POST'
+  })
+  if (response.value !== null) {
+    auth.clear()
+    await navigateTo('/')
+  }
+}
+</script>

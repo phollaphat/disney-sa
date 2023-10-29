@@ -92,7 +92,7 @@
     </div>
 </template>
 
-<script>
+<script setup>
     // import {ref} from 'vue'
     // import popup from './popup.vue'
     // const isOpen = ref(false)
