@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-col justify-start">
         <div class="h-screen py-8">
-            <div class="container mx-auto px-4">
+            <div class="mx-auto px-4">
                 <h1 class="text-[48px] text-[#FFFFFF] font-semibold mb-10 mx-auto w-[358px] bg-[#9985BB] text-center rounded-[20px] shadow-md">Checkout</h1>
                 <div class="flex flex-col md:flex-row gap-4">
                     <div class="md:w-3/4">
@@ -51,6 +51,7 @@
                             </div>
                         </div>  -->
                         <div class="bg-white rounded-lg shadow-md p-6">
+                            
 
                             <h2 class="text-lg font-semibold mb-4">Summary</h2>
                             <div class="flex justify-between mb-2">
@@ -89,7 +90,11 @@
 
                         <div class="mt-4">
                             <div class="bg-white rounded-lg shadow-md p-6">
-
+                                <h2 class="text-lg font-semibold mb-4">Customer</h2>
+                                <input type="text"
+                                    class="w-full relative bg-gray-50ring-0 outline-none border border-neutral-500 text-neutral-900 placeholder-[#9BA4B5] text-sm rounded-lg focus:ring-violet-500  focus:border-violet-500 block p-2.5"
+                                    placeholder="Customer tel...">
+                                
                             </div>
                         </div> 
                     </div>
