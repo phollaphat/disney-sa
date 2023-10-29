@@ -1,43 +1,46 @@
 <template>
     <div>
-        <div class="flex flex-row justify-items-center items-center gap-5">
-            <div class="p-10">
+        <div class="flex flex-row justify-items-center items-center gap-5 m-10">
+            <div class="w-1/5">
                 <img src="@/assets/Search.png" alt="" />
             </div>
-            <div>
+            
+            <div class="w-4/5">
                 <input required="" placeholder="   Searching..." type="text"
-                    class="h-[60px] w-[405px] bg-[#FFFDFD] rounded-[20px]" />
+                    class="h-[60px] w-full bg-[#FFFDFD] rounded-[20px]" />
             </div>
 
-            <div class="p-5">
-                <label class="popup">
-                    <input type="checkbox" />
-                    <div class="burger" tabindex="0">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                    <nav class="popup-window">
-                        <legend>เรียงตามลำดับ</legend>
-                        <ul>
-                            <li>
-                                <button>
-                                    <span>น้อยไปมาก</span>
-                                </button>
-                            </li>
-                            <li>
-                                <button>
-                                    <span>มากไปน้อย</span>
-                                </button>
-                            </li>
-                            <li>
-                                <button>
-                                    <span>ไม่มีสินค้า</span>
-                                </button>
-                            </li>
-                        </ul>
-                    </nav>
-                </label>
+            <div class="w-1/3">
+                <div class="">
+                    <label class="popup">
+                        <input type="checkbox" />
+                        <div class="burger" tabindex="0">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <nav class="popup-window">
+                            <legend>เรียงตามลำดับ</legend>
+                            <ul>
+                                <li>
+                                    <button>
+                                        <span>น้อยไปมาก</span>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button>
+                                        <span>มากไปน้อย</span>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button>
+                                        <span>ไม่มีสินค้า</span>
+                                    </button>
+                                </li>
+                            </ul>
+                        </nav>
+                    </label>
+                </div>
             </div>
 
             <div class="pl-[100px]">

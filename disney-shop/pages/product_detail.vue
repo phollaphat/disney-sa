@@ -12,7 +12,7 @@
                 </div>
             </div>
             <div class="flex flex-col gap-5">
-                <div class="text-5xl font-bold drop-shadow-md">
+                <div class="text-4xl ml-5 font-bold drop-shadow-md">
                     Pluto Scented Candle Collection
                 </div>
                 <div class="text-2xl font-semibold ml-5 mt-5">
