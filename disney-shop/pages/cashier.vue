@@ -1,59 +1,65 @@
 <template>
     <div>
-        <div class="flex flex-row justify-items-center items-center gap-5">
-            <div class="p-10">
+        <div class="flex flex-row justify-items-center items-center gap-5 m-10">
+            <div class="w-1/5">
                 <img src="@/assets/Search.png" alt="" />
             </div>
-            <div>
+            
+            <div class="w-4/5">
                 <input required="" placeholder="   Searching..." type="text"
-                    class="h-[60px] w-[405px] bg-[#FFFDFD] rounded-[20px]" />
+                    class="h-[60px] w-full bg-[#FFFDFD] rounded-[20px]" />
             </div>
 
-            <div class="p-5">
-                <label class="popup">
-                    <input type="checkbox" />
-                    <div class="burger" tabindex="0">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                    <nav class="popup-window">
-                        <legend>เรียงตามลำดับ</legend>
-                        <ul>
-                            <li>
-                                <button>
-                                    <span>น้อยไปมาก</span>
-                                </button>
-                            </li>
-                            <li>
-                                <button>
-                                    <span>มากไปน้อย</span>
-                                </button>
-                            </li>
-                            <li>
-                                <button>
-                                    <span>ไม่มีสินค้า</span>
-                                </button>
-                            </li>
-                        </ul>
-                    </nav>
-                </label>
+            <div class="w-1/3">
+                <div class="">
+                    <label class="popup">
+                        <input type="checkbox" />
+                        <div class="burger" tabindex="0">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <nav class="popup-window">
+                            <legend>เรียงตามลำดับ</legend>
+                            <ul>
+                                <li>
+                                    <button>
+                                        <span>น้อยไปมาก</span>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button>
+                                        <span>มากไปน้อย</span>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button>
+                                        <span>ไม่มีสินค้า</span>
+                                    </button>
+                                </li>
+                            </ul>
+                        </nav>
+                    </label>
+                </div>
             </div>
 
-            <div class="pl-[100px]">
-                <select name="" id="" class="bg-[#FFFDFD] w-[236px] h-[60px] rounded-[20px]">
+            <div class="w-2/5">
+                <select name="" id="" class="bg-[#FFFDFD] h-[60px] w-full rounded-[20px] pl-4">
                     <div>
+                        <option value="">All</option>
                         <option value="">Scented Candle</option>
-                        <option value="">jewelry</option>
+                        <option value="">Jewelry</option>
                     </div>
                 </select>
             </div>
 
-            <div class="flex flex-row pl-[190px]">
+
+
+            <div class="flex flex-row w-1/2 justify-center">
                 <div>
-                    <MenuLink to="/shoping-cart">
-                        <img src="@/assets/Basket_alt_3.png" alt=""> 
-                    </MenuLink>
+                    <a href="shoping-cart">
+                        <img src="@/assets/Basket_alt_3.png" alt="" class="pr-0">
+                    </a>
                 </div>
                 <div class="relative rounded-full bg-red-600 w-[30px] h-[30px]">
                     <div class="absolute left-3 top-1 text-center font-bold" style="color: white;">
@@ -63,25 +69,33 @@
             </div>
         </div>
 
-        <div class="grid grid-cols-3 justify-items-center h-screen pt-1 gap-5">
-                <div class="card" v-for="i in 9" >
-                    <div class="card-image">
-                        <img src="@/assets/b180691f36bd713b8c69519b8637fb8b.png" alt="" class="">
+        <div class="grid grid-cols-3 justify-items-center h-screen m-5 gap-5 mt-20">
+            <div class="bg-white w-5/6 rounded-[37px] p-[5%]" v-for="i in 9">
+                <div class="flex justify-center flex-col relative items-center">
+                    <div class="card-image flex justify-center mt-3">
+                        <img src="@/assets/b180691f36bd713b8c69519b8637fb8b.png" alt=""
+                            class="justify-items-center h-4/5 w-4/5">
                     </div>
-                    <div class="flex justify-center flex-col relative">
-                        <div class="text-center font-bold pt-2 text-xl">Lord of the ring</div>
-                        <div class="text-xl text-center">1032 Baht</div>
-                        <div class=" bg-red-300 w-8 h-8 rounded-full text-center pt-1 absolute right-5 button-0">
-                            <button class="text-xl"> + </button>
-                        </div>
+                    <div class="text-center mt-3 text-xs text-[#7D7C7C]">Scented Candle</div>
+                    <div class="text-center font-bold pt-1 text-2xl">Lord of the ring</div>
+                    <div class="text-xl pt-1 text-center">1032 Baht</div>
+                    <div class="flex justify-center items-center pt-2 w-full">
+                        <button
+                            class="bg-[#5D12D2] h-[40px] w-5/6 rounded-[11px] text-[14px] text-center drop-shadow-sm hover:bg-[#9400FF] text-white">
+                            ADD TO ORDER
+                        </button>
                     </div>
                 </div>
+            </div>
         </div>
+
     </div>
 </template>
 
 <script>
-    export default {};
+    // import {ref} from 'vue'
+    // import popup from './popup.vue'
+    // const isOpen = ref(false)
 </script>
 
 <style>
@@ -360,61 +374,22 @@
         transform: rotate(45deg);
     }
 
-    .card {
-        width: 350px;
-        height: 400px;
-        background: white;
-        border-radius: 37px;
-        padding: 7% 7% 7% 7%;
-    }
-
-    .card-image {
+    /* .card-image {
         background-color: rgb(236, 236, 236);
         width: 290px;
         height: 290px;
         border-radius: 6px 6px 0 0;
         display: block;
-    }
-
-    .card-image:hover {
-        transform: scale(0.98);
-    }
-
-    /* 
-    .category {
-        text-transform: uppercase;
-        font-size: 0.7em;
-        font-weight: 600;
-        color: rgb(63, 121, 230);
-        padding: 10px 7px 0;
-    }
-
-    .category:hover {
-        cursor: pointer;
-    }
-
-    .heading {
-        font-weight: 600;
-        color: rgb(88, 87, 87);
-        padding: 7px;
-    }
-
-    .heading:hover {
-        cursor: pointer;
-    }
-
-    .author {
-        color: gray;
-        font-weight: 400;
-        font-size: 11px;
-        padding-top: 20px;
-    }
-
-    .name {
-        font-weight: 600;
-    }
-
-    .name:hover {
-        cursor: pointer;
     } */
+
+    .show-popup {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        z-index: 1000;
+        /* และคุณอาจต้องกำหนดความกว้าง ความสูง และแถบกรอบตามต้องการ */
+    }
 </style>
