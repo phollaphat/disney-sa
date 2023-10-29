@@ -23,6 +23,8 @@ class User extends Authenticatable implements JWTSubject
         'name',
         'email',
         'password',
+        'role',
+        'tel',
     ];
 
     /**
@@ -44,6 +46,14 @@ class User extends Authenticatable implements JWTSubject
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function claims() { 
+        return $this->hasMany(Claim::class);
+    }
+    
+    public function order() { 
+        return $this->hasMany(Order::class);
+    }
 
     public function getJWTIdentifier()
     {

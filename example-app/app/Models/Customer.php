@@ -10,17 +10,17 @@ class Customer extends Model
     use HasFactory;
 
     protected $fillable = [
-        'number',
+        'tel',
         'name'
-    ]
+    ];
 
 
-    public function order()
+    public function orders()
     {
         return $this->hasMany(Order::class);
     }
 
-    public function claim()
+    public function claims()
     {
         return $this->hasMany(claim::class);
     }

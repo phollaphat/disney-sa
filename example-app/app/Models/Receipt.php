@@ -7,16 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Recipt extends Model
+class Receipt extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'receipt_id',
         'order_id',
         'payment_channel',
-        'date_time'
-    ]    
+        'date'
+    ];    
 
     public function order()
     {

@@ -16,7 +16,7 @@ class WarantyCard extends Model
         'end_date',
         'start_date',
         'product_id',
-    ]
+    ];
 
 
     public function receipt()

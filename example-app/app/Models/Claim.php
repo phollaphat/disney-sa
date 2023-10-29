@@ -11,13 +11,12 @@ class Cliam extends Model
     use HasFactory;
 
     protected $fillable = [
-        'claim_id',
-        'date',
+        'warantyCard_id',
+        'user_id',
+        'customer_id',
         'product_id',
-        'employee_id',
-        'customer_number',
-        'date'
-    ]
+        'date',
+    ];
 
 
     public function product()
@@ -25,9 +24,9 @@ class Cliam extends Model
         return $this->belongsTo(Product::class);
     }
 
-    public function employee()
+    public function user()
     {
-        return $this->belongsTo(Employee::class);
+        return $this->belongsTo(User::class);
     }
 
     public function orders()
