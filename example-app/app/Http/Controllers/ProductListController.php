@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class ProductListController extends Controller
 {
-     /**
+    /**
      * Display a listing of the resource.
      */
     public function index()
@@ -17,7 +17,7 @@ class ProductListController extends Controller
         return $productLists;
     }
 
-      /**
+    /**
      * Show the form for creating a new resource.
      */
     public function create()
