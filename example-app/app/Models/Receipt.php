@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Recipt extends Model
 {
@@ -22,7 +24,7 @@ class Recipt extends Model
     }
 
     // Define the hasMany relationship with WarrantyCard
-    public function warrantyCards()
+    public function warrantyCard()
     {
         return $this->hasMany(WarrantyCard::class);
     }
