@@ -63,7 +63,7 @@
 
         <div class="grid grid-cols-3 justify-items-center h-screen m-5 mt-20 gap-5">
             <div class="bg-white w-5/6 rounded-[37px] p-[5%]" v-for="product in products">
-                <a href="product_detail">
+                <NuxtLink :to="`/products/${product.id}`">
                     <div class="flex justify-center flex-col relative items-center">
                         <div class="card-image flex justify-center mt-3">
                             <img src="@/assets/b180691f36bd713b8c69519b8637fb8b.png" alt=""
@@ -78,7 +78,7 @@
                             <div v-else :class="['bg-[#DF2E38]', 'rounded-full', 'w-[18px]', 'h-[18px]', 'text-center', 'mt-1']"></div>
                         </div>
                     </div>
-                </a>
+                </NuxtLink>
             </div>
         </div>
 
@@ -87,14 +87,7 @@
 </template>
 
 <script setup lang="ts">
-    
-    const { data: products, pending } = await useFetch<any>('http://localhost/api/products')
-
-    function isInStock() {
-        for(product of products){ 
-            console.log($product);
-        }
-    }
+    const { data: products, pending } = await useMyFetch("products", {})
 </script>
 
 <style>

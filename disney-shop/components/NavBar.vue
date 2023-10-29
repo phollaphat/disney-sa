@@ -45,8 +45,25 @@
             
             <div class="flex flex-row justify-items-center items-center hover:bg-[#EEBBC3] rounded-lg">
                 <img src="@/assets/logout.svg" alt="" />
+                <button @click="onLogout">Logout</button>
                 <MenuLink to="/">Logout</MenuLink>
             </div>
         </div>
     </nav>
 </template>
+
+<script setup lang="ts">
+import { useAuthStore } from "~/stores/useAuthStore";
+
+const auth = useAuthStore()
+
+async function onLogout() {
+  const { data: response, error } = await useMyFetch<any>('auth/logout', {
+    method: 'POST'
+  })
+  if (response.value !== null) {
+    auth.clear()
+    await navigateTo('/')
+  }
+}
+</script>
