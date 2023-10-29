@@ -15,12 +15,6 @@
                 <MenuLink to="/products">Products</MenuLink>
             </div>
 
-            <div class="flex flex-row justify-items-center items-center hover:bg-[#EEBBC3]  rounded-lg"
-                :class="$route.name == 'reportSale' ? 'bg-[#EEBBC3]' : ''">
-                <MenuLink to="/reportSale"><img src="@/assets/Line_up.png" alt="" /></MenuLink>
-                <MenuLink to="/reportSale">Sale Reports</MenuLink>
-            </div>
-
             <div class="flex flex-row justify-items-center items-center hover:bg-[#EEBBC3] rounded-lg"
                 :class="$route.name == 'reportPayment' ? 'bg-[#EEBBC3]' : ''">
                 <MenuLink to="/reportPayment"><img src="@/assets/Wallet.png" alt="" /></MenuLink>
