@@ -44,7 +44,7 @@
             </div>
 
             <div class="w-2/5">
-                <select @click="getData" class="bg-[#FFFDFD] h-[60px] w-full rounded-[20px] pl-4" v-model="formData.category">
+                <select class="bg-[#FFFDFD] h-[60px] w-full rounded-[20px] pl-4" v-model="category">
                     <option value="All">All</option>
                     <option value="Scented Candle">Scented Candle</option>
                     <option value="Jewelry">Jewelry</option>
@@ -53,13 +53,13 @@
 
             <div class="flex flex-row w-1/2 justify-center">
                 <div>
-                    <a href="shoping-cart">
+                    <a href="/shoping-cart">
                         <img src="@/assets/Basket_alt_3.png" alt="" class="pr-0">
                     </a>
                 </div>
-                <div class="relative rounded-full bg-red-600 w-[30px] h-[30px]">
-                    <div class="absolute left-3 top-1 text-center font-bold" style="color: white;">
-                        0
+                <div class="relative rounded-full bg-red-600 w-[30px] h-[30px] absolute left-3 top-1 text-center font-bold">
+                    <div class="mt-1" style="color: white;">
+                        {{ cart.lengthItems }}
                     </div>
                 </div>
             </div>
@@ -76,7 +76,7 @@
                     <div class="text-center font-bold pt-1 text-2xl">{{ product.name }}</div>
                     <div class="text-xl pt-1 text-center">{{ product.price }} Baht</div>
                     <div class="flex justify-center items-center pt-2 w-full">
-                        <button
+                        <button @click="addItem(product)"
                             class="bg-[#5D12D2] h-[40px] w-5/6 rounded-[11px] text-[14px] text-center drop-shadow-sm hover:bg-[#9400FF] text-white">
                             ADD TO ORDER
                         </button>
@@ -89,16 +89,20 @@
 </template>
 
 <script setup>
-    const formData = reactive({ category: ""});
-    const getData = async () => {
-    try {
-        console.log(formData.category)
-    } catch(error) {
-            console.log(error)
+    import { useCartStore } from "~/stores/useCartStore"
+    const { data: products, pending } = await useMyFetch("products", {});
+
+    const cart = useCartStore();
+    const addItem = (item) => {
+        const product = cart.items.find(row => row.id == item.id)
+        if (product) {
+            product.qty++
+        } 
+        else {
+            cart.items.push({ id: item.id, product: item, qty: 1, })
         }
     }
-    const { data: products, pending } = await useMyFetch("products", {})
-    
+
 </script>
 
 

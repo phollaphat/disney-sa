@@ -32,12 +32,6 @@
                 <MenuLink to="/claim"><img src="@/assets/File_dock_fill.png" alt="" /></MenuLink>
                 <MenuLink to="/claim">Claim</MenuLink>
             </div>
-
-            <div class="flex flex-row justify-items-center items-center hover:bg-[#EEBBC3] rounded-lg"
-                :class="$route.name == 'claim' ? 'bg-[#EEBBC3]' : ''">
-                <MenuLink to="/claim"><img src="@/assets/File_dock_fill.png" alt="" /></MenuLink>
-                <MenuLink to="/claim">Claim</MenuLink>
-            </div>
             
             <div class="py-5">
                 <hr class="border-black" />
@@ -45,8 +39,8 @@
             
             <div class="flex flex-row justify-items-center items-center hover:bg-[#EEBBC3] rounded-lg">
                 <img src="@/assets/logout.svg" alt="" />
-                <button @click="onLogout">Logout</button>
-                <MenuLink to="/">Logout</MenuLink>
+                <button @click="onLogout" class="ml-5">Logout</button>
+                <!-- <MenuLink to="/">Logout</MenuLink> -->
             </div>
         </div>
     </nav>

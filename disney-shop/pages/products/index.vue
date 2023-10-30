@@ -68,7 +68,6 @@
                         <div class="card-image flex justify-center mt-3">
                             <img src="@/assets/b180691f36bd713b8c69519b8637fb8b.png" alt=""
                                 class="justify-items-center h-4/5 w-4/5">
-
                         </div>
                         <div class="text-center mt-3 text-xs text-[#7D7C7C]">{{ product.category }}</div>
                         <div class="text-center font-bold pt-1 text-lg">{{ product.name }}</div>
