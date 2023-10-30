@@ -16,16 +16,15 @@ class Order extends Model
 
     protected $fillable = [
         'status',
-        'employee_id',
-        'product_id',
         'customer_phone',
+        'user_id',
         'total_price',
-        'date_time'
-    ]
+        'date'
+    ];
 
-    public function employee()
+    public function user()
     {
-        return $this->belongsTo(Employee::class);
+        return $this->belongsTo(User::class);
     }
 
     // Define the belongsTo relationship with Customer

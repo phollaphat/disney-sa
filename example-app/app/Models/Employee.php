@@ -21,7 +21,7 @@ class Employee extends Model
         'password',
         'role',
         'employee_id'
-    ]
+    ];
 
     protected $hidden = [
         'password',
@@ -33,7 +33,7 @@ class Employee extends Model
         'password' => 'hashed',
     ];
 
-    public function claiming()
+    public function claims()
     {
         return $this->hasMany(Claim::class);
     }

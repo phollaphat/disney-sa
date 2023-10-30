@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Order;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,13 +12,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('customer', function (Blueprint $table) {
-        $table->integer('tel');
-        $table->foreign('number')->references('tel')->on('customer');
-
-        $table->string('name');
+        Schema::create('receipts', function (Blueprint $table) {
+            $table->id();
+            $table->foreignIdFor(Order::class);
+            $table->string('payment_channel')->nullable();
+            $table->date('date');
+            $table->timestamps();
         });
-            
     }
 
     /**
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('customer'); 
+        Schema::dropIfExists('receipts');
     }
 };

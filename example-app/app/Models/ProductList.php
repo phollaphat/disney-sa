@@ -11,6 +11,13 @@ class ProductList extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'product_id',
+        'image_path',
+        'quantity',
+        'price_sum'
+    ];
+
     public function product(): HasMany
     {
         return $this->hasMany(ProductList::class);
