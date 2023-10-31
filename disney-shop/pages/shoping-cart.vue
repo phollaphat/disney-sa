@@ -66,7 +66,7 @@
                                             Total
                                         </div>
                                         <div class="text-lg">
-                                            {{ item.total }}
+                                            {{ item.total }} ฿
                                         </div>
                                     </div>
 
@@ -95,34 +95,36 @@
                             <h2 class="text-lg font-semibold mb-4">Summary</h2>
                             <div class="flex justify-between mb-2">
                                 <span>Subtotal</span>
-                                <span>{{ cart.getTotalPrice }}</span>
+                                <span>{{ cart.getTotalPrice }} ฿</span>
+                            </div>
+                            <div class="flex justify-between mb-2">
+                                <span>Discount</span>
+                                <span>{{ cart.getDiscount }} ฿</span>
                             </div>
                             <hr class="my-2">
                             <div class="flex justify-between mb-2">
                                 <span class="font-semibold">Total</span>
-                                <span class="font-semibold">{{ cart.getTotalPrice }}</span>
-                            </div>
-                            <div class="">
-                                <input type="text"
-                                    class="w-full relative bg-gray-50ring-0 outline-none border border-neutral-500 text-neutral-900 placeholder-[#9BA4B5] text-sm rounded-lg focus:ring-violet-500  focus:border-violet-500 block p-2.5"
-                                    placeholder="Coupon Core...">
-                                <button
-                                    class="bg-[#5D12D2] hover:bg-[#9400FF] text-white py-2 px-4 rounded-lg mt-4 w-full">Add
-                                    Coupon</button>
+                                <span class="font-semibold">{{ cart.getTotalDiscount }} ฿</span>
                             </div>
                             <hr class="my-3">
-
+                                <div class="mb-5 text-[#7D7C7C]">
+                                    Custom Name
+                                </div>
                                 <input type="text"
                                     class="w-full relative bg-gray-50ring-0 outline-none border border-neutral-500 text-neutral-900 placeholder-[#9BA4B5] text-sm rounded-lg focus:ring-violet-500  focus:border-violet-500 block p-2.5"
                                     placeholder="Customer Tel...">
-                                <button
-                                    class="bg-[#5D12D2] hover:bg-[#9400FF] text-white py-2 px-4 rounded-lg mt-4 w-full">Search</button>
+
+                                <input type="text"
+                                    class="mt-5 w-full relative bg-gray-50ring-0 outline-none border border-neutral-500 text-neutral-900 placeholder-[#9BA4B5] text-sm rounded-lg focus:ring-violet-500  focus:border-violet-500 block p-2.5"
+                                    placeholder="Customer Name...">
+
+                                <button class="bg-[#5D12D2] hover:bg-[#9400FF] text-white py-2 px-4 rounded-lg mt-4 w-full">Search</button>
 
 
                             
                             <hr class="my-3">
 
-                            <select name="" id="" class="bg-[#FFFDFD] w-[210px] h-[60px] rounded-[20px]">
+                            <select name="" id="payment_cha" class="bg-[#FFFDFD] w-3/5 h-[60px] rounded-[20px]">
                                 <div>
                                     <option value="">Choose Payment</option>
                                     <option value="">Alipay</option>
@@ -131,8 +133,7 @@
                                     <option value="">Qr thai </option>
                                 </div>
                             </select>
-                            <MenuLink to="/checkout"
-                                class="bg-[#5D12D2] hover:bg-[#9400FF] text-white py-2 px-4 rounded-lg mt-4 w-full text-center">
+                            <MenuLink to="/checkout" class="bg-[#5D12D2] hover:bg-[#9400FF] text-white w-1/4 py-4 px-4 rounded-lg mt-4 w-full text-center ml-8">
                                 checkout
                             </MenuLink>
                         </div>
@@ -172,8 +173,7 @@
             cart.items.splice(index, 1);
         }
     }
-
-
+    
 </script>
 
 <style>
