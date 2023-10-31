@@ -64,4 +64,16 @@ class ProductController extends Controller
     {
         //
     }
+
+    public function filterShow(string $category)
+    {
+        if($category == "All") {
+            $products = Product::get();
+        }
+        else {
+            $products = Product::Where("category", $category)->get();
+        }
+        
+        return $products;
+    }
 }
