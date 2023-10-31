@@ -19,7 +19,7 @@ class ProductFactory extends Factory
         $categories = ['Jewelry', 'Scented Candle'];
 
         return [
-            'model_code' => fake()->unique()->word(),
+            'model_code' => fake()->unique()->regexify('[A-Za-z]{15}'),
             'image_path' => '@/assets/b180691f36bd713b8c69519b8637fb8b.png',
             'category' => $this->faker->randomElement($categories),
             'name' => fake()->name(),
