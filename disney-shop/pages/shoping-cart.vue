@@ -2,13 +2,15 @@
     <div class="flex flex-col justify-start">
         <div class="h-screen overflow-y-auto py-8">
             <div class=" mx-auto px-4">
-                <h1 class="text-[48px] text-[#FFFFFF] font-semibold mb-10 mx-auto w-[358px] bg-[#4D4C7D] text-center rounded-[20px] shadow-md">
+                <h1
+                    class="text-[48px] text-[#FFFFFF] font-semibold mb-10 mx-auto w-[358px] bg-[#4D4C7D] text-center rounded-[20px] shadow-md">
                     Shopping Cart
                 </h1>
                 <div class="flex flex-col md:flex-row gap-4">
                     <div class="md:w-3/4">
                         <div v-if="!cart.isEmpty">
-                            <div class="flex flex-col justify-start bg-white rounded-lg shadow-md p-6 mb-7" v-for="item in cart.items" :key="item.id">
+                            <div class="flex flex-col justify-start bg-white rounded-lg shadow-md p-6 mb-7"
+                                v-for="item in cart.items" :key="item.id">
                                 <div class="flex flex-row justify-start gap-5 text-lg items-center">
                                     <div class="flex flex-col w-3/6">
                                         <div class="text-2xl font-bold mb-4">
@@ -16,7 +18,8 @@
                                         </div>
                                         <div class="flex flex-row items-center">
                                             <div>
-                                                <img src="@/assets/b180691f36bd713b8c69519b8637fb8b.png" alt="" class="h-16 w-16 mr-5">  
+                                                <img src="@/assets/b180691f36bd713b8c69519b8637fb8b.png" alt=""
+                                                    class="h-16 w-16 mr-5">
                                             </div>
                                             <div class="text-lg">
                                                 {{ item.product.name }}
@@ -37,7 +40,7 @@
                                         <div class="text-2xl font-bold mb-4">
                                             Unit Price
                                         </div>
-                                        <div class="text-lg">
+                                        <div class="text-lg text-center">
                                             {{ item.product.price }}
                                         </div>
                                     </div>
@@ -71,9 +74,17 @@
                                     </div>
 
                                     <div class="flex flex-col w-1/6 justify-items-center">
-                                        <div></div>
                                         <div class="">
-                                            <button @click="removeItem(item)" class="py-3 px-6 rounded-lg text-sm font-medium bg-[#5D12D2] hover:bg-[#9400FF] text-white">Remove</button>
+                                            <button @click="removeItem(item)"
+                                                class="py-3 px-6 rounded-lg text-sm font-medium bg-[#5D12D2] hover:bg-[#9400FF] text-white">Remove</button>
+                                        </div>
+                                        <div class="mt-5">
+                                            <button @click="DiscountAdd(item)"
+                                                class="py-3 px-6 rounded-lg text-sm font-medium bg-[#5D12D2] hover:bg-[#9400FF] text-white">Discount</button>
+                                        </div>
+                                        <div class="mt-5">
+                                            <button @click="DisableDiscountAdd(item)"
+                                                class="py-3 px-6 rounded-lg text-sm font-medium bg-[#5D12D2] hover:bg-[#9400FF] text-white">No Discount</button>
                                         </div>
                                     </div>
                                 </div>
@@ -92,6 +103,7 @@
 
                     <div class="md:w-1/4">
                         <div class="bg-white rounded-lg shadow-md p-6">
+
                             <h2 class="text-lg font-semibold mb-4">Summary</h2>
                             <div class="flex justify-between mb-2">
                                 <span>Subtotal</span>
@@ -99,43 +111,58 @@
                             </div>
                             <div class="flex justify-between mb-2">
                                 <span>Discount</span>
-                                <span>{{ cart.getDiscount }} ฿</span>
+                                <span>{{ cart.getSubDiscount }} ฿</span>
                             </div>
                             <hr class="my-2">
                             <div class="flex justify-between mb-2">
                                 <span class="font-semibold">Total</span>
                                 <span class="font-semibold">{{ cart.getTotalDiscount }} ฿</span>
                             </div>
+
                             <hr class="my-3">
-                                <div class="mb-5 text-[#7D7C7C]">
-                                    Custom Name
+
+
+                            <form @submit.prevent="onSubmit()">
+
+                                <div class="text-lg font-semibold mb-1">
+                                    Customer Name:
                                 </div>
+                                <div v-if="customerShow">
+                                    <div class="text-lg my-3 font-semibold text-[#7D7C7C]">
+                                        {{ customerShow.name }}
+                                    </div>
+                                </div>
+                                <div v-else>
+                                    <div class="text-lg my-2 font-semibold text-[#7D7C7C]">
+                                        name
+                                    </div>
+                                </div>
+
                                 <input type="text"
                                     class="w-full relative bg-gray-50ring-0 outline-none border border-neutral-500 text-neutral-900 placeholder-[#9BA4B5] text-sm rounded-lg focus:ring-violet-500  focus:border-violet-500 block p-2.5"
-                                    placeholder="Customer Tel...">
+                                    placeholder="Customer Tel..." v-model="formData.tel">
 
                                 <input type="text"
                                     class="mt-5 w-full relative bg-gray-50ring-0 outline-none border border-neutral-500 text-neutral-900 placeholder-[#9BA4B5] text-sm rounded-lg focus:ring-violet-500  focus:border-violet-500 block p-2.5"
-                                    placeholder="Customer Name...">
+                                    placeholder="Customer Name..." v-model="formData.name">
+                                <button type="submit"
+                                    class="bg-[#5D12D2] hover:bg-[#9400FF] text-white py-2 px-4 rounded-lg mt-4 w-full">Search</button>
+                            </form>
 
-                                <button class="bg-[#5D12D2] hover:bg-[#9400FF] text-white py-2 px-4 rounded-lg mt-4 w-full">Search</button>
-
-
-                            
                             <hr class="my-3">
 
-                            <select name="" id="payment_cha" class="bg-[#FFFDFD] w-3/5 h-[60px] rounded-[20px]">
-                                <div>
-                                    <option value="">Choose Payment</option>
-                                    <option value="">Alipay</option>
-                                    <option value="">Cash</option>
-                                    <option value="">Credit/Debit Card</option>
-                                    <option value="">Qr thai </option>
-                                </div>
+                            <select name="" id="payment_cha" class="bg-[#FFFDFD] w-3/5 h-[60px] rounded-[20px]" v-model="payment_cha">
+                                <option value="">Choose Payment</option>
+                                <option value="Alipay">Alipay</option>
+                                <option value="Cash">Cash</option>
+                                <option value="Credit/Debit Card">Credit/Debit Card</option>
+                                <option value="Qr thai">Qr thai</option>
                             </select>
-                            <MenuLink to="/checkout" class="bg-[#5D12D2] hover:bg-[#9400FF] text-white w-1/4 py-4 px-4 rounded-lg mt-4 w-full text-center ml-8">
+                            <MenuLink to="/checkout" @click="saveCheckPayment(payment_cha), saveCustomer(customerShow.tel, customerShow.name), addOrder(auth.user.name, customer.name, cart.getTotalDiscount), saveOrder()"
+                                class="bg-[#5D12D2] hover:bg-[#9400FF] text-white w-1/4 py-4 px-4 rounded-lg mt-4 w-full text-center ml-8">
                                 checkout
                             </MenuLink>
+                            
                         </div>
                     </div>
                 </div>
@@ -145,15 +172,51 @@
                     class="bg-[#4D4C7D] w-[100px] h-[45px] ml-4 rounded-[15px] text-xl hover:bg-[#363062] text-white">Back</button>
             </a>
         </div>
+
+        <div v-for="item in cart.items" :key="item.id">
+            
+        </div>
     </div>
 </template>
 
 <script setup>
-    import {
-        useCartStore
-    } from "~/stores/useCartStore"
-    const cart = useCartStore();
+    import { useCartStore } from "~/stores/useCartStore"
+    import { useCheckPaymentStore } from "~/stores/useCheckPaymentStore"
+    import { useCustomerStore } from "~/stores/useCustomerStore"
+    import { useAuthStore } from "~/stores/useAuthStore"
+    import { useOrderStore } from "~/stores/useOrderStore"
 
+    const cart = useCartStore();
+    const check_payment = useCheckPaymentStore();
+    const customer = useCustomerStore();
+    const auth = useAuthStore();
+    const order = useOrderStore();
+
+    // api
+    const formData = ref({
+        tel: "",
+        name: ""
+    })
+
+    const customerShow = ref(null)
+
+    const onSubmit = async () => {
+        const {
+            data: response,
+            error
+        } = await useMyFetch('customers', {
+            method: 'POST',
+            body: formData.value
+        })
+        const {
+            data: customer,
+            pending
+        } = await useMyFetch(`customers/${response.value.id}`, {})
+        customerShow.value = customer.value;
+        console.log('finding ok')
+    }
+
+    // function for Pinia
     const addItemQRT = (item) => {
         const product = cart.items.find(row => row.id == item.id)
         product.qty++
@@ -173,7 +236,47 @@
             cart.items.splice(index, 1);
         }
     }
+
+    const DiscountAdd = (item) => {
+        const product = cart.items.find(row => row.id == item.id)
+        const oldDiscount = (product.qty * product.product.price) * (10 / 100)
+        product.discount = oldDiscount
+    }
+
+    const DisableDiscountAdd = (item) => {
+        const product = cart.items.find(row => row.id == item.id)
+        product.discount = 0.0
+    }
+
+    const saveCheckPayment = (Payment) => {
+        check_payment.payment =  Payment
+    }
+
+    const saveCustomer = (tel, name) => {
+        customer.tel =  tel
+        customer.name =  name
+    }
+
+    const orderShow = ref(null)
     
+    const addOrder = async (user_name, customer_name, total) => {
+        const { data: response, error } = await useMyFetch('orders', {
+            method: 'POST',
+            body: {
+                "user_name": user_name, 
+                "customer_name": customer_name,
+                "total": total
+            }
+        })
+        order.id = response.value.id
+        // orderShow.value = response.value
+        // console.log(orderShow.value.id)
+    }
+
+    // const saveOrder = async() => {
+    //     order.id = orderShow.value.id
+    // }
+
 </script>
 
 <style>

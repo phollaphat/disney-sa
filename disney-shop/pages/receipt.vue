@@ -1,79 +1,106 @@
 <template>
-    <div class="flex flex-col justify-start">
-        <div class="h-screen py-8">
-            <div class="container mx-auto px-4">
-                <h1 class="text-[48px] text-[#FFFFFF] font-semibold mb-10 mx-auto w-[358px] bg-[#9985BB] text-center rounded-[20px] shadow-md">Receipt</h1>
-                <div class="flex flex-col md:flex-row gap-4">
-                    <div class="md:w-3/4">
-                        <div class="bg-white rounded-lg shadow-md p-6 mb-4" v-for="i in 4">
-                            <table class="w-full">
-                                <thead>
-                                    <tr>
-                                        <th class="text-left font-semibold">Product</th>
-                                        <th class="text-left font-semibold">Model</th>
-                                        <th class="text-left font-semibold">Price</th>
-                                        <th class="text-left font-semibold">Quantity</th>
-                                        <th class="text-left font-semibold">Total</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td class="py-4">
-                                            <div class="flex items-center">
-                                                <img src="@/assets/b180691f36bd713b8c69519b8637fb8b.png" alt="" class="h-16 w-16 mr-4">
-                                                <span class="font-semibold">Lord of the Ring</span>
-                                            </div>
-                                        </td>
-                                        <td class="py-4">APG5654457054</td>
-                                        <td class="py-4">$19.99</td>
-                                        <td class="py-4">
-                                            <div class="flex items-center">
-                                                <button class="border rounded-md py-2 px-4 mr-2">-</button>
-                                                <span class="text-center w-8">1</span>
-                                                <button class="border rounded-md py-2 px-4 ml-2">+</button>
-                                            </div>
-                                        </td>
-                                        <td class="py-4">$19.99</td>
-                                        <td class="py-4">
-                                            <button class="py-2.5 px-6 rounded-lg text-sm font-medium bg-[#9985BB] text-white">Remove</button>
-                                        </td>
-                                    </tr>
-                                    <!-- More product rows -->
-                                </tbody>
-                            </table>
-                        </div>
+    <div class="bg-[#F5F7F8] m-10 rounded-[20px] h-[850px]">
+        <div class="p-16">
+            <div class="font-bold text-5xl">
+                checkout
+            </div>
+            <div class="text-xl pt-2">
+                Thank you. Your order has been received.
+            </div>
+            <div class="pt-5 flex flex-row gap-5">
+                <div class="flex flex-col border-dashed border-[#7D7C7C] border-r-2 w-[160px]">
+                    <div class="">
+                        ORDER NUMBER:
                     </div>
-                    <div class="md:w-1/4">
-                        <div class="bg-white rounded-lg shadow-md p-6">
-                            <h2 class="text-lg font-semibold mb-4">Summary</h2>
-                            <div class="flex justify-between mb-2">
-                                <span>Subtotal</span>
-                                <span>$19.99</span>
-                            </div>
-                            <div class="flex justify-between mb-2">
-                                <span>Taxes</span>
-                                <span>$1.99</span>
-                            </div>
-                            <div class="flex justify-between mb-2">
-                                <span>Shipping</span>
-                                <span>$0.00</span>
-                            </div>
-                            <hr class="my-2">
-                            <div class="flex justify-between mb-2">
-                                <span class="font-semibold">Total</span>
-                                <span class="font-semibold">$21.98</span>
-                            </div>
-
-                    
-                            
-                            
-                            <MenuLink to="/" class="bg-[#9985BB] text-white py-2 px-4 rounded-lg mt-4 w-full text-center">
-                                submit
-                            </MenuLink>
-                        </div>
+                    <div class="font-bold">
+                        {{ order.id }}
+                    </div>
+                </div>
+    
+                <div class="flex flex-col border-dashed border-[#7D7C7C] border-r-2 w-[160px]">
+                    <div class="">
+                        DATE:
+                    </div>
+                    <div class="font-bold">
+                        Today
+                    </div>
+                </div>
+    
+                <div class="flex flex-col border-dashed border-[#7D7C7C] border-r-2 w-[130px]">
+                    <div class="pr-5">
+                        TOTAL:
+                    </div>
+                    <div class="font-bold">
+                        {{ cart.getTotalDiscount }}
+                    </div>
+                </div>
+                <div class="flex flex-col w-[200px]">
+                    <div class="pr-5">
+                        PAYMENT METHOD:
+                    </div>
+                    <div class="font-bold">
+                        {{ check_payment.payment }}
                     </div>
                 </div>
             </div>
+    
+            <div class="">
+                <table class="border-collapse border border-[#191717] mt-10 w-full">
+                    <thead>
+                        <tr class="bg-[#61677A] text-white text-3xl h-[80px] border-b border-[#191717]">
+                            <th class="py-2 px-4 text-left font-semibold">Product</th>
+                            <th class="py-2 px-4 text-left font-semibold">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="bg-[#D8D9DA] border-b border-r border-[#191717] h-[50px] text-[#213555]" v-for="item in cart.items" :key="item.id">
+                            <td class="py-2 px-4 text-lg">{{ item.product.name }}: {{ item.qty }}x</td>
+                            <td class="py-2 px-4 text-lg">{{ item.total }}</td>
+                        </tr>
+                    </tbody>
+                    <tbody>
+                        <tr class="bg-[#D8D9DA] border-b border-[#191717] h-[50px]">
+                            <td class="py-2 px-4 text-lg font-semibold">Subtotal:	</td>
+                            <td class="py-2 px-4 text-lg">{{ cart.getTotalPrice }}</td>
+                        </tr>
+                        <tr class="bg-[#D8D9DA] border-b border-[#191717] h-[50px]">
+                            <td class="py-2 px-4 text-lg font-semibold">Payment method:</td>
+                            <td class="py-2 px-4 text-lg">{{ check_payment.payment }}</td>
+                        </tr>
+                        <tr class="bg-[#D8D9DA] border-b border-[#191717] h-[50px]">
+                            <td class="py-2 px-4 text-lg font-semibold">Total:</td>
+                            <td class="py-2 px-4 text-lg">{{ cart.getTotalDiscount }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+    
+            <a href="/cashier">
+                <button class="mt-10 bg-[#4D4C7D] w-[115px] h-[50px] rounded-[20px] text-white text-xl hover:bg-[#363062]" @click="endSell()">
+                    Print
+                </button>
+            </a>
         </div>
     </div>
 </template>
+
+<script setup>
+    import { getActivePinia } from "pinia"
+    import { useCheckPaymentStore } from "~/stores/useCheckPaymentStore"
+    import { useCustomerStore } from "~/stores/useCustomerStore"
+    import { useCartStore } from "~/stores/useCartStore"
+    import { useOrderStore } from "~/stores/useOrderStore"
+
+    const check_payment = useCheckPaymentStore();
+    const customer = useCustomerStore();
+    const cart = useCartStore();
+    const order = useOrderStore();
+
+    const endSell = () => {
+        check_payment.$reset()
+        customer.$reset()
+        cart.$reset()
+        order.$reset()
+    }
+
+</script>

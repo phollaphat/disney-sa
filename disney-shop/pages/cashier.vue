@@ -109,7 +109,8 @@
                 id: item.id,
                 product: item,
                 qty: 1,
-                total: price
+                total: price,
+                discount: 0.0
             })
         }
     }

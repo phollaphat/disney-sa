@@ -16,3 +16,4 @@ Content-Type: application/json
 POST {{baseurl}}auth/logout
 Authorization: Bearer {{authToken}}
 
+
