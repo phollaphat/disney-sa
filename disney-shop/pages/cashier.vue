@@ -1,16 +1,18 @@
 <template>
     <div>
         <div class="flex flex-row justify-items-center items-center gap-5 m-10">
-            <div class="w-1/5">
-                <img src="@/assets/Search.png" alt="" />
+            <div class="flex flex-row w-3/6">
+                <div class="">
+                    <img src="@/assets/Search.png" alt="" />
+                </div>
+
+                <div class="w-full ml-6">
+                    <input required="" placeholder="   Searching..." type="text"
+                        class="h-[60px] w-full bg-[#FFFDFD] rounded-[20px]" />
+                </div>
             </div>
 
-            <div class="w-4/5">
-                <input required="" placeholder="   Searching..." type="text"
-                    class="h-[60px] w-full bg-[#FFFDFD] rounded-[20px]" />
-            </div>
-
-            <div class="w-1/3">
+            <div class="w-1/6">
                 <div class="">
                     <label class="popup">
                         <input type="checkbox" />
@@ -24,17 +26,12 @@
                             <ul>
                                 <li>
                                     <button>
-                                        <span>น้อยไปมาก</span>
+                                        <span>แพงที่สุด -> ถูกที่สุด</span>
                                     </button>
                                 </li>
                                 <li>
                                     <button>
-                                        <span>มากไปน้อย</span>
-                                    </button>
-                                </li>
-                                <li>
-                                    <button>
-                                        <span>ไม่มีสินค้า</span>
+                                        <span>ถูกที่สุด -> แพงที่สุด</span>
                                     </button>
                                 </li>
                             </ul>
@@ -43,7 +40,7 @@
                 </div>
             </div>
 
-            <div class="w-2/5">
+            <div class="w-1/6">
                 <select class="bg-[#FFFDFD] h-[60px] w-full rounded-[20px] pl-4" v-model="category">
                     <option value="All">All</option>
                     <option value="Scented Candle">Scented Candle</option>
@@ -51,13 +48,14 @@
                 </select>
             </div>
 
-            <div class="flex flex-row w-1/2 justify-center">
+            <div class="flex flex-row w-1/6 justify-end mr-7">
                 <div>
                     <a href="/shoping-cart">
-                        <img src="@/assets/Basket_alt_3.png" alt="" class="pr-0">
+                        <img src="@/assets/Basket_alt_3.png" alt="" class="">
                     </a>
                 </div>
-                <div class="relative rounded-full bg-red-600 w-[30px] h-[30px] absolute left-3 top-1 text-center font-bold">
+                <div
+                    class="relative rounded-full bg-red-600 w-[30px] h-[30px] absolute left-1 top-1 text-center font-bold">
                     <div class="mt-1" style="color: white;">
                         {{ cart.lengthItems }}
                     </div>
@@ -65,324 +63,336 @@
             </div>
         </div>
 
-        <div class="grid grid-cols-3 justify-items-center h-screen m-5 gap-5 mt-20">
-            <div class="bg-white w-5/6 rounded-[37px] p-[5%]" v-for="product in products">
-                <div class="flex justify-center flex-col relative items-center">
-                    <div class="card-image flex justify-center mt-3">
-                        <img src="@/assets/b180691f36bd713b8c69519b8637fb8b.png" alt=""
-                            class="justify-items-center h-4/5 w-4/5">
-                    </div>
-                    <div class="text-center mt-3 text-xs text-[#7D7C7C]">{{ product.category }}</div>
-                    <div class="text-center font-bold pt-1 text-2xl">{{ product.name }}</div>
-                    <div class="text-xl pt-1 text-center">{{ product.price }} Baht</div>
-                    <div class="flex justify-center items-center pt-2 w-full">
-                        <button @click="addItem(product)"
-                            class="bg-[#5D12D2] h-[40px] w-5/6 rounded-[11px] text-[14px] text-center drop-shadow-sm hover:bg-[#9400FF] text-white">
-                            ADD TO ORDER
-                        </button>
+        <div class="grid grid-cols-3 justify-items-center h-screen m-5 gap-5 mt-20 text-[#232946]">
+            <template v-for="product in products">
+                <div class="bg-white w-5/6 rounded-[37px] p-[5%]" v-if="product.stock_quantity > 0">
+                    <div class="flex justify-center flex-col relative items-center">
+                        <div class="card-image flex justify-center mt-3">
+                            <img src="@/assets/b180691f36bd713b8c69519b8637fb8b.png" alt=""
+                                class="justify-items-center h-4/5 w-4/5">
+                        </div>
+                        <div class="text-center mt-3 text-xs text-[#7D7C7C]">{{ product.category }}</div>
+                        <div class="text-center font-bold pt-1 text-2xl">{{ product.name }}</div>
+                        <div class="text-xl pt-1 text-center">{{ product.price }} Baht</div>
+                        <div class="flex justify-center items-center pt-2 w-full">
+                            <button @click="addItem(product)" onclick="openModal('modelConfirm')"
+                                class="bg-[#5D12D2] h-[40px] w-5/6 rounded-[11px] text-[14px] text-center drop-shadow-sm hover:bg-[#9400FF] text-white">
+                                ADD TO ORDER
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </template>
         </div>
-
     </div>
 </template>
 
 <script setup>
-    import { useCartStore } from "~/stores/useCartStore"
-    const { data: products, pending } = await useMyFetch("products", {});
+    import {
+        useCartStore
+    } from "~/stores/useCartStore"
+    const {
+        data: products,
+        pending
+    } = await useMyFetch("products", {});
 
     const cart = useCartStore();
     const addItem = (item) => {
         const product = cart.items.find(row => row.id == item.id)
         if (product) {
+            const price = item.price;
             product.qty++
-        } 
-        else {
-            cart.items.push({ id: item.id, product: item, qty: 1, })
+            product.total += price
+        } else {
+            const price = item.price;
+            cart.items.push({
+                id: item.id,
+                product: item,
+                qty: 1,
+                total: price
+            })
         }
     }
-
 </script>
 
 
 <style>
-/* The design is inspired from the mockapi.io */
+    /* The design is inspired from the mockapi.io */
 
-.popup {
-    --burger-line-width: 1.125em;
-    --burger-line-height: 0.125em;
-    --burger-offset: 0.625em;
-    --burger-bg: rgba(0, 0, 0, 0.15);
-    --burger-color: #333;
-    --burger-line-border-radius: 0.1875em;
-    --burger-diameter: 2.125em;
-    --burger-btn-border-radius: calc(var(--burger-diameter) / 2);
-    --burger-line-transition: 0.3s;
-    --burger-transition: all 0.1s ease-in-out;
-    --burger-hover-scale: 1.1;
-    --burger-active-scale: 0.95;
-    --burger-enable-outline-color: var(--burger-bg);
-    --burger-enable-outline-width: 0.125em;
-    --burger-enable-outline-offset: var(--burger-enable-outline-width);
-    /* nav */
-    --nav-padding-x: 0.25em;
-    --nav-padding-y: 0.625em;
-    --nav-border-radius: 0.375em;
-    --nav-border-color: #ccc;
-    --nav-border-width: 0.0625em;
-    --nav-shadow-color: rgba(0, 0, 0, 0.2);
-    --nav-shadow-width: 0 1px 5px;
-    --nav-bg: #eee;
-    --nav-font-family: Menlo, Roboto Mono, monospace;
-    --nav-default-scale: 0.8;
-    --nav-active-scale: 1;
-    --nav-position-left: 0;
-    --nav-position-right: unset;
-    /* if you want to change sides just switch one property */
-    /* from properties to "unset" and the other to 0 */
-    /* title */
-    --nav-title-size: 0.625em;
-    --nav-title-color: #777;
-    --nav-title-padding-x: 1rem;
-    --nav-title-padding-y: 0.25em;
-    /* nav button */
-    --nav-button-padding-x: 1rem;
-    --nav-button-padding-y: 0.375em;
-    --nav-button-border-radius: 0.375em;
-    --nav-button-font-size: 12px;
-    --nav-button-hover-bg: #6495ed;
-    --nav-button-hover-text-color: #fff;
-    --nav-button-distance: 0.875em;
-    /* underline */
-    --underline-border-width: 0.0625em;
-    --underline-border-color: #ccc;
-    --underline-margin-y: 0.3125em;
-}
+    .popup {
+        --burger-line-width: 1.125em;
+        --burger-line-height: 0.125em;
+        --burger-offset: 0.625em;
+        --burger-bg: rgba(0, 0, 0, 0.15);
+        --burger-color: #333;
+        --burger-line-border-radius: 0.1875em;
+        --burger-diameter: 2.125em;
+        --burger-btn-border-radius: calc(var(--burger-diameter) / 2);
+        --burger-line-transition: 0.3s;
+        --burger-transition: all 0.1s ease-in-out;
+        --burger-hover-scale: 1.1;
+        --burger-active-scale: 0.95;
+        --burger-enable-outline-color: var(--burger-bg);
+        --burger-enable-outline-width: 0.125em;
+        --burger-enable-outline-offset: var(--burger-enable-outline-width);
+        /* nav */
+        --nav-padding-x: 0.25em;
+        --nav-padding-y: 0.625em;
+        --nav-border-radius: 0.375em;
+        --nav-border-color: #ccc;
+        --nav-border-width: 0.0625em;
+        --nav-shadow-color: rgba(0, 0, 0, 0.2);
+        --nav-shadow-width: 0 1px 5px;
+        --nav-bg: #eee;
+        --nav-font-family: Menlo, Roboto Mono, monospace;
+        --nav-default-scale: 0.8;
+        --nav-active-scale: 1;
+        --nav-position-left: 0;
+        --nav-position-right: unset;
+        /* if you want to change sides just switch one property */
+        /* from properties to "unset" and the other to 0 */
+        /* title */
+        --nav-title-size: 0.625em;
+        --nav-title-color: #777;
+        --nav-title-padding-x: 1rem;
+        --nav-title-padding-y: 0.25em;
+        /* nav button */
+        --nav-button-padding-x: 1rem;
+        --nav-button-padding-y: 0.375em;
+        --nav-button-border-radius: 0.375em;
+        --nav-button-font-size: 12px;
+        --nav-button-hover-bg: #6495ed;
+        --nav-button-hover-text-color: #fff;
+        --nav-button-distance: 0.875em;
+        /* underline */
+        --underline-border-width: 0.0625em;
+        --underline-border-color: #ccc;
+        --underline-margin-y: 0.3125em;
+    }
 
-/* popup settings 👆 */
+    /* popup settings 👆 */
 
-.popup {
-    display: inline-block;
-    text-rendering: optimizeLegibility;
-    position: relative;
-}
+    .popup {
+        display: inline-block;
+        text-rendering: optimizeLegibility;
+        position: relative;
+    }
 
-.popup input {
-    display: none;
-}
+    .popup input {
+        display: none;
+    }
 
-.burger {
-    display: flex;
-    position: relative;
-    align-items: center;
-    justify-content: center;
-    background: var(--burger-bg);
-    width: var(--burger-diameter);
-    height: var(--burger-diameter);
-    border-radius: var(--burger-btn-border-radius);
-    border: none;
-    cursor: pointer;
-    overflow: hidden;
-    transition: var(--burger-transition);
-    outline: var(--burger-enable-outline-width) solid transparent;
-    outline-offset: 0;
-}
+    .burger {
+        display: flex;
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        background: var(--burger-bg);
+        width: var(--burger-diameter);
+        height: var(--burger-diameter);
+        border-radius: var(--burger-btn-border-radius);
+        border: none;
+        cursor: pointer;
+        overflow: hidden;
+        transition: var(--burger-transition);
+        outline: var(--burger-enable-outline-width) solid transparent;
+        outline-offset: 0;
+    }
 
-.burger span {
-    height: var(--burger-line-height);
-    width: var(--burger-line-width);
-    background: var(--burger-color);
-    border-radius: var(--burger-line-border-radius);
-    position: absolute;
-    transition: var(--burger-line-transition);
-}
+    .burger span {
+        height: var(--burger-line-height);
+        width: var(--burger-line-width);
+        background: var(--burger-color);
+        border-radius: var(--burger-line-border-radius);
+        position: absolute;
+        transition: var(--burger-line-transition);
+    }
 
-.burger span:nth-child(1) {
-    top: var(--burger-offset);
-}
+    .burger span:nth-child(1) {
+        top: var(--burger-offset);
+    }
 
-.burger span:nth-child(2) {
-    bottom: var(--burger-offset);
-}
+    .burger span:nth-child(2) {
+        bottom: var(--burger-offset);
+    }
 
-.burger span:nth-child(3) {
-    top: 50%;
-    transform: translateY(-50%);
-}
+    .burger span:nth-child(3) {
+        top: 50%;
+        transform: translateY(-50%);
+    }
 
-.popup-window {
-    transform: scale(var(--nav-default-scale));
-    visibility: hidden;
-    opacity: 0;
-    position: absolute;
-    padding: var(--nav-padding-y) var(--nav-padding-x);
-    background: var(--nav-bg);
-    font-family: var(--nav-font-family);
-    color: var(--nav-text-color);
-    border-radius: var(--nav-border-radius);
-    box-shadow: var(--nav-shadow-width) var(--nav-shadow-color);
-    border: var(--nav-border-width) solid var(--nav-border-color);
-    top: calc(var(--burger-diameter) + var(--burger-enable-outline-width) + var(--burger-enable-outline-offset));
-    left: var(--nav-position-left);
-    right: var(--nav-position-right);
-    transition: var(--burger-transition);
-    width: 157px;
-    height: 126px;
-    flex-shrink: 0;
-}
+    .popup-window {
+        transform: scale(var(--nav-default-scale));
+        visibility: hidden;
+        opacity: 0;
+        position: absolute;
+        padding: var(--nav-padding-y) var(--nav-padding-x);
+        background: var(--nav-bg);
+        font-family: var(--nav-font-family);
+        color: var(--nav-text-color);
+        border-radius: var(--nav-border-radius);
+        box-shadow: var(--nav-shadow-width) var(--nav-shadow-color);
+        border: var(--nav-border-width) solid var(--nav-border-color);
+        top: calc(var(--burger-diameter) + var(--burger-enable-outline-width) + var(--burger-enable-outline-offset));
+        left: var(--nav-position-left);
+        right: var(--nav-position-right);
+        transition: var(--burger-transition);
+        width: 157px;
+        height: 126px;
+        flex-shrink: 0;
+    }
 
-.popup-window legend {
-    padding: var(--nav-title-padding-y) var(--nav-title-padding-x);
-    margin: 0;
-    color: var(--nav-title-color);
-    font-size: var(--nav-title-size);
-    text-transform: uppercase;
-}
+    .popup-window legend {
+        padding: var(--nav-title-padding-y) var(--nav-title-padding-x);
+        margin: 0;
+        color: var(--nav-title-color);
+        font-size: var(--nav-title-size);
+        text-transform: uppercase;
+    }
 
-.popup-window ul {
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-}
+    .popup-window ul {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+    }
 
-.popup-window ul button {
-    outline: none;
-    width: 100%;
-    border: none;
-    background: none;
-    display: flex;
-    align-items: center;
-    color: var(--burger-color);
-    font-size: var(--nav-button-font-size);
-    padding: var(--nav-button-padding-y) var(--nav-button-padding-x);
-    white-space: nowrap;
-    border-radius: var(--nav-button-border-radius);
-    cursor: pointer;
-    column-gap: var(--nav-button-distance);
-}
+    .popup-window ul button {
+        outline: none;
+        width: 100%;
+        border: none;
+        background: none;
+        display: flex;
+        align-items: center;
+        color: var(--burger-color);
+        font-size: var(--nav-button-font-size);
+        padding: var(--nav-button-padding-y) var(--nav-button-padding-x);
+        white-space: nowrap;
+        border-radius: var(--nav-button-border-radius);
+        cursor: pointer;
+        column-gap: var(--nav-button-distance);
+    }
 
-.popup-window ul li:nth-child(1) svg,
-.popup-window ul li:nth-child(2) svg {
-    color: cornflowerblue;
-}
+    .popup-window ul li:nth-child(1) svg,
+    .popup-window ul li:nth-child(2) svg {
+        color: cornflowerblue;
+    }
 
-.popup-window ul li:nth-child(4) svg,
-.popup-window ul li:nth-child(5) svg {
-    color: rgb(153, 153, 153);
-}
+    .popup-window ul li:nth-child(4) svg,
+    .popup-window ul li:nth-child(5) svg {
+        color: rgb(153, 153, 153);
+    }
 
-.popup-window ul li:nth-child(7) svg {
-    color: red;
-}
+    .popup-window ul li:nth-child(7) svg {
+        color: red;
+    }
 
-.popup-window hr {
-    margin: var(--underline-margin-y) 0;
-    border: none;
-    border-bottom: var(--underline-border-width) solid var(--underline-border-color);
-}
+    .popup-window hr {
+        margin: var(--underline-margin-y) 0;
+        border: none;
+        border-bottom: var(--underline-border-width) solid var(--underline-border-color);
+    }
 
-/* actions */
+    /* actions */
 
-.popup-window ul button:hover,
-.popup-window ul button:focus-visible,
-.popup-window ul button:hover svg,
-.popup-window ul button:focus-visible svg {
-    color: var(--nav-button-hover-text-color);
-    background: var(--nav-button-hover-bg);
-}
+    .popup-window ul button:hover,
+    .popup-window ul button:focus-visible,
+    .popup-window ul button:hover svg,
+    .popup-window ul button:focus-visible svg {
+        color: var(--nav-button-hover-text-color);
+        background: var(--nav-button-hover-bg);
+    }
 
-.burger:hover {
-    transform: scale(var(--burger-hover-scale));
-}
+    .burger:hover {
+        transform: scale(var(--burger-hover-scale));
+    }
 
-.burger:active {
-    transform: scale(var(--burger-active-scale));
-}
+    .burger:active {
+        transform: scale(var(--burger-active-scale));
+    }
 
-.burger:focus:not(:hover) {
-    outline-color: var(--burger-enable-outline-color);
-    outline-offset: var(--burger-enable-outline-offset);
-}
+    .burger:focus:not(:hover) {
+        outline-color: var(--burger-enable-outline-color);
+        outline-offset: var(--burger-enable-outline-offset);
+    }
 
-.popup input:checked+.burger span:nth-child(1) {
-    top: 50%;
-    transform: translateY(-50%) rotate(45deg);
-}
+    .popup input:checked+.burger span:nth-child(1) {
+        top: 50%;
+        transform: translateY(-50%) rotate(45deg);
+    }
 
-.popup input:checked+.burger span:nth-child(2) {
-    bottom: 50%;
-    transform: translateY(50%) rotate(-45deg);
-}
+    .popup input:checked+.burger span:nth-child(2) {
+        bottom: 50%;
+        transform: translateY(50%) rotate(-45deg);
+    }
 
-.popup input:checked+.burger span:nth-child(3) {
-    transform: translateX(calc(var(--burger-diameter) * -1 - var(--burger-line-width)));
-}
+    .popup input:checked+.burger span:nth-child(3) {
+        transform: translateX(calc(var(--burger-diameter) * -1 - var(--burger-line-width)));
+    }
 
-.popup input:checked~nav {
-    transform: scale(var(--nav-active-scale));
-    visibility: visible;
-    opacity: 1;
-}
+    .popup input:checked~nav {
+        transform: scale(var(--nav-active-scale));
+        visibility: visible;
+        opacity: 1;
+    }
 
-/* Hide the default checkbox */
-.container input {
-    display: none;
-}
+    /* Hide the default checkbox */
+    .container input {
+        display: none;
+    }
 
-.container {
-    display: block;
-    position: relative;
-    cursor: pointer;
-    font-size: 20px;
-    user-select: none;
-    -webkit-tap-highlight-color: transparent;
-}
+    .container {
+        display: block;
+        position: relative;
+        cursor: pointer;
+        font-size: 20px;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+    }
 
-/* Create a custom checkbox */
-.checkmark {
-    position: relative;
-    top: 0;
-    left: 0;
-    height: 1.3em;
-    width: 1.3em;
-    background-color: #2196f300;
-    border-radius: 0.25em;
-    transition: all 0.25s;
-}
+    /* Create a custom checkbox */
+    .checkmark {
+        position: relative;
+        top: 0;
+        left: 0;
+        height: 1.3em;
+        width: 1.3em;
+        background-color: #2196f300;
+        border-radius: 0.25em;
+        transition: all 0.25s;
+    }
 
-/* When the checkbox is checked, add a blue background */
-.container input:checked~.checkmark {
-    background-color: #2196f3;
-}
+    /* When the checkbox is checked, add a blue background */
+    .container input:checked~.checkmark {
+        background-color: #2196f3;
+    }
 
-/* Create the checkmark/indicator (hidden when not checked) */
-.checkmark:after {
-    content: "";
-    position: absolute;
-    transform: rotate(0deg);
-    border: 0.1em solid black;
-    left: 0;
-    top: 0;
-    width: 1.05em;
-    height: 1.05em;
-    border-radius: 0.25em;
-    transition: all 0.25s, border-width 0.1s;
-}
+    /* Create the checkmark/indicator (hidden when not checked) */
+    .checkmark:after {
+        content: "";
+        position: absolute;
+        transform: rotate(0deg);
+        border: 0.1em solid black;
+        left: 0;
+        top: 0;
+        width: 1.05em;
+        height: 1.05em;
+        border-radius: 0.25em;
+        transition: all 0.25s, border-width 0.1s;
+    }
 
-/* Show the checkmark when checked */
-.container input:checked~.checkmark:after {
-    left: 0.45em;
-    top: 0.25em;
-    width: 0.25em;
-    height: 0.5em;
-    border-color: #fff0 white white #fff0;
-    border-width: 0 0.15em 0.15em 0;
-    border-radius: 0em;
-    transform: rotate(45deg);
-}
+    /* Show the checkmark when checked */
+    .container input:checked~.checkmark:after {
+        left: 0.45em;
+        top: 0.25em;
+        width: 0.25em;
+        height: 0.5em;
+        border-color: #fff0 white white #fff0;
+        border-width: 0 0.15em 0.15em 0;
+        border-radius: 0em;
+        transform: rotate(45deg);
+    }
 
-/* .card-image {
+    /* .card-image {
         background-color: rgb(236, 236, 236);
         width: 290px;
         height: 290px;
@@ -390,14 +400,14 @@
         display: block;
     } */
 
-.show-popup {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    z-index: 1000;
-    /* และคุณอาจต้องกำหนดความกว้าง ความสูง และแถบกรอบตามต้องการ */
-}
+    .show-popup {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        z-index: 1000;
+        /* และคุณอาจต้องกำหนดความกว้าง ความสูง และแถบกรอบตามต้องการ */
+    }
 </style>

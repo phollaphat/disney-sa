@@ -1,6 +1,6 @@
 <template>
     <div id="bg" class="h-full flex justify-center text-[#232946]">
-        <div class="bg-[#FFFFFECC] w-[1214px] h-[986px] rounded-[20px] flex flex-col p-10 gap-5 m-5">
+        <div class="bg-[#FFFFFECC] w-[1214px] h-screen m-5 rounded-[20px] flex flex-col p-10 gap-5">
             <div class="flex flex-row items-center">
                 <div>
                     <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="" class="h-40 w-40">
