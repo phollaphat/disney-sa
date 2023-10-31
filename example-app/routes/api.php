@@ -22,6 +22,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::resource('products', 'App\Http\Controllers\ProductController');
 Route::resource('productLists', 'App\Http\Controllers\ProductListController');
+Route::resource('orders', 'App\Http\Controllers\OrderController');
+Route::resource('customers', 'App\Http\Controllers\CustomerController');
 
 Route::group([
     'middleware' => 'api',
