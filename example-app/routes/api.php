@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -24,6 +25,8 @@ Route::resource('products', 'App\Http\Controllers\ProductController');
 Route::resource('productLists', 'App\Http\Controllers\ProductListController');
 Route::resource('orders', 'App\Http\Controllers\OrderController');
 Route::resource('customers', 'App\Http\Controllers\CustomerController');
+Route::resource('receipts', 'App\Http\Controllers\ReceiptController');
+Route::resource('warantyCards', 'App\Http\Controllers\WarantyCardController');
 
 Route::group([
     'middleware' => 'api',
@@ -36,4 +39,5 @@ Route::group([
     Route::get('/user-profile', [AuthController::class, 'userProfile']);    
 });
 
-Route::get('products/select/{select}', [ProductController::class, 'filterShow']);
+Route::post('products/reduceItems', [ProductController::class, 'ReduceProductQTY']);
+Route::post('orders/setStatus', [OrderController::class, 'setOrderStatus']);

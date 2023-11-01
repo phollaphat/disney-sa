@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Product::class);
             $table->foreignIdFor(Receipt::class);
-            $table->date('state_date');
+            $table->date('state_date')->default(now());
             $table->date('end_date');
             $table->timestamps();
         });

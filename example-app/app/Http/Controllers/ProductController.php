@@ -65,15 +65,13 @@ class ProductController extends Controller
         //
     }
 
-    public function filterShow(string $category)
+    public function ReduceProductQTY(Request $request)
     {
-        if($category == "All") {
-            $products = Product::get();
-        }
-        else {
-            $products = Product::Where("category", $category)->get();
-        }
-        
-        return $products;
+        $product = Product::Where('name', $request->get('product_name'))->first();
+        $product->stock_quantity = $product->stock_quantity - intval($request->get('qty'));
+        $product->save();
+        $product->refresh();
+
+        return $product;
     }
 }

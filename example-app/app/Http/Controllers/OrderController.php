@@ -66,4 +66,14 @@ class OrderController extends Controller
     {
         //
     }
+
+    public function setOrderStatus(Request $request)
+    {
+        $order = Order::Where('id', $request->get('id'))->first();
+        $order->status = "ชำระเงินแล้ว";
+        $order->save();
+        $order->refresh();
+
+        return $order;
+    }
 }
