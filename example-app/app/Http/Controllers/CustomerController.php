@@ -21,9 +21,19 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        $all_customer = Customer::get();
         $customer_tar = Customer::Where('tel', $request->get('tel'))->orWhere('name', $request->get('name'))->first();
         if ($customer_tar) {
+
+            if($request->get('tel')) {
+                $customer_tar->tel = $request->get('tel');
+            }
+
+            if($request->get('name')) {
+                $customer_tar->name = $request->get('name');
+            }
+            $customer_tar->save();
+            $customer_tar->refresh();
+
             return $customer_tar;
         }
         else {

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Order::class);
             $table->string('payment_channel')->nullable();
-            $table->date('date');
+            $table->date('date')->default(now());
             $table->timestamps();
         });
     }
