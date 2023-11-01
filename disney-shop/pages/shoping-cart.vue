@@ -208,20 +208,20 @@
             method: 'POST',
             body: formData.value
         })
-        const {
-            data: customer,
-            pending
-        } = await useMyFetch(`customers/${response.value.id}`, {})
-        customerShow.value = customer.value;
+
+        customerShow.value = response.value;
         console.log('finding ok')
     }
 
     // function for Pinia
     const addItemQRT = (item) => {
         const product = cart.items.find(row => row.id == item.id)
-        product.qty++
-        product.total += product.product.price
+        if (product.qty < product.product.stock_quantity) {
+            product.qty++
+            product.total += product.product.price
+        }
     }
+
     const removeItemQRT = (item) => {
         const product = cart.items.find(row => row.id == item.id)
         if (product.qty > 1) {
@@ -268,14 +268,9 @@
                 "total": total
             }
         })
+        // console.log(response.value.id)
         order.id = response.value.id
-        // orderShow.value = response.value
-        // console.log(orderShow.value.id)
     }
-
-    // const saveOrder = async() => {
-    //     order.id = orderShow.value.id
-    // }
 
 </script>
 

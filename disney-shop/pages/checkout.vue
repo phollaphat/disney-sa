@@ -118,7 +118,7 @@
 
                         <div class="mt-4">
                             <div class="bg-white rounded-lg shadow-md p-6">
-                                <a href="/receipt">
+                                <a href="/show_order">
                                     <button @click="addProductList()"
                                         class="bg-[#5D12D2] hover:bg-[#9400FF] text-white py-2 px-4 rounded-lg w-full">Place Order</button>
                                 </a>
@@ -160,4 +160,5 @@
             })
         })
     }
+
 </script>

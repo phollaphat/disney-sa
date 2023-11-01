@@ -100,9 +100,11 @@
     const addItem = (item) => {
         const product = cart.items.find(row => row.id == item.id)
         if (product) {
-            const price = item.price;
-            product.qty++
-            product.total += price
+            if (product.qty < item.stock_quantity) {
+                const price = item.price;
+                product.qty++
+                product.total += price
+            }
         } else {
             const price = item.price;
             cart.items.push({
