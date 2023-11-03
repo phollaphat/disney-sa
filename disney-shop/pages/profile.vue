@@ -28,7 +28,7 @@
                 {{ user.role }}
             </div>
             <div class="flex justify-end pt-[100px]">
-                <button class="">Edit Profile</button>
+                <a href="edit_profile"><button class="">Edit Profile</button></a>
             </div>
         </div>
     </div>
