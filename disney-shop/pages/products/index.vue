@@ -63,7 +63,7 @@
             </div>
         </div>
 
-        <div class="grid grid-cols-3 justify-items-center h-screen m-5 mt-20 gap-5">
+        <div class="grid grid-cols-3 justify-items-center h-full m-5 mt-20 gap-12">
             <div class="bg-[#fffffe] w-5/6 rounded-[37px] p-[5%] text-[#232946]" v-for="product in products">
                 <NuxtLink :to="`/products/${product.id}`">
                     <div class="flex justify-center flex-col relative items-center">
@@ -96,6 +96,7 @@
         data: products,
         pending
     } = await useMyFetch("products", {})
+
 </script>
 
 <style>
