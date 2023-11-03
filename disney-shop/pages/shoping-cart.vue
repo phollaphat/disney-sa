@@ -158,6 +158,7 @@
                                 <option value="Credit/Debit Card">Credit/Debit Card</option>
                                 <option value="Qr thai">Qr thai</option>
                             </select>
+
                             <MenuLink to="/checkout" @click="saveCheckPayment(payment_cha), saveCustomer(customerShow.tel, customerShow.name), addOrder(auth.user.name, customer.name, cart.getTotalDiscount), saveOrder()"
                                 class="bg-[#5D12D2] hover:bg-[#9400FF] text-white w-1/4 py-4 px-4 rounded-lg mt-4 w-full text-center ml-8">
                                 checkout

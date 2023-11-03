@@ -8,40 +8,43 @@
 
                 <div class="w-full ml-6">
                     <input required="" placeholder="   Searching..." type="text"
-                        class="h-[60px] w-full bg-[#FFFDFD] rounded-[20px]" />
+                        class="h-[60px] w-full bg-[#FFFDFD] rounded-[20px] pl-4" v-model="searchInput"/>
                 </div>
             </div>
 
             <div class="w-1/6">
-                <div class="">
-                    <label class="popup">
-                        <input type="checkbox" />
-                        <div class="burger" tabindex="0">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </div>
-                        <nav class="popup-window">
-                            <legend>เรียงตามลำดับ</legend>
-                            <ul>
-                                <li>
-                                    <button>
-                                        <span>แพงที่สุด -> ถูกที่สุด</span>
-                                    </button>
-                                </li>
-                                <li>
-                                    <button>
-                                        <span>ถูกที่สุด -> แพงที่สุด</span>
-                                    </button>
-                                </li>
-                            </ul>
-                        </nav>
-                    </label>
-                </div>
+                <label class="popup">
+                    <input type="checkbox" />
+                    <div class="burger" tabindex="0">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <nav class="popup-window">
+                        <legend>เรียงตามลำดับ</legend>
+                        <ul>
+                            <li>
+                                <button @click="disableSoft()">
+                                    <span>ทั้งหมด</span>
+                                </button>
+                            </li>
+                            <li>
+                                <button @click="enableExpen2Cheap()">
+                                    <span>แพงที่สุด -> ถูกที่สุด</span>
+                                </button>
+                            </li>
+                            <li>
+                                <button @click="enableCheap2Expen()">
+                                    <span>ถูกที่สุด -> แพงที่สุด</span>
+                                </button>
+                            </li>
+                        </ul>
+                    </nav>
+                </label>
             </div>
 
             <div class="w-1/6">
-                <select class="bg-[#FFFDFD] h-[60px] w-full rounded-[20px] pl-4" v-model="category">
+                <select class="bg-[#FFFDFD] h-[60px] w-full rounded-[20px] pl-4" id="categorySelect" v-model="selectedCategory">
                     <option value="All">All</option>
                     <option value="Scented Candle">Scented Candle</option>
                     <option value="Jewelry">Jewelry</option>
@@ -63,8 +66,8 @@
             </div>
         </div>
 
-        <div class="grid grid-cols-3 justify-items-center h-full m-5 gap-12 mt-20 text-[#232946]">
-            <template v-for="product in products">
+        <div class="grid grid-cols-3 justify-items-center h-full m-5 gap-12 mt-16 text-[#232946]">
+            <template v-for="product in filteredProducts" :key="product.id">
                 <div class="bg-white w-5/6 rounded-[37px] p-[5%]" v-if="product.stock_quantity > 0">
                     <div class="flex justify-center flex-col relative items-center">
                         <div class="card-image flex justify-center mt-3">
@@ -91,10 +94,118 @@
     import {
         useCartStore
     } from "~/stores/useCartStore"
+    import { computed } from 'vue';
+    import { ref } from 'vue';
+
     const {
         data: products,
         pending
     } = await useMyFetch("products", {});
+
+    const selectedCategory = ref('All');
+    const searchInput = ref('');
+
+    const sortExpen2Cheap = ref(false);
+    const sortCheap2Expen = ref(false);
+
+    const enableExpen2Cheap = () => {
+        sortExpen2Cheap.value = true;
+        sortCheap2Expen.value = false;
+        console.log(sortExpen2Cheap.value);
+        console.log(sortCheap2Expen.value);
+    }
+
+    const enableCheap2Expen = () => {
+        sortExpen2Cheap.value = false;
+        sortCheap2Expen.value = true;
+        console.log(sortExpen2Cheap.value);
+        console.log(sortCheap2Expen.value);
+    }
+
+    const disableSoft = () => {
+        sortExpen2Cheap.value = false;
+        sortCheap2Expen.value = false;
+        console.log(sortExpen2Cheap.value);
+        console.log(sortCheap2Expen.value);
+    }
+
+    const filteredProducts = computed(() => {
+        if (selectedCategory.value === 'All') {
+            if (sortExpen2Cheap.value) {
+                return products.value.filter(product=> product.name.toLowerCase().indexOf(searchInput.value.toLowerCase()) != -1).sort((a,b) => {
+                    let fa = a.price, fb = b.price;
+                    if (fa > fb) {
+                        return -1
+                    }
+                    if (fa < fb) {
+                        return 1
+                    }
+                    return 0
+                });
+            }
+            if (sortCheap2Expen.value) {
+                return products.value.filter(product=> product.name.toLowerCase().indexOf(searchInput.value.toLowerCase()) != -1).sort((a,b) => {
+                    let fa = a.price, fb = b.price;
+                    if (fa < fb) {
+                        return -1
+                    }
+                    if (fa > fb) {
+                        return 1
+                    }
+                    return 0
+                });
+            }
+            else {
+                return products.value.filter(product=> product.name.toLowerCase().indexOf(searchInput.value.toLowerCase()) != -1).sort((a,b) => {
+                    let fa = a.name.toLowerCase(), fb = b.name.toLowerCase();
+                    if (fa < fb) {
+                        return -1
+                    }
+                    if (fa > fb) {
+                        return 1
+                    }
+                        return 0
+                });
+            }
+        } else {
+            if (sortExpen2Cheap.value) {
+                return products.value.filter(product => product.category === selectedCategory.value && product.name.toLowerCase().indexOf(searchInput.value.toLowerCase()) != -1).sort((a,b) => {
+                    let fa = a.price, fb = b.price;
+                    if (fa > fb) {
+                        return -1
+                    }
+                    if (fa < fb) {
+                        return 1
+                    }
+                    return 0
+                });
+            }
+            if (sortCheap2Expen.value) {
+                return products.value.filter(product => product.category === selectedCategory.value && product.name.toLowerCase().indexOf(searchInput.value.toLowerCase()) != -1).sort((a,b) => {
+                    let fa = a.price, fb = b.price;
+                    if (fa < fb) {
+                        return -1
+                    }
+                    if (fa > fb) {
+                        return 1
+                    }
+                    return 0
+                });
+            }
+            else {
+                return products.value.filter(product => product.category === selectedCategory.value && product.name.toLowerCase().indexOf(searchInput.value.toLowerCase()) != -1).sort((a,b) => {
+                    let fa = a.name.toLowerCase(), fb = b.name.toLowerCase();
+                    if (fa < fb) {
+                        return -1
+                    }
+                    if (fa > fb) {
+                        return 1
+                    }
+                        return 0
+                });
+            }
+        }
+    });
 
     const cart = useCartStore();
     const addItem = (item) => {
@@ -225,6 +336,7 @@
     }
 
     .popup-window {
+        z-index: 9999;
         transform: scale(var(--nav-default-scale));
         visibility: hidden;
         opacity: 0;
@@ -240,8 +352,6 @@
         left: var(--nav-position-left);
         right: var(--nav-position-right);
         transition: var(--burger-transition);
-        width: 157px;
-        height: 126px;
         flex-shrink: 0;
     }
 
