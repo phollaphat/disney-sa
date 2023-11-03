@@ -512,15 +512,4 @@
         border-radius: 6px 6px 0 0;
         display: block;
     } */
-
-    .show-popup {
-        display: none;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background-color: white;
-        z-index: 1000;
-        /* และคุณอาจต้องกำหนดความกว้าง ความสูง และแถบกรอบตามต้องการ */
-    }
 </style>

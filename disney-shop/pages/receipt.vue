@@ -1,6 +1,6 @@
 <template>
     <div class="flex justify-center p-20 text-[#232946] text-xl">
-        <div class="flex flex-col items-center w-1/5">
+        <div class="flex flex-col items-center w-4/12">
             <div class="flex flex-col items-center">
                 <div class="font-bold text-3xl">
                     APG Wholeness Co., Ltd.
@@ -55,21 +55,41 @@
                 </div>
             </div>
 
-            <div class="flex flex-row self-start">
-                จำนวนชิ้น
+            <div class="flex flex-row self-start font-bold">
+                จำนวนรวม  {{cart.lengthItems}}
             </div>
 
-            <div class="">
-                จำนวนชิ้น
+            <div class="flex flex-row w-full gap-10 place-content-end text-end border-double border-b-2 border-[#53505C] py-3">
+                <div class="flex flex-col font-bold">
+                    <div class="">
+                        จำนวนเงิน
+                    </div>
+    
+                    <div class="mb-3">
+                        ส่วนลด
+                    </div>
+
+                    <div class="">
+                        จำนวนเงินทั้งหมด
+                    </div>
+                </div>
+
+                <div class="flex flex-col">
+                    <div class="">
+                        {{cart.getTotalPrice}}
+                    </div>
+    
+                    <div class="mb-3">
+                        {{cart.getSubDiscount}}
+                    </div>
+                    
+                    <div class="">
+                        {{cart.getTotalDiscount}}
+                    </div>
+                </div>
             </div>
 
-            <div class="flex justify-center w-full border-b-2 border-[#53505C]">
-                จำนวนชิ้น
-            </div>
-
-            <div class="flex justify-center w-full border-double border-b-2 border-[#53505C] py-3">
-                จำนวนทั้งหมด
-            </div>
+            
         </div>
     </div>
 </template>
@@ -95,3 +115,5 @@
     
 
 </script>
+
+syp
