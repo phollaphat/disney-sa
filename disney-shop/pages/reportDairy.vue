@@ -110,6 +110,36 @@ font-family: Inria Serif;
 font-weight: 400;
 word-wrap: break-word
 }
+.centered-box-topic {
+  width: 1050px;
+  height:100px;
+  background-color: #D4D8F0;
+  text-align: center;
+  line-height: 100px;
+  position: absolute;
+  justify-items:top;
+  margin-top: 35px;
+  margin-left: 50px;
+  margin-bottom: 20px;
+  border-radius: 20px;
+  overflow-y: auto;
+}
+.text-dairy-topic{
+ color: #FFFFFE;
+ font-size: 32px;
+ font-family: Inria Serif;
+ font-weight: 400;
+ word-wrap: break-word;
+ text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+.text-dairy{
+  color: #808080;
+font-size: 32px;
+font-family: Inria Serif;
+font-weight: 400;
+word-wrap: break-word
+}
+
 
 
   
