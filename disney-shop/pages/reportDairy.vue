@@ -4,10 +4,10 @@
           <div class="flex-rows grid-flow-col">
             <div class="centered-box-topic">
               <div class="flex flex-rows ml-[50px] gap-[155px]">
-                 <div class="text-dairy-topic">Date/Time</div>
-                 <div class="text-dairy-topic">Store</div>
-                 <div class="text-dairy-topic">Order number</div>
-                 <div class="text-dairy-topic">amount</div>
+                <div class="text-dairy-topic">Date/Time</div>
+                <div class="text-dairy-topic">Store</div>
+                <div class="text-dairy-topic">Order number</div>
+                <div class="text-dairy-topic">amount</div>
               </div>
             </div>
           <div class="flex flex-cols ml-[100px] gap-[130px] mb-[px]">
