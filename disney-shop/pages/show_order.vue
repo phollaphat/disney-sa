@@ -78,11 +78,11 @@
             <div class="flex flex-row gap-10 mt-10">
                 <div>
                     <a href="/cashier">
-                        <button class="bg-[#4D4C7D] py-10 px-10 rounded-[20px] text-white text-xl hover:bg-[#363062]" @click="reduceProductQTY(), endSell()">End Selling</button>
+                        <button class="bg-[#4D4C7D] py-10 px-10 rounded-[20px] text-white text-xl hover:bg-[#363062]" @click="endSell()">End Selling</button>
                     </a>
                 </div>
                 <div>
-                    <button class="bg-[#4D4C7D] py-10 px-10 rounded-[20px] text-white text-xl hover:bg-[#363062]" @click="setStatusOrder(), createReceipt(), openNewTap('receipt')">
+                    <button class="bg-[#4D4C7D] py-10 px-10 rounded-[20px] text-white text-xl hover:bg-[#363062]" @click="reduceProductQTY(), setStatusOrder(), createReceipt(), openNewTap('receipt')">
                         Receipt Print
                     </button>
                 </div>
@@ -131,14 +131,16 @@
         products.forEach(item=> {
             const product = cart.items.find(row => row.id == item.id)
             console.log(receipt.id)
-            const { data: response, error } = useMyFetch('warantyCards', {
-                method: 'POST',
-                body: {
-                    "product_id": product.product.id,
-                    "receipt_id": receipt.id,
-                    "end_date": date
-                }
-            })
+            if (product.product.id == 'Jewelry') {
+                const { data: response, error } = useMyFetch('warantyCards', {
+                    method: 'POST',
+                    body: {
+                        "product_id": product.product.id,
+                        "receipt_id": receipt.id,
+                        "end_date": date
+                    }
+                })
+            }
         })
     }
     
@@ -156,13 +158,15 @@
         products.forEach(item=> {
             const product = cart.items.find(row => row.id == item.id)
             console.log(product.qty)
-            const { data: response, error } = useMyFetch('products/reduceItems', {
-                method: 'POST',
-                body: {
-                    "product_name": product.product.name, 
-                    "qty": product.qty,
-                }
-            })
+            if (product.product.category == '') {
+                const { data: response, error } = useMyFetch('products/reduceItems', {
+                    method: 'POST',
+                    body: {
+                        "product_name": product.product.name, 
+                        "qty": product.qty,
+                    }
+                })
+            }
         })
     }
 

@@ -208,12 +208,12 @@ const getProfile = async (access_token) => {
 }
 
 /* Style for button on hover */
-.custom-button-login:hover {
+.custom-button:hover {
   background: #6c519c;
 }
 
 /* Style for button when clicked */
-.custom-button-login:active {
+.custom-button:active {
   background: #6c45ae;
   /* Change the background color when clicked */
 }
