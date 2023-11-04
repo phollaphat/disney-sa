@@ -10,24 +10,63 @@
                 <div class="text-dairy-topic">amount</div>
               </div>
             </div>
-          <div class="flex flex-cols ml-[100px] gap-[130px] mb-[px]">
-            
-            <div v-for="order in orders" >
-                    <div class="text-dairy">{{ order.date }}</div>
-                    <div class="text-dairy">Store 1st</div>
-                    <div class="text-dairy">{{ order.id }}</div>
-                    <div class="text-dairy">{{ order.total_price }}.-</div>
+          <div class="mb-[50px]">01</div>
+          <div class="flex flex-rows ml-[100px] gap-[130px]">
+              <div class="text-dairy">22/05/2023</div>
+              <div class="text-dairy">1st Store</div>
+              <div class="text-dairy">CA20230900058</div>
+              <div class="text-dairy">1521.-</div>
           </div>
+          <div class="flex flex-rows ml-[100px] gap-[130px]">
+              <div class="text-dairy">22/05/2023</div>
+              <div class="text-dairy">1st Store</div>
+              <div class="text-dairy">CA20230900058</div>
+              <div class="text-dairy">1521.-</div>
+          </div>
+          <div class="flex flex-rows ml-[100px] gap-[130px]">
+              <div class="text-dairy">22/05/2023</div>
+              <div class="text-dairy">1st Store</div>
+              <div class="text-dairy">CA20230900058</div>
+              <div class="text-dairy">1521.-</div>
+          </div>
+          <div class="flex flex-rows ml-[100px] gap-[130px]">
+              <div class="text-dairy">22/05/2023</div>
+              <div class="text-dairy">1st Store</div>
+              <div class="text-dairy">CA20230900058</div>
+              <div class="text-dairy">1521.-</div>
+          </div>
+          <div class="flex flex-rows ml-[100px] gap-[130px]">
+              <div class="text-dairy">22/05/2023</div>
+              <div class="text-dairy">1st Store</div>
+              <div class="text-dairy">CA20230900058</div>
+              <div class="text-dairy">1521.-</div>
+          </div>
+          <div class="flex flex-rows ml-[100px] gap-[130px]">
+              <div class="text-dairy">22/05/2023</div>
+              <div class="text-dairy">1st Store</div>
+              <div class="text-dairy">CA20230900058</div>
+              <div class="text-dairy">1521.-</div>
+          </div>
+          <div class="flex flex-rows ml-[100px] gap-[130px]">
+              <div class="text-dairy">22/05/2023</div>
+              <div class="text-dairy">1st Store</div>
+              <div class="text-dairy">CA20230900058</div>
+              <div class="text-dairy">1521.-</div>
+          </div>
+          <div class="flex flex-rows ml-[100px] gap-[130px]">
+              <div class="text-dairy">22/05/2023</div>
+              <div class="text-dairy">1st Store</div>
+              <div class="text-dairy">CA20230900058</div>
+              <div class="text-dairy">1521.-</div>
           </div>
         </div>
     </div>
   </div>
 </template>
-<script setup>
-    const {
-        data: orders,
-        pending
-    } = await useMyFetch("orders", {});
+<script>
+export default {
+  
+}
 </script>
 <style>
 .centered-box-dairy {

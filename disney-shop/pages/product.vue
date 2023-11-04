@@ -53,11 +53,13 @@
                 </select>
             </div>
 
-            <div class="w-1/6 ml-4">
+            <div class="flex justify-center mt-10 pl-16">
+                <a href="addProduct">
                 <button
-                    class="drop-shadow-lg bg-[#5D12D2] h-[60px] w-5/6 rounded-[11px] text-lg font-semibold text-center hover:bg-[#9400FF] text-white">
-                    Add Product
+                    class="bg-[#4D4C7D] hover:bg-[#363062]">
+                    <div class="font-bold text-xl">Add Product</div>
                 </button>
+                </a>
             </div>
         </div>
 
@@ -92,5 +94,29 @@
 </script>
 
 <style>
+    button {
+    padding: 17px 40px;
+    border-radius: 10px;
+    border: 0;
+    background-color: #B8C1EC;
+    letter-spacing: 1.5px;
+    font-size: 26px;
+    font-weight: bold;
+    transition: all .3s ease;
+    box-shadow: #232946 0px 10px 0px 0px;
+    color: hsl(0, 0%, 100%);
+}
+
+button:hover {
+    box-shadow: #232946 0px 7px 0px 0px;
+}
+
+button:active {
+    background-color: #232946;
+    /*50, 168, 80*/
+    box-shadow: #232946 0px 0px 0px 0px;
+    transform: translateY(5px);
+    transition: 200ms;
+}
 
 </style>
