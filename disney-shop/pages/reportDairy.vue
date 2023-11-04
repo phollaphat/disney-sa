@@ -54,7 +54,10 @@ margin-top: 35px;
 margin-left: 50px;
 margin-bottom: 20px;
 border-radius: 20px;
-overflow-y: auto;
+overflow: hidden; /* Change from overflow-y to overflow to hide scrollbars */
+  white-space: nowrap; /* Prevent text from wrapping to the next line */
+  overflow: hidden;
+  text-overflow: ellipsis; /* Add ellipsis (...) for overflowing text */
 }
 .text-dairy-topic{
 color: #FFFFFE;
