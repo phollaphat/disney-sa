@@ -1,5 +1,26 @@
 <template>
-
+  <div class="flex flex-row justify-center items-center w-full">
+    <div class="centered-box-dairy w-3/4 h-4/5 content-center">
+      <div class="centered-box-topic w-11/12">
+        <div class="flex flex-rows gap-[155px] place-content-center">
+          <div class="text-dairy-topic">Date/Time</div>
+          <div class="text-dairy-topic">Store</div>
+          <div class="text-dairy-topic">Order number</div>
+          <div class="text-dairy-topic">Amount</div>
+        </div>
+      </div>
+      <div class="w-full mt-5">
+        <div class="orders-container">
+          <div class="order-item" v-for="order in orders" :key="order.id">
+            <div class="text-dairy pr-24">{{ order.date }}</div>
+            <div class="text-dairy pr-44">Store 1st</div>
+            <div class="text-dairy pr-52">{{ order.id }}</div>
+            <div class="text-dairy">{{ order.total_price }}.-</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script setup>
@@ -66,4 +87,8 @@
     gap: 32px;
     justify-content: center;
   }
+<<<<<<< HEAD
 </style>
+=======
+</style>
+>>>>>>> origin/arty
