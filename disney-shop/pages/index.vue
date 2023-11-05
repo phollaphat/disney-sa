@@ -9,25 +9,26 @@
           <div class="text-container">
             <div class="flex flex-col">
               <div class="textLogin pt-[50px] text-center">Login</div>
-              <div class="pl-20">
-                <div class="textUsername flex justify-items-start items-start p-2 pt-[25px] pb-5">Username</div>
-                <div class="input-container-login pl-3">
-                  <input type="text" class="custom-input" placeholder="Username">
-                </div>
-              </div>
-              <div class="pl-20 p-5">
-                <div class="textPassword flex justify-items-start items-start p-2 pb-5">Password</div>
-                <div class="input-container-login pl-3">
-                  <input type="password" class="custom-input" placeholder="Password">
-                  <MenuLink class="textForgotten pt-5 pr-[110px]" to="/products">Forgot password. ?</MenuLink>
-                  <MenuLink class="textNotHaveAcc" to="/register">Not have account yet. ?</MenuLink>
-                </div>
-              </div>
-              <div class="pl-[212px] pt-[120px]">
-                <MenuLink to="/cashier">
-                  <input type="submit" class="custom-button-login" value="Login">
-                </MenuLink>
-              </div>
+                <form @submit.prevent="login">
+                  <div class="pl-20">
+                    <small class="text-red-500">{{ errorMessage }}</small>
+                    <div class="textUsername flex justify-items-start items-start p-2 pt-[25px] pb-5">Username</div>
+                    <div class="input-container-login pl-3">
+                      <input type="email" v-model="formData.email" id="email" class="custom-input" placeholder="Username"/>
+                    </div>
+                  </div>
+                  <div class="pl-20 p-5">
+                    <div class="textPassword flex justify-items-start items-start p-2 pb-5">Password</div>
+                    <div class="input-container-login pl-3">
+                      <input type="password" v-model="formData.password" id="password" class="custom-input" placeholder="Password"/>
+                      <MenuLink class="textForgotten pt-5 pr-[110px]" to="/products">Forgot password. ?</MenuLink>
+                      <MenuLink class="textNotHaveAcc" to="/register">Not have account yet. ?</MenuLink>
+                    </div>
+                  </div>
+                  <div class="pl-[212px] pt-[120px]">
+                    <button type="submit" class="custom-button-login" value="Login">Login</button> 
+                  </div>
+                </form>
             </div>
           </div>
         </div>
@@ -36,22 +37,54 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import bgImage from '@/assets/img/login.jpg';
+// import axios from 'axios';
 
 definePageMeta({
   layout: "login",
 });
 
-export default {
-  data() {
-    return {
-      bgImage,
-    };
-  },
-};
-</script>
+import { useAuthStore } from "~/stores/useAuthStore"
 
+const auth = useAuthStore()
+const errorMessage = ref("")
+const formData = reactive({ email: "", password: "" })
+
+const login = async () => {
+  try {
+    const { data: response, error } = await useMyFetch('auth/login', {
+      method: 'POST',
+      body: formData
+    })
+
+    const { access_token, token_type } = response.value
+    if (access_token !== "") {
+      getProfile(access_token)
+    }
+  } catch(error) {
+    console.log(error)
+    auth.clear()
+    errorMessage.value = "Please try again"
+  }
+}
+const getProfile = async (access_token) => {
+  try {
+      auth.setNewToken(access_token)
+      const { data: user, error } = await useMyFetch('auth/user-profile', {
+        method: 'GET'
+      })
+      if (user.value !== null) {
+        auth.setUser(user.value.name, user.value.email)
+        await navigateTo('/cashier')
+      }
+    } catch (error) {
+        console.log(error)
+    }
+
+    }
+  </script>
+  
 <style>
 .bg-element {
   width: 100%;
@@ -72,7 +105,8 @@ export default {
 .element {
   width: 1300px;
   height: 800px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Add a box shadow for a visual effect */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  /* Add a box shadow for a visual effect */
   background-color: #9892C0;
   position: relative;
   opacity: 0.9;
@@ -183,6 +217,7 @@ export default {
   background: #6c45ae;
   /* Change the background color when clicked */
 }
+
 .textNotHaveAcc {
   color: #683BEB;
   font-size: 15px;
@@ -191,11 +226,11 @@ export default {
   word-wrap: break-word;
   z-index: 2;
 }
-.textForgotten{
+
+.textForgotten {
   color: #EB3B85;
-font-size: 15px;
-font-family: Inria Serif;
-font-weight: 700;
-word-wrap: break-word;
-}
-</style>
+  font-size: 15px;
+  font-family: Inria Serif;
+  font-weight: 700;
+  word-wrap: break-word;
+}</style>

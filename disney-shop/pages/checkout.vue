@@ -5,45 +5,76 @@
                 <h1 class="text-[48px] text-[#FFFFFF] font-semibold mb-10 mx-auto w-[358px] bg-[#9985BB] text-center rounded-[20px] shadow-md">Checkout</h1>
                 <div class="flex flex-col md:flex-row gap-4">
                     <div class="md:w-3/4">
-                        <div class="bg-white rounded-lg shadow-md p-6 mb-4" v-for="i in 1">
-                            <table class="w-full">
-                                <thead>
-                                    <tr>
-                                        <th class="text-left font-semibold">Product</th>
-                                        <th class="text-left font-semibold">Model</th>
-                                        <th class="text-left font-semibold">Price</th>
-                                        <th class="text-left font-semibold">Quantity</th>
-                                        <th class="text-left font-semibold">Total</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td class="py-4">
-                                            <div class="flex items-center">
-                                                <span class="font-semibold">Lord of the Ring</span>
+                        <div v-if="!cart.isEmpty">
+                            <div class="flex flex-col justify-start bg-white rounded-lg shadow-md p-6 mb-7"
+                                v-for="item in cart.items" :key="item.id" >
+                                <div class="flex flex-row justify-start gap-5 text-lg items-center">
+                                    <div class="flex flex-col w-3/6">
+                                        <div class="text-2xl font-bold mb-4">
+                                            Product
+                                        </div>
+                                        <div class="flex flex-row items-center">
+                                            <div>
+                                                <img src="@/assets/b180691f36bd713b8c69519b8637fb8b.png" alt=""
+                                                    class="h-16 w-16 mr-5">
                                             </div>
-                                        </td>
-                                        <td class="py-4">APG5654457054</td>
-                                        <td class="py-4">$19.99</td>
-                                        <td class="py-4">
-                                            <div class="flex items-center">
-                                                <button class="border rounded-md py-2 px-4 mr-2">-</button>
-                                                <span class="text-center w-8">1</span>
-                                                <button class="border rounded-md py-2 px-4 ml-2">+</button>
+                                            <div class="text-lg">
+                                                {{ item.product.name }}
                                             </div>
-                                        </td>
-                                        <td class="py-4">$19.99</td>
-                                        <td class="py-4">
-                                            <button class="py-2.5 px-6 rounded-lg text-sm font-medium bg-[#9985BB] text-white">Remove</button>
-                                        </td>
-                                    </tr>
-                                    <!-- More product rows -->
-                                </tbody>
-                            </table>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex flex-col w-1/6">
+                                        <div class="text-2xl font-bold mb-4">
+                                            Model
+                                        </div>
+                                        <div class="text-lg">
+                                            {{ item.product.model_code }}
+                                        </div>
+                                    </div>
+
+                                    <div class="flex flex-col w-1/6">
+                                        <div class="text-2xl font-bold mb-4">
+                                            Unit Price
+                                        </div>
+                                        <div class="text-lg text-center">
+                                            {{ item.product.price }}
+                                        </div>
+                                    </div>
+
+                                    <div class="flex flex-col w-1/6 justify-center mr-12">
+                                        <div class="text-center text-2xl font-bold mb-4">
+                                            Quantity
+                                        </div>
+                                        <div class="flex flex-row justify-center gap-3 items-center">
+                                            <div class="text-lg">
+                                                {{ item.qty }}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex flex-col w-1/6">
+                                        <div class="text-2xl font-bold mb-4">
+                                            Total
+                                        </div>
+                                        <div class="text-lg">
+                                            {{ item.total }} ฿
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+
+                        <div v-if="cart.isEmpty">
+                            <div class="bg-white rounded-lg shadow-md p-6 mb-4">
+                                <div class="text-2xl font-bold">
+                                    Shopping Cart is Empty
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
 
-                       
                     <div class="md:w-1/4">
                         <!-- <div class="mb-4">
                             <div class="bg-white rounded-lg shadow-md p-6">
@@ -51,52 +82,48 @@
                             </div>
                         </div>  -->
                         <div class="bg-white rounded-lg shadow-md p-6">
-                            
 
                             <h2 class="text-lg font-semibold mb-4">Summary</h2>
                             <div class="flex justify-between mb-2">
                                 <span>Subtotal</span>
-                                <span>$19.99</span>
+                                <span>{{ cart.getTotalPrice }} ฿</span>
                             </div>
                             <div class="flex justify-between mb-2">
-                                <span>Taxes</span>
-                                <span>$1.99</span>
-                            </div>
-                            <div class="flex justify-between mb-2">
-                                <span>Shipping</span>
-                                <span>$0.00</span>
-                            </div>
-                            <hr class="my-2">
-                            <div class="flex justify-between mb-2">
-                                <span class="font-semibold">Total</span>
-                                <span class="font-semibold">$21.98</span>
+                                <span>Discount</span>
+                                <span>{{ cart.getSubDiscount }} ฿</span>
                             </div>
 
-                    
-                            <select name="" id="" class="bg-[#FFFDFD] w-[210px] h-[60px] rounded-[20px]">
-                                <div>
-                                    <option value="">Choose Payment</option>
-                                    <option value="">Alipay</option>
-                                    <option value="">Cash</option>
-                                    <option value="">Credit/Debit Card</option>
-                                    <option value="">Qr thai </option>
-                                </div>
-                            </select>
+                            <hr class="my-2">
                             
-                            <MenuLink to="" class="bg-[#9985BB] text-white py-2 px-4 rounded-lg mt-4 w-full text-center">
-                                submit
-                            </MenuLink>
+                            <div class="flex justify-between mb-2 text-lg">
+                                <span class="font-semibold">Total</span>
+                                <span class="font-semibold">{{ cart.getTotalDiscount }} ฿</span>
+                            </div>
+                            
+                            <hr class="my-2">
+
+                            <div class="text-lg font-semibold mb-1">
+                                Customer Name:
+                            </div>
+                            <div class="text-lg mb-3 text-[#7D7C7C]">
+                                {{ customer.name }}
+                            </div>
+                            <div class="text-lg font-semibold mb-1">
+                                Payment Channel:
+                            </div>
+                            <div class="text-lg text-[#7D7C7C]">
+                                {{ check_payment.payment }}
+                            </div>
                         </div>
 
                         <div class="mt-4">
                             <div class="bg-white rounded-lg shadow-md p-6">
-                                <h2 class="text-lg font-semibold mb-4">Customer</h2>
-                                <input type="text"
-                                    class="w-full relative bg-gray-50ring-0 outline-none border border-neutral-500 text-neutral-900 placeholder-[#9BA4B5] text-sm rounded-lg focus:ring-violet-500  focus:border-violet-500 block p-2.5"
-                                    placeholder="Customer tel...">
-                                
+                                <a href="/show_order">
+                                    <button @click="addProductList()"
+                                        class="bg-[#5D12D2] hover:bg-[#9400FF] text-white py-2 px-4 rounded-lg w-full">Place Order</button>
+                                </a>
                             </div>
-                        </div> 
+                        </div>
                     </div>
                 </div>
             </div>
@@ -104,12 +131,34 @@
     </div>
 </template>
 
-<script>
-    export default {
-        data() {
-            return {
-                currentDate: new Date().toDateString(),
-            };
-        },
-    };
+<script setup>
+    import { useCheckPaymentStore } from "~/stores/useCheckPaymentStore"
+    import { useCustomerStore } from "~/stores/useCustomerStore"
+    import { useCartStore } from "~/stores/useCartStore"
+    import { useOrderStore } from "~/stores/useOrderStore"
+
+
+    const check_payment = useCheckPaymentStore();
+    const customer = useCustomerStore();
+    const cart = useCartStore();
+    const order = useOrderStore();
+
+    const products = cart.items
+
+    const addProductList = async () => {
+        products.forEach(item=> {
+            const product = cart.items.find(row => row.id == item.id)
+            console.log(product.qty)
+            const { data: response, error } = useMyFetch('productLists', {
+                method: 'POST',
+                body: {
+                    "product_name": product.product.name, 
+                    "order_id": order.id,
+                    "qty": product.qty,
+                    "subtotal": product.total - (product.total * (10 / 100))
+                }
+            })
+        })
+    }
+
 </script>

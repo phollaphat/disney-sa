@@ -1,79 +1,119 @@
 <template>
-    <div class="flex flex-col justify-start">
-        <div class="h-screen py-8">
-            <div class="container mx-auto px-4">
-                <h1 class="text-[48px] text-[#FFFFFF] font-semibold mb-10 mx-auto w-[358px] bg-[#9985BB] text-center rounded-[20px] shadow-md">Receipt</h1>
-                <div class="flex flex-col md:flex-row gap-4">
-                    <div class="md:w-3/4">
-                        <div class="bg-white rounded-lg shadow-md p-6 mb-4" v-for="i in 4">
-                            <table class="w-full">
-                                <thead>
-                                    <tr>
-                                        <th class="text-left font-semibold">Product</th>
-                                        <th class="text-left font-semibold">Model</th>
-                                        <th class="text-left font-semibold">Price</th>
-                                        <th class="text-left font-semibold">Quantity</th>
-                                        <th class="text-left font-semibold">Total</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td class="py-4">
-                                            <div class="flex items-center">
-                                                <img src="@/assets/b180691f36bd713b8c69519b8637fb8b.png" alt="" class="h-16 w-16 mr-4">
-                                                <span class="font-semibold">Lord of the Ring</span>
-                                            </div>
-                                        </td>
-                                        <td class="py-4">APG5654457054</td>
-                                        <td class="py-4">$19.99</td>
-                                        <td class="py-4">
-                                            <div class="flex items-center">
-                                                <button class="border rounded-md py-2 px-4 mr-2">-</button>
-                                                <span class="text-center w-8">1</span>
-                                                <button class="border rounded-md py-2 px-4 ml-2">+</button>
-                                            </div>
-                                        </td>
-                                        <td class="py-4">$19.99</td>
-                                        <td class="py-4">
-                                            <button class="py-2.5 px-6 rounded-lg text-sm font-medium bg-[#9985BB] text-white">Remove</button>
-                                        </td>
-                                    </tr>
-                                    <!-- More product rows -->
-                                </tbody>
-                            </table>
-                        </div>
+    <div class="flex justify-center p-20 text-[#232946] text-xl">
+        <div class="flex flex-col items-center w-4/12">
+            <div class="flex flex-col items-center">
+                <div class="font-bold text-3xl">
+                    APG Wholeness Co., Ltd.
+                </div>
+                <div class="text-center w-3/5 mb-2">
+                    499/265 หมู่ 2 ตำบลศิลา อำเภอเมือง ขอนแก่น จังหวัดขอนแก่น 40000
+                </div>
+                <div class="flex flex-row border-b-2 border-[#53505C] w-full justify-center pb-3">
+                    <div class="mr-1 font-bold">
+                        โทร.
                     </div>
-                    <div class="md:w-1/4">
-                        <div class="bg-white rounded-lg shadow-md p-6">
-                            <h2 class="text-lg font-semibold mb-4">Summary</h2>
-                            <div class="flex justify-between mb-2">
-                                <span>Subtotal</span>
-                                <span>$19.99</span>
-                            </div>
-                            <div class="flex justify-between mb-2">
-                                <span>Taxes</span>
-                                <span>$1.99</span>
-                            </div>
-                            <div class="flex justify-between mb-2">
-                                <span>Shipping</span>
-                                <span>$0.00</span>
-                            </div>
-                            <hr class="my-2">
-                            <div class="flex justify-between mb-2">
-                                <span class="font-semibold">Total</span>
-                                <span class="font-semibold">$21.98</span>
-                            </div>
-
-                    
-                            
-                            
-                            <MenuLink to="/" class="bg-[#9985BB] text-white py-2 px-4 rounded-lg mt-4 w-full text-center">
-                                submit
-                            </MenuLink>
-                        </div>
+                    <div>
+                        0845966949
                     </div>
                 </div>
             </div>
+
+            <div class="flex flex-row self-start gap-10 border-b-2 border-[#53505C] w-full py-2">
+                <div class="flex flex-col font-bold">
+                    <div class="">
+                        พนักงาน
+                    </div>
+                    <div>
+                        วันที่
+                    </div>
+                </div>
+                <div class="flex flex-col">
+                    <div class="">
+                        พนักงานขาย
+                    </div>
+                    <div>
+                        {{ receiptShow.date }}
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flex flex-row justify-between gap-10 border-dashed border-b-2 border-[#53505C] w-full py-2" v-for="item in cart.items" :key="item.id">
+                <div class="flex flex-col">
+                    <div class="">
+                        {{ item.qty }}
+                    </div>
+                </div>
+                <div class="flex flex-col">
+                    <div>
+                        {{ item.product.name }}
+                    </div>
+                </div>
+                <div class="flex flex-col">
+                    <div>
+                        {{ item.total }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-row self-start font-bold">
+                จำนวนรวม  {{cart.lengthItems}}
+            </div>
+
+            <div class="flex flex-row w-full gap-10 place-content-end text-end border-double border-b-2 border-[#53505C] py-3">
+                <div class="flex flex-col font-bold">
+                    <div class="">
+                        จำนวนเงิน
+                    </div>
+    
+                    <div class="mb-3">
+                        ส่วนลด
+                    </div>
+
+                    <div class="">
+                        จำนวนเงินทั้งหมด
+                    </div>
+                </div>
+
+                <div class="flex flex-col">
+                    <div class="">
+                        {{cart.getTotalPrice}}
+                    </div>
+    
+                    <div class="mb-3">
+                        {{cart.getSubDiscount}}
+                    </div>
+                    
+                    <div class="">
+                        {{cart.getTotalDiscount}}
+                    </div>
+                </div>
+            </div>
+
+            
         </div>
     </div>
 </template>
+
+<script setup>
+    import { useCheckPaymentStore } from "~/stores/useCheckPaymentStore"
+    import { useCustomerStore } from "~/stores/useCustomerStore"
+    import { useCartStore } from "~/stores/useCartStore"
+    import { useOrderStore } from "~/stores/useOrderStore"
+    import { useReceiptStore } from "~/stores/useReceiptStore"
+
+    const check_payment = useCheckPaymentStore();
+    const customer = useCustomerStore();
+    const cart = useCartStore();
+    const order = useOrderStore();
+    const receipt = useReceiptStore();
+
+    const {
+        data: receiptShow,
+        pending
+    } = await useMyFetch(`receipts/${receipt.id}`, {})
+
+    
+
+</script>
+
+syp

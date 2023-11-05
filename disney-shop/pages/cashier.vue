@@ -1,102 +1,234 @@
 <template>
     <div>
         <div class="flex flex-row justify-items-center items-center gap-5 m-10">
-            <div class="w-1/5">
-                <img src="@/assets/Search.png" alt="" />
-            </div>
-            
-            <div class="w-4/5">
-                <input required="" placeholder="   Searching..." type="text"
-                    class="h-[60px] w-full bg-[#FFFDFD] rounded-[20px]" />
-            </div>
-
-            <div class="w-1/3">
+            <div class="flex flex-row w-3/6">
                 <div class="">
-                    <label class="popup">
-                        <input type="checkbox" />
-                        <div class="burger" tabindex="0">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </div>
-                        <nav class="popup-window">
-                            <legend>เรียงตามลำดับ</legend>
-                            <ul>
-                                <li>
-                                    <button>
-                                        <span>น้อยไปมาก</span>
-                                    </button>
-                                </li>
-                                <li>
-                                    <button>
-                                        <span>มากไปน้อย</span>
-                                    </button>
-                                </li>
-                                <li>
-                                    <button>
-                                        <span>ไม่มีสินค้า</span>
-                                    </button>
-                                </li>
-                            </ul>
-                        </nav>
-                    </label>
+                    <img src="@/assets/Search.png" alt="" />
+                </div>
+
+                <div class="w-full ml-6">
+                    <input required="" placeholder="   Searching..." type="text"
+                        class="h-[60px] w-full bg-[#FFFDFD] rounded-[20px] pl-4" v-model="searchInput"/>
                 </div>
             </div>
 
-            <div class="w-2/5">
-                <select name="" id="" class="bg-[#FFFDFD] h-[60px] w-full rounded-[20px] pl-4">
-                    <div>
-                        <option value="">All</option>
-                        <option value="">Scented Candle</option>
-                        <option value="">Jewelry</option>
+            <div class="w-1/6">
+                <label class="popup">
+                    <input type="checkbox" />
+                    <div class="burger" tabindex="0">
+                        <span></span>
+                        <span></span>
+                        <span></span>
                     </div>
+                    <nav class="popup-window">
+                        <legend>เรียงตามลำดับ</legend>
+                        <ul>
+                            <li>
+                                <button @click="disableSoft()">
+                                    <span>ทั้งหมด</span>
+                                </button>
+                            </li>
+                            <li>
+                                <button @click="enableExpen2Cheap()">
+                                    <span>แพงที่สุด -> ถูกที่สุด</span>
+                                </button>
+                            </li>
+                            <li>
+                                <button @click="enableCheap2Expen()">
+                                    <span>ถูกที่สุด -> แพงที่สุด</span>
+                                </button>
+                            </li>
+                        </ul>
+                    </nav>
+                </label>
+            </div>
+
+            <div class="w-1/6">
+                <select class="bg-[#FFFDFD] h-[60px] w-full rounded-[20px] pl-4" id="categorySelect" v-model="selectedCategory">
+                    <option value="All">All</option>
+                    <option value="Scented Candle">Scented Candle</option>
+                    <option value="Jewelry">Jewelry</option>
                 </select>
             </div>
 
-
-
-            <div class="flex flex-row w-1/2 justify-center">
+            <div class="flex flex-row w-1/6 justify-end mr-7">
                 <div>
-                    <a href="shoping-cart">
-                        <img src="@/assets/Basket_alt_3.png" alt="" class="pr-0">
+                    <a href="/shoping-cart">
+                        <img src="@/assets/Basket_alt_3.png" alt="" class="">
                     </a>
                 </div>
-                <div class="relative rounded-full bg-red-600 w-[30px] h-[30px]">
-                    <div class="absolute left-3 top-1 text-center font-bold" style="color: white;">
-                        0
+                <div
+                    class="relative rounded-full bg-red-600 w-[30px] h-[30px] absolute left-1 top-1 text-center font-bold">
+                    <div class="mt-1" style="color: white;">
+                        {{ cart.lengthItems }}
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="grid grid-cols-3 justify-items-center h-screen m-5 gap-5 mt-20">
-            <div class="bg-white w-5/6 rounded-[37px] p-[5%]" v-for="i in 9">
-                <div class="flex justify-center flex-col relative items-center">
-                    <div class="card-image flex justify-center mt-3">
-                        <img src="@/assets/b180691f36bd713b8c69519b8637fb8b.png" alt=""
-                            class="justify-items-center h-4/5 w-4/5">
-                    </div>
-                    <div class="text-center mt-3 text-xs text-[#7D7C7C]">Scented Candle</div>
-                    <div class="text-center font-bold pt-1 text-2xl">Lord of the ring</div>
-                    <div class="text-xl pt-1 text-center">1032 Baht</div>
-                    <div class="flex justify-center items-center pt-2 w-full">
-                        <button
-                            class="bg-[#5D12D2] h-[40px] w-5/6 rounded-[11px] text-[14px] text-center drop-shadow-sm hover:bg-[#9400FF] text-white">
-                            ADD TO ORDER
-                        </button>
+        <div class="grid grid-cols-3 justify-items-center h-full m-5 gap-12 mt-16 text-[#232946]">
+            <template v-for="product in filteredProducts" :key="product.id">
+                <div class="bg-white w-5/6 rounded-[37px] p-[5%]" v-if="product.stock_quantity > 0">
+                    <div class="flex justify-center flex-col relative items-center">
+                        <div class="card-image flex justify-center mt-3">
+                            <img src="@/assets/b180691f36bd713b8c69519b8637fb8b.png" alt=""
+                                class="justify-items-center h-4/5 w-4/5">
+                        </div>
+                        <div class="text-center mt-3 text-xs text-[#7D7C7C]">{{ product.category }}</div>
+                        <div class="text-center font-bold pt-1 text-2xl">{{ product.name }}</div>
+                        <div class="text-xl pt-1 text-center">{{ product.price }} Baht</div>
+                        <div class="flex justify-center items-center pt-2 w-full">
+                            <button @click="addItem(product)" onclick="openModal('modelConfirm')"
+                                class="bg-[#5D12D2] h-[40px] w-5/6 rounded-[11px] text-[14px] text-center drop-shadow-sm hover:bg-[#9400FF] text-white">
+                                ADD TO ORDER
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </template>
         </div>
-
     </div>
 </template>
 
-<script>
-    // import {ref} from 'vue'
-    // import popup from './popup.vue'
-    // const isOpen = ref(false)
+<script setup>
+    import {
+        useCartStore
+    } from "~/stores/useCartStore"
+    import { computed } from 'vue';
+    import { ref } from 'vue';
+
+    const {
+        data: products,
+        pending
+    } = await useMyFetch("products", {});
+
+    const selectedCategory = ref('All');
+    const searchInput = ref('');
+
+    const sortExpen2Cheap = ref(false);
+    const sortCheap2Expen = ref(false);
+
+    const enableExpen2Cheap = () => {
+        sortExpen2Cheap.value = true;
+        sortCheap2Expen.value = false;
+        console.log(sortExpen2Cheap.value);
+        console.log(sortCheap2Expen.value);
+    }
+
+    const enableCheap2Expen = () => {
+        sortExpen2Cheap.value = false;
+        sortCheap2Expen.value = true;
+        console.log(sortExpen2Cheap.value);
+        console.log(sortCheap2Expen.value);
+    }
+
+    const disableSoft = () => {
+        sortExpen2Cheap.value = false;
+        sortCheap2Expen.value = false;
+        console.log(sortExpen2Cheap.value);
+        console.log(sortCheap2Expen.value);
+    }
+
+    const filteredProducts = computed(() => {
+        if (selectedCategory.value === 'All') {
+            if (sortExpen2Cheap.value) {
+                return products.value.filter(product=> product.name.toLowerCase().indexOf(searchInput.value.toLowerCase()) != -1).sort((a,b) => {
+                    let fa = a.price, fb = b.price;
+                    if (fa > fb) {
+                        return -1
+                    }
+                    if (fa < fb) {
+                        return 1
+                    }
+                    return 0
+                });
+            }
+            if (sortCheap2Expen.value) {
+                return products.value.filter(product=> product.name.toLowerCase().indexOf(searchInput.value.toLowerCase()) != -1).sort((a,b) => {
+                    let fa = a.price, fb = b.price;
+                    if (fa < fb) {
+                        return -1
+                    }
+                    if (fa > fb) {
+                        return 1
+                    }
+                    return 0
+                });
+            }
+            else {
+                return products.value.filter(product=> product.name.toLowerCase().indexOf(searchInput.value.toLowerCase()) != -1).sort((a,b) => {
+                    let fa = a.name.toLowerCase(), fb = b.name.toLowerCase();
+                    if (fa < fb) {
+                        return -1
+                    }
+                    if (fa > fb) {
+                        return 1
+                    }
+                        return 0
+                });
+            }
+        } else {
+            if (sortExpen2Cheap.value) {
+                return products.value.filter(product => product.category === selectedCategory.value && product.name.toLowerCase().indexOf(searchInput.value.toLowerCase()) != -1).sort((a,b) => {
+                    let fa = a.price, fb = b.price;
+                    if (fa > fb) {
+                        return -1
+                    }
+                    if (fa < fb) {
+                        return 1
+                    }
+                    return 0
+                });
+            }
+            if (sortCheap2Expen.value) {
+                return products.value.filter(product => product.category === selectedCategory.value && product.name.toLowerCase().indexOf(searchInput.value.toLowerCase()) != -1).sort((a,b) => {
+                    let fa = a.price, fb = b.price;
+                    if (fa < fb) {
+                        return -1
+                    }
+                    if (fa > fb) {
+                        return 1
+                    }
+                    return 0
+                });
+            }
+            else {
+                return products.value.filter(product => product.category === selectedCategory.value && product.name.toLowerCase().indexOf(searchInput.value.toLowerCase()) != -1).sort((a,b) => {
+                    let fa = a.name.toLowerCase(), fb = b.name.toLowerCase();
+                    if (fa < fb) {
+                        return -1
+                    }
+                    if (fa > fb) {
+                        return 1
+                    }
+                        return 0
+                });
+            }
+        }
+    });
+
+    const cart = useCartStore();
+    const addItem = (item) => {
+        const product = cart.items.find(row => row.id == item.id)
+        if (product) {
+            if (product.qty < item.stock_quantity) {
+                const price = item.price;
+                product.qty++
+                product.total += price
+            }
+        } else {
+            const price = item.price;
+            cart.items.push({
+                id: item.id,
+                product: item,
+                qty: 1,
+                total: price,
+                discount: 0.0
+            })
+        }
+    }
 </script>
+
 
 <style>
     /* The design is inspired from the mockapi.io */
@@ -204,6 +336,7 @@
     }
 
     .popup-window {
+        z-index: 9999;
         transform: scale(var(--nav-default-scale));
         visibility: hidden;
         opacity: 0;
@@ -219,8 +352,6 @@
         left: var(--nav-position-left);
         right: var(--nav-position-right);
         transition: var(--burger-transition);
-        width: 157px;
-        height: 126px;
         flex-shrink: 0;
     }
 
@@ -381,15 +512,4 @@
         border-radius: 6px 6px 0 0;
         display: block;
     } */
-
-    .show-popup {
-        display: none;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background-color: white;
-        z-index: 1000;
-        /* และคุณอาจต้องกำหนดความกว้าง ความสูง และแถบกรอบตามต้องการ */
-    }
 </style>

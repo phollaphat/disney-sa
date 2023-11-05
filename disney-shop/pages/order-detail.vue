@@ -89,7 +89,7 @@
                     
                             
                             
-                            <MenuLink to="/cashier" class="bg-[#9985BB] text-white py-2 px-4 rounded-lg mt-4 w-full text-center">
+                            <MenuLink to="/receipt" class="bg-[#9985BB] text-white py-2 px-4 rounded-lg mt-4 w-full text-center">
                                 submit
                             </MenuLink>
                         </div>

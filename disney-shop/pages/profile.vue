@@ -1,38 +1,42 @@
 <template>
     <div id="bg" class="h-full flex justify-center text-[#232946]">
-        <div class="bg-[#FFFFFECC] w-[1214px] h-[986px] rounded-[20px] flex flex-col p-10 gap-5 m-5">
+        <div class="bg-[#FFFFFECC] w-[1214px] h-screen m-5 rounded-[20px] flex flex-col p-10 gap-5">
             <div class="flex flex-row items-center">
                 <div>
                     <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="" class="h-40 w-40">
                 </div>
                 <div class="p-10 font-bold text-[48px]">
-                    Trace Danell
+                    {{ user.name }}
                 </div>
             </div>
             <div class="text-[40px] font-bold">
                 Phone number
             </div>
             <div class="text-[32px] ">
-                065 449 3251
+                {{ user.tel }}
             </div>
             <div class="text-[40px] font-bold ">
                 Email
             </div>
             <div class="text-[32px] ">
-                dimaatwork@rjvelements.com
+                {{ user.email }}
             </div>
             <div class="text-[40px] font-bold ">
                 Role
             </div>
             <div class="text-[32px] ">
-                Manager
+                {{ user.role }}
             </div>
             <div class="flex justify-end pt-[100px]">
-                <button class="">Edit Profile</button>
+                <a href="edit_profile"><button class="">Edit Profile</button></a>
             </div>
         </div>
     </div>
 </template>
+
+<script setup>
+    const { data: user, pending } = await useMyFetch("auth/user-profile", {})
+</script>
 
 <style scoped>
 #bg {

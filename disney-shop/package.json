@@ -11,9 +11,18 @@
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
+    "@pinia-plugin-persistedstate/nuxt": "^1.2.0",
     "autoprefixer": "^10.4.16",
     "nuxt": "^3.7.4",
     "postcss": "^8.4.30",
     "tailwindcss": "^3.3.3"
+  },
+  "overrides": {
+    "vue": "latest"
+  },
+  "dependencies": {
+    "@nuxtjs/axios": "^5.13.6",
+    "@pinia/nuxt": "^0.5.1",
+    "pinia": "^2.1.7"
   }
 }

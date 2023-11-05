@@ -37,7 +37,8 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $product = Product::Where('id', $id)->first();
+        return $product;
     }
 
     /**
@@ -62,5 +63,15 @@ class ProductController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function ReduceProductQTY(Request $request)
+    {
+        $product = Product::Where('name', $request->get('product_name'))->first();
+        $product->stock_quantity = $product->stock_quantity - intval($request->get('qty'));
+        $product->save();
+        $product->refresh();
+
+        return $product;
     }
 }
