@@ -87,6 +87,4 @@
     gap: 32px;
     justify-content: center;
   }
-
 </style>
-

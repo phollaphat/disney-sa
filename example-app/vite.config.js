@@ -8,5 +8,5 @@ export default defineConfig({
             refresh: true,
         }),
     ],
-    buildModules: ['@pinia/nuxt'],
+    modules: ["@pinia/nuxt"],
 });
