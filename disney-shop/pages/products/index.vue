@@ -60,10 +60,12 @@
             </div>
 
             <div class="w-1/6 ml-4">
+                <a href="/addProduct">
                 <button
                     class="drop-shadow-lg bg-[#5D12D2] h-[60px] w-5/6 rounded-[11px] text-lg font-semibold text-center hover:bg-[#9400FF] text-white">
                     Add Product
                 </button>
+                </a>
             </div>
         </div>
 

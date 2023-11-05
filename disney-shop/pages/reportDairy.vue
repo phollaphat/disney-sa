@@ -87,8 +87,6 @@
     gap: 32px;
     justify-content: center;
   }
-<<<<<<< HEAD
+
 </style>
-=======
-</style>
->>>>>>> origin/arty
+

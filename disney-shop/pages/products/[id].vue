@@ -5,10 +5,16 @@
                 <div>
                     <img src="@/assets/b180691f36bd713b8c69519b8637fb8b.png" alt="" class="h-[400px] w-[400px] object-center drop-shadow-lg">
                 </div>
-                <div>
+
+                <div class="flex justify-center mb-auto mt-20">
                     <a href="/products/">
-                        <button class="mt-[50px] text-xl bg-[#5D12D2] w-[80px] h-[50px] rounded-[10px] text-center drop-shadow-sm hover:bg-[#9400FF] text-white">back</button>
+                        <button class="">back</button>
                     </a>
+                <div class="ml-10">
+                <a href="/edit_product">
+                <button class="">Edit</button>
+                </a>
+                </div>
                 </div>
             </div>
             <div class="flex flex-col gap-5">
@@ -73,6 +79,31 @@
     background: no-repeat;
     height: 100%;
     width: 100%;
+}
+
+button {
+    padding: 17px 40px;
+    border-radius: 10px;
+    border: 0;
+    background-color: #B8C1EC;
+    letter-spacing: 1.5px;
+    font-size: 26px;
+    font-weight: bold;
+    transition: all .3s ease;
+    box-shadow: #232946 0px 10px 0px 0px;
+    color: hsl(0, 0%, 100%);
+}
+
+button:hover {
+    box-shadow: #232946 0px 7px 0px 0px;
+}
+
+button:active {
+    background-color: #232946;
+    /*50, 168, 80*/
+    box-shadow: #232946 0px 0px 0px 0px;
+    transform: translateY(5px);
+    transition: 200ms;
 }
 
 </style>
