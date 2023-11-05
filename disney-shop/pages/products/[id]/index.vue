@@ -1,18 +1,23 @@
 <template>
     <div class="flex content-center justify-center m-7">
-        <div class="flex flex-row place-content-center gap-5 p-10 bg-[#FFFFFECC] w-[1214px] h-[900px] rounded-[20px]">
+        <div class="flex flex-row place-content-start p-10 bg-[#FFFFFECC] w-[1214px] h-[900px] rounded-[20px]">
             <div class="flex flex-col">
-                <div>
+                <div class="ml-[100px] mt-[50px] mr-[160px]">
                     <img src="@/assets/b180691f36bd713b8c69519b8637fb8b.png" alt="" class="h-[400px] w-[400px] object-center drop-shadow-lg">
+                    
                 </div>
-                <div>
+                <div class="pt-[250px] pl-[20px]">
                     <a href="/products/">
                         <button class="mt-[50px] text-xl bg-[#5D12D2] w-[80px] h-[50px] rounded-[10px] text-center drop-shadow-sm hover:bg-[#9400FF] text-white">back</button>
                     </a>
+                
                 </div>
             </div>
-            <div class="flex flex-col gap-5">
-                <div class="text-4xl ml-5 font-bold drop-shadow-md">
+            <div class="flex flex-col gap-5 mt-[50px]">
+                <div class="text-2xl font-semibold ml-5 mt-5">
+                    Name
+                </div>
+                <div class="text-lg ml-5 text-[#5B5B5B]">
                     {{product.name}}
                 </div>
                 <div class="text-2xl font-semibold ml-5 mt-5">
@@ -46,6 +51,13 @@
                     {{product.size}}
                 </div>
             </div>
+            <div class="flex flex-col ml-[100px] ">
+                <NuxtLink :to="`/products/${product.id}/edit_product`">
+                    <img src="@/assets/pen.png" alt="" class=" h-[50px] w-[50px]">
+                </NuxtLink>
+                       
+            </div>
+            <div class="text-1xl mt-3 font-bold drop-shadow-md">edit</div>
         </div>
     </div>
 </template>

@@ -27,6 +27,7 @@ Route::resource('orders', 'App\Http\Controllers\OrderController');
 Route::resource('customers', 'App\Http\Controllers\CustomerController');
 Route::resource('receipts', 'App\Http\Controllers\ReceiptController');
 Route::resource('warantyCards', 'App\Http\Controllers\WarantyCardController');
+Route::resource('claims', 'App\Http\Controllers\ClaimController');
 
 Route::group([
     'middleware' => 'api',
