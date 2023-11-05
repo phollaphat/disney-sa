@@ -29,7 +29,17 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $product = new Product();
+        $product->model_code = $request->get('model_code');
+        $product->category = $request->get('category');
+        $product->name = $request->get('name');
+        $product->price = $request->get('price');
+        $product->size = $request->get('size');
+        $product->stock_quantity = $request->get('quantity');
+        $product->save();
+        $product->refresh();
+
+        return $product;
     }
 
     /**
@@ -54,7 +64,25 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $product = Product::Where('id', $id)->first();
+
+        if($request->get('name')){
+            $product->name = $request->get('name');
+        }
+        if($request->get('price')){
+            $product->price = $request->get('price');
+        }
+        if($request->get('quantity')){
+            $product->stock_quantity = $request->get('quantity');
+        }
+        if($request->get('category')){
+            $product->category = $request->get('category');
+        }
+
+        $product->save();
+        $product->refresh();
+
+        return $product;
     }
 
     /**
