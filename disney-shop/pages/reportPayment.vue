@@ -41,3 +41,10 @@
         </div>
     </div>
 </template>
+
+<script setup>
+  const {
+    data: orders,
+    pending
+  } = await useMyFetch("orders", {});
+</script>

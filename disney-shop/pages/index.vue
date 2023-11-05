@@ -12,7 +12,7 @@
                 <form @submit.prevent="login">
                   <div class="pl-20">
                     <small class="text-red-500">{{ errorMessage }}</small>
-                    <div class="textUsername flex justify-items-start items-start p-2 pt-[25px] pb-5">Username</div>
+                    <div class="textUsername flex justify-items-start items-start p-2 pt-[25px] pb-5">Email</div>
                     <div class="input-container-login pl-3">
                       <input type="email" v-model="formData.email" id="email" class="custom-input" placeholder="Username"/>
                     </div>
@@ -21,8 +21,7 @@
                     <div class="textPassword flex justify-items-start items-start p-2 pb-5">Password</div>
                     <div class="input-container-login pl-3">
                       <input type="password" v-model="formData.password" id="password" class="custom-input" placeholder="Password"/>
-                      <MenuLink class="textForgotten pt-5 pr-[110px]" to="/products">Forgot password. ?</MenuLink>
-                      <MenuLink class="textNotHaveAcc" to="/register">Not have account yet. ?</MenuLink>
+                      <MenuLink class="textNotHaveAcc mt" to="/register">Registration</MenuLink>
                     </div>
                   </div>
                   <div class="pl-[212px] pt-[120px]">

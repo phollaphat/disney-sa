@@ -9,25 +9,21 @@
           </div> 
                      <input class="input-container pl-10" type="text" id="name" v-model="formData.name" required>
           <div class="form-group">
-            <label class="text flex justify-start pl-[220px] p-3" for="username">Username</label>
-          </div>
-                      <input class="input-container" type="text" id="username" v-model="formData.username" required>
-          <div class="form-group">
             <label class="text flex justify-start pl-[220px] p-3" for="phonenum">Phone Number</label>
           </div>
-                      <input class="input-container" type="text" id="phonenum" v-model="formData.phonenum" required>
+                      <input class="input-container pl-10" type="text" id="phonenum" v-model="formData.phonenum" required>
           <div class="form-group">
             <label class="text flex justify-start pl-[220px] p-3" for="email">Email</label>
           </div>
-                      <input class="input-container" type="email" id="email" v-model="formData.email" required>
+                      <input class="input-container pl-10" type="email" id="email" v-model="formData.email" required>
           <div class="form-group">
             <label class="text flex justify-start pl-[220px] p-3" for="password">Password</label>
           </div>
-                      <input class="input-container" type="password" id="password" v-model="formData.password" required>
+                      <input class="input-container pl-10" type="password" id="password" v-model="formData.password" required>
           <div class="form-group">
             <label class="text flex justify-start pl-[220px] p-3" for="password">Confirm Password</label>
           </div>
-                      <input class="input-container" type="password" id="password" v-model="formData.password" required>
+                      <input class="input-container pl-10" type="password" id="password" v-model="formData.password" required>
           <!-- Add more form fields as needed -->
           <div class="pt-10 pl-[350px]">
             <MenuLink to="/cashier">
