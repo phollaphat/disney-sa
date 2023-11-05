@@ -186,6 +186,9 @@
     import { useAuthStore } from "~/stores/useAuthStore"
     import { useOrderStore } from "~/stores/useOrderStore"
 
+    import { createToast } from 'mosha-vue-toastify';
+    import 'mosha-vue-toastify/dist/style.css';
+
     const cart = useCartStore();
     const check_payment = useCheckPaymentStore();
     const customer = useCustomerStore();
@@ -220,6 +223,9 @@
             product.qty++
             product.total += product.product.price
         }
+        else {
+            warningAddProduct();
+        }
     }
 
     const removeItemQRT = (item) => {
@@ -228,11 +234,15 @@
             product.qty--
             product.total -= product.product.price
         }
+        else {
+            warningZeroProduct();
+        }
     }
 
     const removeItem = (item) => {
         const index = cart.items.findIndex(existingItem => existingItem === item);
         if (index !== -1) {
+            successRemoveProduct();
             cart.items.splice(index, 1);
         }
     }
@@ -272,6 +282,17 @@
         order.id = response.value.id
     }
 
+    const warningAddProduct = () => {
+        createToast({ title: 'Quantity exceeded amount left in stock'}, {type: 'warning', position: 'top-right', showIcon: 'true', hideProgressBar: 'false'})
+    }
+
+    const warningZeroProduct = () => {
+        createToast({ title: 'You cannot decrease the quantity of the product below 0'}, {type: 'warning', position: 'top-right', showIcon: 'true', hideProgressBar: 'false'})
+    }
+
+    const successRemoveProduct = () => {
+        createToast({ title: 'Remove Product Success.'}, {type: 'success', position: 'top-right', showIcon: 'true', hideProgressBar: 'false'})
+    }
 </script>
 
 <style>
