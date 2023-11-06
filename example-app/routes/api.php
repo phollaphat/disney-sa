@@ -16,12 +16,19 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+
+Route::put('auth/userProfileEdit', [AuthController::class, 'updateEmailPass']);
+Route::put('auth/userProfileEditName', [AuthController::class, 'updateNameTel']);
+
 Route::get('orders/report', [OrderController::class, 'orderWithReceipt']);
 Route::post('products/reduceItems', [ProductController::class, 'ReduceProductQTY']);
 Route::post('orders/setStatus', [OrderController::class, 'setOrderStatus']);
 Route::get('file/{path}', function($path) {
     return \File::get(storage_path() .'/'. $path);
-  });
+});
+
+
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
