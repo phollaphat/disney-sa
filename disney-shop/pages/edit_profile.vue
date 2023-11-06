@@ -1,13 +1,18 @@
 <template>
     <div id="bg" class="h-full flex justify-center text-[#232946]">
+        <form @submit.prevent="onSubmit()">
         <div class="bg-[#FFFFFECC] w-[1214px] h-[986px] rounded-[20px] flex flex-col p-10 gap-5 m-5">
 
-        <div class="grid grid-cols-2 gap-6">
+        
+            <div class="grid grid-cols-2 gap-6">
             <!-- column 1 -->
             <div> 
                 <div class="flex flex-row items-center">
                     <div>
+                        <input type="file" id="image" @change="handleImageUpload" style="display: none" />
+                        <label for="image" class="custom-file-input">
                         <button><img src="../assets/click_to_upload_photo.png" alt="" ></button>
+                    </label>
                     </div>
                 </div>
                 
@@ -16,7 +21,7 @@
                 </div>
                 <div class="text-[32px] ">
                     <input class="border border-purple-400 p-2 ml-2 rounded-xl"
-                    type="text" id="phoneNumber" placeholder="Phone number">
+                    type="text" id="tel" placeholder="Phone number" v-model="formData.tel">
                 </div>
 
                 <div class="text-[40px] font-bold mt-5">
@@ -24,7 +29,7 @@
                 </div>
                 <div class="text-[32px] ">
                     <input class="border border-purple-400 p-2 ml-2 rounded-xl"
-                    type="text" id="email" placeholder="Email">
+                    type="text" id="email" placeholder="Email" v-model="formData.email">
                 </div>
             </div>
             <!-- column 2 -->
@@ -34,7 +39,7 @@
                     </div>
                 <div class="text-[32px] ">
                     <input class="border border-purple-400 p-2 ml-2 rounded-xl"
-                    type="text" id="username" placeholder="Username">
+                    type="text" id="username" placeholder="Username" v-model="formData.username">
                 </div>
 
                 <div class="text-[40px] font-bold mt-5">
@@ -42,7 +47,7 @@
                 </div>
                 <div class="text-[32px]">
                     <input class="border border-purple-400 p-2 ml-2 mb-1 rounded-xl"
-                    type="text" id="name" placeholder="Name">
+                    type="text" id="name" placeholder="Name" v-model="formData.name">
                 </div>
 
                 <div class="text-[40px] font-bold mt-24">
@@ -50,7 +55,7 @@
                 </div>
                 <div class="text-[32px] ">
                     <input class="border border-purple-400 p-2 ml-2 rounded-xl"
-                    type="text" id="newPassword" placeholder="New Password">
+                    type="text" id="password" placeholder="New Password" v-model="formData.password">
                 </div>
 
                 <div class="text-[40px] font-bold mt-5">
@@ -66,13 +71,38 @@
 
     
             <div class="flex justify-center mt-20">
-                <button class="">Submit</button>
+                <button type="submit" class="">Submit</button>
             </div>
         
 
         </div>
+    </form>
     </div>
 </template>
+
+<script setup>
+const route = useRoute()
+  const formData = ref({
+        name: "",
+        username: "",
+        email: "",
+        password: "",
+        tel: "",
+    })
+
+    const customerShow = ref(null)
+
+    const onSubmit = async () => {
+        const {
+            data: response,
+            error
+        } = await useMyFetch(`users/${route.params.id}`, {
+            method: 'PUT',
+            body: formData.value
+        })
+      }
+
+</script>
 
 <style scoped>
 #bg {

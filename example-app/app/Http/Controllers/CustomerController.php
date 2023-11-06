@@ -60,7 +60,19 @@ class CustomerController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $customer = Custumer::Where('id',$id)->first();
+
+        if(($request)->get('tel')){
+            $customer->tel = $request->get('tel');
+        }
+        if(($request)->get('name')){
+            $customer->tel = $request->get('name');
+        }
+
+        $customer->save();
+        $customer->refresh();
+
+        return $customer;
     }
 
     /**
