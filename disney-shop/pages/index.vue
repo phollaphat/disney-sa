@@ -38,7 +38,6 @@
 
 <script setup>
 import bgImage from '@/assets/img/login.jpg';
-// import axios from 'axios';
 
 definePageMeta({
   layout: "login",

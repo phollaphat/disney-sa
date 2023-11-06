@@ -36,5 +36,5 @@
     const {
         data: warantyShow,
         pending
-    } = await useMyFetch(`warantyCards/${receipt.id}`, {})
+    } = await useMyFetch(`WarrantyCards/${receipt.id}`, {})
 </script>

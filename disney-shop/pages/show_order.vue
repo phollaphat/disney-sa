@@ -16,7 +16,7 @@
                         {{ order.id }}
                     </div>
                 </div>
-    
+
                 <div class="flex flex-col border-dashed border-[#7D7C7C] border-r-2 w-[160px]">
                     <div class="">
                         DATE:
@@ -25,7 +25,7 @@
                         Today
                     </div>
                 </div>
-    
+
                 <div class="flex flex-col border-dashed border-[#7D7C7C] border-r-2 w-[130px]">
                     <div class="pr-5">
                         TOTAL:
@@ -43,7 +43,7 @@
                     </div>
                 </div>
             </div>
-    
+
             <div class="">
                 <table class="border-collapse border border-[#191717] mt-10 w-full">
                     <thead>
@@ -53,14 +53,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="bg-[#D8D9DA] border-b border-r border-[#191717] h-[50px] text-[#213555]" v-for="item in cart.items" :key="item.id">
+                        <tr class="bg-[#D8D9DA] border-b border-r border-[#191717] h-[50px] text-[#213555]"
+                            v-for="item in cart.items" :key="item.id">
                             <td class="py-2 px-4 text-lg">{{ item.product.name }}: {{ item.qty }}x</td>
                             <td class="py-2 px-4 text-lg">{{ item.total }}</td>
                         </tr>
                     </tbody>
                     <tbody>
                         <tr class="bg-[#D8D9DA] border-b border-[#191717] h-[50px]">
-                            <td class="py-2 px-4 text-lg font-semibold">Subtotal:	</td>
+                            <td class="py-2 px-4 text-lg font-semibold">Subtotal: </td>
                             <td class="py-2 px-4 text-lg">{{ cart.getTotalPrice }}</td>
                         </tr>
                         <tr class="bg-[#D8D9DA] border-b border-[#191717] h-[50px]">
@@ -74,21 +75,26 @@
                     </tbody>
                 </table>
             </div>
-            
+
             <div class="flex flex-row gap-10 mt-10">
                 <div>
                     <a href="/cashier">
-                        <button class="bg-[#4D4C7D] py-10 px-10 rounded-[20px] text-white text-xl hover:bg-[#363062]" @click="endSell()">End Selling</button>
+                        <button class="bg-[#4D4C7D] py-10 px-10 rounded-[20px] text-white text-xl hover:bg-[#363062]"
+                            @click="endSell()">End Selling</button>
                     </a>
                 </div>
                 <div>
-                    <button class="bg-[#4D4C7D] py-10 px-10 rounded-[20px] text-white text-xl hover:bg-[#363062]" @click="reduceProductQTY(), setStatusOrder(), createReceipt(), openNewTap('receipt')">
+                    <button class="bg-[#4D4C7D] py-10 px-10 rounded-[20px] text-white text-xl hover:bg-[#363062]"
+                        @click="reduceProductQTY(), setStatusOrder(), createReceipt(), openNewTap('receipt')">
                         Receipt Print
                     </button>
                 </div>
                 <div>
-                    <input class="p-3 shadow-2xl   glass w-full text-black outline-none focus:border-solid focus:border-[1px]border-[#035ec5]" type="date" required="" v-model="date">
-                    <button class="bg-[#4D4C7D] py-10 px-10 rounded-[20px] text-white text-xl hover:bg-[#363062]" @click="createWarantyCard(date), openNewTap('warantyCard')">
+                    <input
+                        class="p-3 shadow-2xl   glass w-full text-black outline-none focus:border-solid focus:border-[1px]border-[#035ec5]"
+                        type="date" required="" v-model="date">
+                    <button class="bg-[#4D4C7D] py-10 px-10 rounded-[20px] text-white text-xl hover:bg-[#363062]"
+                        @click="createWarrantyCard(date), openNewTap('warantyCard')">
                         Waranty Card Print
                     </button>
                 </div>
@@ -98,11 +104,21 @@
 </template>
 
 <script setup>
-    import { useCheckPaymentStore } from "~/stores/useCheckPaymentStore"
-    import { useCustomerStore } from "~/stores/useCustomerStore"
-    import { useCartStore } from "~/stores/useCartStore"
-    import { useOrderStore } from "~/stores/useOrderStore"
-    import { useReceiptStore } from "~/stores/useReceiptStore"
+    import {
+        useCheckPaymentStore
+    } from "~/stores/useCheckPaymentStore"
+    import {
+        useCustomerStore
+    } from "~/stores/useCustomerStore"
+    import {
+        useCartStore
+    } from "~/stores/useCartStore"
+    import {
+        useOrderStore
+    } from "~/stores/useOrderStore"
+    import {
+        useReceiptStore
+    } from "~/stores/useReceiptStore"
 
     const check_payment = useCheckPaymentStore();
     const customer = useCustomerStore();
@@ -115,9 +131,12 @@
     const openNewTap = (tap) => {
         window.open(`/${tap}`);
     }
-    
+
     const createReceipt = async () => {
-        const { data: response, error } = await useMyFetch('receipts', {
+        const {
+            data: response,
+            error
+        } = await useMyFetch('receipts', {
             method: 'POST',
             body: {
                 "order_id": order.id,
@@ -127,26 +146,28 @@
         receipt.id = response.value.id
     }
 
-    const createWarantyCard = async (date) => {
+    const createWarrantyCard = async (date) => {
         products.forEach(item=> {
             const product = cart.items.find(row => row.id == item.id)
-            console.log(receipt.id)
-            if (product.product.id == 'Jewelry') {
-                const { data: response, error } = useMyFetch('warantyCards', {
-                    method: 'POST',
-                    body: {
-                        "product_id": product.product.id,
-                        "receipt_id": receipt.id,
-                        "end_date": date
-                    }
-                })
-            }
+            const { data: response, error } = useMyFetch('WarrantyCards', {
+                method: 'POST',
+                body: {
+                    "product_id": product.product.id, 
+                    "receipt_id": receipt.id,
+                    "date": date,
+                }
+            })
         })
     }
+
+
     
 
     const setStatusOrder = async () => {
-        const { data: response, error } = useMyFetch('orders/setStatus', {
+        const {
+            data: response,
+            error
+        } = useMyFetch('orders/setStatus', {
             method: 'POST',
             body: {
                 "id": order.id,
@@ -155,14 +176,17 @@
     }
 
     const reduceProductQTY = async () => {
-        products.forEach(item=> {
+        products.forEach(item => {
             const product = cart.items.find(row => row.id == item.id)
             console.log(product.qty)
             if (product.product.category == '') {
-                const { data: response, error } = useMyFetch('products/reduceItems', {
+                const {
+                    data: response,
+                    error
+                } = useMyFetch('products/reduceItems', {
                     method: 'POST',
                     body: {
-                        "product_name": product.product.name, 
+                        "product_name": product.product.name,
                         "qty": product.qty,
                     }
                 })
@@ -177,5 +201,4 @@
         order.$reset()
         receipt.$reset()
     }
-
 </script>

@@ -55,7 +55,6 @@
                 <NuxtLink :to="`/products/${product.id}/edit_product`">
                     <img src="@/assets/pen.png" alt="" class=" h-[50px] w-[50px]">
                 </NuxtLink>
-                       
             </div>
             <div class="text-1xl mt-3 font-bold drop-shadow-md">edit</div>
         </div>
