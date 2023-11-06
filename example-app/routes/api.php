@@ -16,6 +16,13 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+Route::resource('products', 'App\Http\Controllers\ProductController');
+Route::resource('productLists', 'App\Http\Controllers\ProductListController');
+Route::resource('orders', 'App\Http\Controllers\OrderController');
+Route::resource('customers', 'App\Http\Controllers\CustomerController');
+Route::resource('receipts', 'App\Http\Controllers\ReceiptController');
+Route::resource('WarrantyCards', 'App\Http\Controllers\WarrantyCardController');
+Route::resource('claims', 'App\Http\Controllers\ClaimController');
 
 Route::put('auth/userProfileEdit', [AuthController::class, 'updateEmailPass']);
 Route::put('auth/userProfileEditName', [AuthController::class, 'updateNameTel']);
@@ -33,13 +40,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::resource('products', 'App\Http\Controllers\ProductController');
-Route::resource('productLists', 'App\Http\Controllers\ProductListController');
-Route::resource('orders', 'App\Http\Controllers\OrderController');
-Route::resource('customers', 'App\Http\Controllers\CustomerController');
-Route::resource('receipts', 'App\Http\Controllers\ReceiptController');
-Route::resource('WarrantyCards', 'App\Http\Controllers\WarrantyCardController');
-Route::resource('claims', 'App\Http\Controllers\ClaimController');
 
 Route::group([
     'middleware' => 'api',

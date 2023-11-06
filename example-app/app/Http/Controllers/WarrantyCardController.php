@@ -7,15 +7,15 @@ use App\Models\Receipt;
 use App\Models\WarrantyCard;
 use Illuminate\Http\Request;
 
-class WarrantyCardController extends Controller
+class warrantyCardController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $WarrantyCard = WarrantyCard::get();
-        return $WarrantyCard;
+        $warrantyCard = WarrantyCard::get();
+        return $warrantyCard;
     }
 
     /**
@@ -23,30 +23,30 @@ class WarrantyCardController extends Controller
      */
     public function store(Request $request)
     {
-        $oldWaranty = WarrantyCard::Where('product_id', $request->get('product_id'))->first();
+        $oldWarranty = WarrantyCard::Where('receipt_id', $request->get('receipt_id'))
+        ->Where('product_id', $request->get('product_id'))
+        ->first();
 
-        if (!$oldWaranty) {
+        if (!$oldWarranty) {
             $product = Product::Where('id', $request->get('product_id'))->first();
             $product_id = $product->id;
     
             $receipt = Receipt::Where('id', $request->get('receipt_id'))->first();
             $receipt_id = $receipt->id;
     
-            $WarrantyCard = new WarrantyCard();
-            $WarrantyCard->product_id = $product_id;
-            $WarrantyCard->receipt_id = $receipt_id;
+            $warrantyCard = new WarrantyCard();
+            $warrantyCard->product_id = $product_id;
+            $warrantyCard->receipt_id = $receipt_id;
+
+            $warrantyCard->end_date = date($request->get('date'));
     
-            $date = strtotime($request->get('end_date')); // แปลง string เป็น timestamp
-            $dateObject = date("Y-m-d", $date); // แปลง timestamp เป็น string ที่มีรูปแบบของ
-            $WarrantyCard->end_date = $dateObject;   
+            $warrantyCard->save();
+            $warrantyCard->refresh();
     
-            $WarrantyCard->save();
-            $WarrantyCard->refresh();
-    
-            return $WarrantyCard;
+            return $warrantyCard;
         }
         else {
-            return $oldWaranty;
+            return $oldWarranty;
         }
     }
 
@@ -55,8 +55,8 @@ class WarrantyCardController extends Controller
      */
     public function show(string $id)
     {
-        $WarrantyCard = WarrantyCard::Where('id', $id)->first();
-        return $WarrantyCard;
+        $warrantyCard = WarrantyCard::Where('receipt_id', $id)->get();
+        return $warrantyCard;
     }
 
     /**
