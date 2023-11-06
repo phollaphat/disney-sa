@@ -79,24 +79,28 @@
             <div class="flex flex-row gap-10 mt-10">
                 <div>
                     <a href="/cashier">
-                        <button class="bg-[#4D4C7D] py-10 px-10 rounded-[20px] text-white text-xl hover:bg-[#363062]"
+                        <button class="bg-[#4D4C7D] py-5 px-10 rounded-[20px] text-white text-xl hover:bg-[#363062]"
                             @click="endSell()">End Selling</button>
                     </a>
                 </div>
                 <div>
-                    <button class="bg-[#4D4C7D] py-10 px-10 rounded-[20px] text-white text-xl hover:bg-[#363062]"
+                    <button class="bg-[#4D4C7D] py-5 px-10 rounded-[20px] text-white text-xl hover:bg-[#363062]"
                         @click="reduceProductQTY(), setStatusOrder(), createReceipt(), openNewTap('receipt')">
                         Receipt Print
                     </button>
                 </div>
-                <div>
-                    <input
-                        class="p-3 shadow-2xl   glass w-full text-black outline-none focus:border-solid focus:border-[1px]border-[#035ec5]"
-                        type="date" required="" v-model="date">
-                    <button class="bg-[#4D4C7D] py-10 px-10 rounded-[20px] text-white text-xl hover:bg-[#363062]"
-                        @click="createWarrantyCard(date), openNewTap('warantyCard')">
-                        Waranty Card Print
-                    </button>
+                <div class="flex flex-row gap-2">
+                    <div>
+                        <button class="bg-[#4D4C7D] py-5 px-10 rounded-[20px] text-white text-xl hover:bg-[#363062]"
+                            @click="createWarrantyCard(date), openNewTap('warrantyCard')">
+                            Warranty Card Print
+                        </button>
+                    </div>
+                    <div>
+                        <input
+                            class="p-3 glass w-full py-5 rounded-[10px] border-[#61677A] border-[0.2px] text-black outline-none focus:border-solid focus:border-[1px]border-[#035ec5]"
+                            type="date" required="" v-model="dateEnd">
+                    </div>
                 </div>
             </div>
         </div>
@@ -104,6 +108,8 @@
 </template>
 
 <script setup>
+    import { ref } from 'vue';
+
     import {
         useCheckPaymentStore
     } from "~/stores/useCheckPaymentStore"
@@ -128,6 +134,8 @@
 
     const products = cart.items
 
+    const dateEnd = ref();
+
     const openNewTap = (tap) => {
         window.open(`/${tap}`);
     }
@@ -146,22 +154,23 @@
         receipt.id = response.value.id
     }
 
-    const createWarrantyCard = async (date) => {
-        products.forEach(item=> {
+    const createWarrantyCard = async () => {
+        products.forEach(async item => {
             const product = cart.items.find(row => row.id == item.id)
-            const { data: response, error } = useMyFetch('WarrantyCards', {
+            const {
+                data: response,
+                error
+            } =  await useMyFetch('WarrantyCards', {
                 method: 'POST',
                 body: {
-                    "product_id": product.product.id, 
+                    "product_id": product.product.id,
                     "receipt_id": receipt.id,
-                    "date": date,
+                    "date": dateEnd.value
                 }
             })
+            console.log(response.value)
         })
     }
-
-
-    
 
     const setStatusOrder = async () => {
         const {

@@ -148,33 +148,35 @@
     var currentDateWithFormat = new Date().toJSON().slice(0, 10).replace(/-/g, '-');
     console.log(currentDateWithFormat);
 
-    orders.value.map(order => {
-        switch (order.receipt.payment_channel) {
-            case 'Alipay':
-                if (order.receipt.date === currentDateWithFormat) {
-                    Alipay.value += order.total_price;
-
-                    break;
-                }
-                case 'Cash':
+    if (orders.value) {
+        orders.value.map(order => {
+            switch (order.receipt.payment_channel) {
+                case 'Alipay':
                     if (order.receipt.date === currentDateWithFormat) {
-                        Cash.value += order.total_price;
+                        Alipay.value += order.total_price;
+    
                         break;
                     }
-                    case 'Credit/Debit Card':
+                    case 'Cash':
                         if (order.receipt.date === currentDateWithFormat) {
-                            CreditDebitCard.value += order.total_price;
+                            Cash.value += order.total_price;
                             break;
                         }
-                        case 'Qr thai':
+                        case 'Credit/Debit Card':
                             if (order.receipt.date === currentDateWithFormat) {
-                                QrThai.value += order.total_price;
+                                CreditDebitCard.value += order.total_price;
                                 break;
                             }
-                            default:
-                                break;
-        }
-    });
+                            case 'Qr thai':
+                                if (order.receipt.date === currentDateWithFormat) {
+                                    QrThai.value += order.total_price;
+                                    break;
+                                }
+                                default:
+                                    break;
+            }
+        });
+    }
 
     const PerAlipay = ref(Alipay.value / 100);
     const PerCash = ref(Cash.value / 100);

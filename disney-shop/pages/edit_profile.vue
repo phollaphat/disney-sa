@@ -1,6 +1,6 @@
 <template>
     <div class="flex flex-col justify-center w-full">
-        <div class="h-screen py-8 text-center w-full">
+        <div class="py-8 text-center w-full">
             <h1
                 class="text-[48px] text-[#FFFFFF] font-semibold mb-10 mx-auto w-[358px] bg-[#9985BB] text-center rounded-[20px] shadow-md">
                 Edit Profile
@@ -107,8 +107,6 @@
         useRouter
     } from 'vue-router';
     const auth = useAuthStore();
-
-    const route = useRoute()
 
     const formDataEP = ref({
         email: "",
