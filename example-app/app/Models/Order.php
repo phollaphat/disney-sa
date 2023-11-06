@@ -7,9 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use App\Models\Employee;
 use App\Models\Customer;
-
+use App\Models\Receipt;
 class Order extends Model
 {
     use HasFactory;
@@ -40,7 +41,7 @@ class Order extends Model
 
     public function receipt()
     {
-        return $this->belongsTo(Receipt::class);
+        return $this->hasOne(Receipt::class);
     }
 
 }

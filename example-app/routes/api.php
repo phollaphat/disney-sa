@@ -16,6 +16,9 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+Route::get('orders/report', [OrderController::class, 'orderWithReceipt']);
+Route::post('products/reduceItems', [ProductController::class, 'ReduceProductQTY']);
+Route::post('orders/setStatus', [OrderController::class, 'setOrderStatus']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
@@ -26,7 +29,7 @@ Route::resource('productLists', 'App\Http\Controllers\ProductListController');
 Route::resource('orders', 'App\Http\Controllers\OrderController');
 Route::resource('customers', 'App\Http\Controllers\CustomerController');
 Route::resource('receipts', 'App\Http\Controllers\ReceiptController');
-Route::resource('warantyCards', 'App\Http\Controllers\WarantyCardController');
+Route::resource('WarrantyCards', 'App\Http\Controllers\WarrantyCardController');
 Route::resource('claims', 'App\Http\Controllers\ClaimController');
 
 Route::group([
@@ -40,5 +43,6 @@ Route::group([
     Route::get('/user-profile', [AuthController::class, 'userProfile']);    
 });
 
-Route::post('products/reduceItems', [ProductController::class, 'ReduceProductQTY']);
-Route::post('orders/setStatus', [OrderController::class, 'setOrderStatus']);
+
+
+

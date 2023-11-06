@@ -6,12 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Cliam extends Model
+class Claim extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'warantyCard_id',
+        'warranty_card_id',
         'user_id',
         'customer_id',
         'product_id',
@@ -39,7 +39,7 @@ class Cliam extends Model
         return $this->belongsTo(Customer::class);
     }
 
-    public function waranty()
+    public function warranty()
     {
         return $this->belongsTo(Customer::class);
     }

@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
         $user->name = "admin";
         $user->email = "admin@example.org";
         $user->password = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";
-        $user->role = "พนักงานขาย";
+        $user->role = "manager";
         $user->tel = "0841104459";
         $user->save();
     }
