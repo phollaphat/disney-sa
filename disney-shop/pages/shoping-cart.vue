@@ -1,13 +1,13 @@
 <template>
     <div class="flex flex-col justify-start">
         <div class="h-screen overflow-y-auto py-8">
-            <div class="mx-auto px-4">
+            <div class=" mx-auto px-4">
                 <h1
                     class="text-[48px] text-[#FFFFFF] font-semibold mb-10 mx-auto w-[358px] bg-[#4D4C7D] text-center rounded-[20px] shadow-md">
                     Shopping Cart
                 </h1>
                 <div class="flex flex-col md:flex-row gap-4">
-                    <div class="w-3/4">
+                    <div class="md:w-3/4">
                         <div v-if="!cart.isEmpty">
                             <div class="flex flex-col justify-start bg-white rounded-lg shadow-md p-6 mb-7"
                                 v-for="item in cart.items" :key="item.id">
@@ -101,7 +101,7 @@
 
                     </div>
 
-                    <div class="w-1/4">
+                    <div class="md:w-1/4">
                         <div class="bg-white rounded-lg shadow-md p-6">
 
                             <h2 class="text-lg font-semibold mb-4">Summary</h2>
@@ -123,6 +123,7 @@
 
 
                             <form @submit.prevent="onSubmit()">
+
                                 <div class="text-lg font-semibold mb-1">
                                     Customer Name:
                                 </div>
@@ -150,34 +151,35 @@
 
                             <hr class="my-3">
 
-                            <select id="payment_cha" class="bg-[#FFFDFD] w-3/5 h-[60px] rounded-[20px] border-dark-50 border-2" v-model="payment_cha">
+                            <select name="" id="payment_cha" class="bg-[#FFFDFD] w-3/5 h-[60px] rounded-[20px]" v-model="payment_cha">
+                                <option value="">Choose Payment</option>
                                 <option value="Alipay">Alipay</option>
                                 <option value="Cash">Cash</option>
                                 <option value="Credit/Debit Card">Credit/Debit Card</option>
                                 <option value="Qr thai">Qr thai</option>
                             </select>
-
                             <MenuLink to="/checkout" @click="saveCheckPayment(payment_cha), saveCustomer(customerShow.tel, customerShow.name), addOrder(auth.user.name, customer.name, cart.getTotalDiscount), saveOrder()"
                                 class="bg-[#5D12D2] hover:bg-[#9400FF] text-white w-1/4 py-4 px-4 rounded-lg mt-4 w-full text-center ml-8">
-                                checkout    
+                                checkout
                             </MenuLink>
                             
                         </div>
                     </div>
                 </div>
             </div>
-
             <a href="cashier">
                 <button
                     class="bg-[#4D4C7D] w-[100px] h-[45px] ml-4 rounded-[15px] text-xl hover:bg-[#363062] text-white">Back</button>
             </a>
         </div>
 
+        <div v-for="item in cart.items" :key="item.id">
+            
+        </div>
     </div>
 </template>
 
 <script setup>
-    import { ref } from 'vue';
     import { useCartStore } from "~/stores/useCartStore"
     import { useCheckPaymentStore } from "~/stores/useCheckPaymentStore"
     import { useCustomerStore } from "~/stores/useCustomerStore"
@@ -189,8 +191,6 @@
     const customer = useCustomerStore();
     const auth = useAuthStore();
     const order = useOrderStore();
-
-    const payment_cha = ref('Choose Payment');
 
     // api
     const formData = ref({
@@ -273,3 +273,6 @@
     }
 
 </script>
+
+<style>
+</style>
