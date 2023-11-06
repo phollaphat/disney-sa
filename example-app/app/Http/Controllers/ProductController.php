@@ -30,6 +30,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $product = new Product();
+        $product->image_path = $this->saveImg($request->b64);
         $product->model_code = $request->get('model_code');
         $product->category = $request->get('category');
         $product->name = $request->get('name');
@@ -101,5 +102,22 @@ class ProductController extends Controller
         $product->refresh();
 
         return $product;
+    }
+
+    private function saveImg($image)
+    {
+        ini_set('display_errors', 1);
+        ini_set('display_startup_errors', 1);
+        error_reporting(E_ALL);
+        try {
+                // $image = str_replace('data:image/png;base64,', '', $image);
+                // $image = str_replace(' ', '+', $image);
+                $imageName = uniqid().'.'.'png';
+                file_put_contents(public_path() . '/images/' . $imageName, file_get_contents($image));
+                chmod(public_path() . '/images/' . $imageName, 0664);
+                return $imageName;
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 }
