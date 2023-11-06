@@ -11,7 +11,7 @@ class WarrantyCard extends Model
     use HasFactory;
 
     protected $fillable = [
-        'waranty_id',
+        'warranty_id',
         'receipt_id',
         'end_date',
         'start_date',
