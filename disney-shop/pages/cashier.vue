@@ -68,7 +68,7 @@
 
         <div class="grid grid-cols-3 justify-items-center h-full m-5 gap-12 mt-16 text-[#232946]">
             <template v-for="product in filteredProducts" :key="product.id">
-                <div class="bg-white w-5/6 rounded-[37px] p-[5%]" v-if="product.stock_quantity > 0">
+                <div class="bg-white w-5/6 rounded-[37px] p-[5%] drop-shadow-xl" v-if="product.stock_quantity > 0">
                     <div class="flex justify-center flex-col relative items-center">
                         <div class="card-image flex justify-center mt-3">
                             <img :src="`http://localhost/images/${product.image_path}`" alt=""

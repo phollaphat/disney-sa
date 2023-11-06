@@ -67,7 +67,7 @@
         </div>
 
         <div class="grid grid-cols-3 justify-items-center h-full m-5 mt-16 gap-12">
-            <div class="bg-[#fffffe] w-5/6 rounded-[37px] p-[5%] text-[#232946]" v-for="product in filteredProducts" :key="product.id">
+            <div class="bg-[#fffffe] w-5/6 rounded-[37px] p-[5%] text-[#232946] drop-shadow-xl" v-for="product in filteredProducts" :key="product.id">
                 <NuxtLink :to="`/products/${product.id}`">
                     <div class="flex justify-center flex-col relative items-center">
                         <div class="card-image flex justify-center mt-3">
