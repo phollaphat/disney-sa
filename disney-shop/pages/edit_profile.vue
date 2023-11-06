@@ -1,110 +1,89 @@
 <template>
-    <div id="bg" class="h-full flex justify-center text-[#232946]">
-        <div class="bg-[#FFFFFECC] w-[1214px] h-[986px] rounded-[20px] flex flex-col p-10 gap-5 m-5">
+    <div class="flex flex-col justify-start">
+        <div class="h-screen py-8">
+            <div class="mx-auto px-4">
+                <h1 class="text-[48px] text-[#FFFFFF] font-semibold mb-10 mx-auto w-[358px] bg-[#9985BB] text-center rounded-[20px] shadow-md">Edit Profile</h1>    
+                <div class=" place-content-center gap-5 p-10 bg-[#FFFFFECC] w-[1120px] h-[650px] rounded-[20px]" >
+                    <form @submit.prevent="onSubmit()">                    <table class="w-full flex rows gap-[80px]">
+                        <tr>
+                            <div>
+                            <img src="@/assets/b180691f36bd713b8c69519b8637fb8b.png" alt="" class="h-[500px] w-[500px] object-center drop-shadow-lg">
+                            </div>
+                            
+                                <div class="mt-6 ml-20">
+                                <input type="file" name="upload" />
+                                <input type="submit"  name="save"  value="upload" />
+                                </div>   
+                        </tr>
+                        <tr>
 
-        <div class="grid grid-cols-2 gap-6">
-            <!-- column 1 -->
-            <div> 
-                <div class="flex flex-row items-center">
-                    <div>
-                        <button><img src="../assets/click_to_upload_photo.png" alt="" ></button>
-                    </div>
-                </div>
-                
-                <div class="text-[40px] font-bold mt-20">
-                    Phone number
-                </div>
-                <div class="text-[32px] ">
-                    <input class="border border-purple-400 p-2 ml-2 rounded-xl"
-                    type="text" id="phoneNumber" placeholder="Phone number">
-                </div>
+                            <h3 class="">Name</h3>
+                            <input type="text"
+                                    class="mb-3 w-4/4 relative bg-gray-50ring-0 outline-none border border-neutral-500 text-neutral-900 placeholder-[#9BA4B5] text-sm rounded-lg focus:ring-violet-500  focus:border-violet-500 block p-2.5"
+                                    placeholder="Name...." v-model="formData.name">
 
-                <div class="text-[40px] font-bold mt-5">
-                    Email
-                </div>
-                <div class="text-[32px] ">
-                    <input class="border border-purple-400 p-2 ml-2 rounded-xl"
-                    type="text" id="email" placeholder="Email">
+                            <h3 class="">Email</h3> 
+                            <input type="text"
+                                    class="mb-3 w-4/4 relative bg-gray-50ring-0 outline-none border border-neutral-500 text-neutral-900 placeholder-[#9BA4B5] text-sm rounded-lg focus:ring-violet-500  focus:border-violet-500 block p-2.5"
+                                    placeholder="Email...." v-model="formData.email">
+                            
+
+                            <h3 class="">Phone Number</h3>
+                            <input type="text"
+                                    class="mb-3 w-4/4 relative bg-gray-50ring-0 outline-none border border-neutral-500 text-neutral-900 placeholder-[#9BA4B5] text-sm rounded-lg focus:ring-violet-500  focus:border-violet-500 block p-2.5"
+                                    placeholder="Phone Number.." v-model="formData.phonenum">
+
+                            <h3 class="">Old Password</h3>
+                            <input type="text"
+                                    class="mb-3 w-4/4 relative bg-gray-50ring-0 outline-none border border-neutral-500 text-neutral-900 placeholder-[#9BA4B5] text-sm rounded-lg focus:ring-violet-500  focus:border-violet-500 block p-2.5"
+                                    placeholder="old Password.." v-model="formData.password">
+
+                            <h3 class="">New password</h3>
+                            <input type="text"
+                                    class="mb-3 w-4/4 relative bg-gray-50ring-0 outline-none border border-neutral-500 text-neutral-900 placeholder-[#9BA4B5] text-sm rounded-lg focus:ring-violet-500  focus:border-violet-500 block p-2.5"
+                                    placeholder="New password" v-model="formData.password">
+
+                            <div class="mt-10"> 
+                                <a href="/profile">
+                                <button 
+                                    class=" bg-[#5D12D2] hover:bg-[#9400FF] text-white w-1/4 py-4 px-4 rounded-lg mt-4 w-full text-center ml-8">
+                                    Submit
+                                </button>
+                                </a>
+                            </div>        
+                        </tr>
+                    </table>
+                    </form>
+                    
                 </div>
             </div>
-            <!-- column 2 -->
-            <div class="ml-16">
-                <div class="text-[40px] font-bold mt-10">
-                        Username
-                    </div>
-                <div class="text-[32px] ">
-                    <input class="border border-purple-400 p-2 ml-2 rounded-xl"
-                    type="text" id="username" placeholder="Username">
-                </div>
-
-                <div class="text-[40px] font-bold mt-5">
-                    Name
-                </div>
-                <div class="text-[32px]">
-                    <input class="border border-purple-400 p-2 ml-2 mb-1 rounded-xl"
-                    type="text" id="name" placeholder="Name">
-                </div>
-
-                <div class="text-[40px] font-bold mt-24">
-                    New Password
-                </div>
-                <div class="text-[32px] ">
-                    <input class="border border-purple-400 p-2 ml-2 rounded-xl"
-                    type="text" id="newPassword" placeholder="New Password">
-                </div>
-
-                <div class="text-[40px] font-bold mt-5">
-                    Confirm Password
-                </div>
-                <div class="text-[32px] ">
-                    <input class="border border-purple-400 p-2 ml-2 rounded-xl"
-                    type="text" id="confirmPassword" placeholder="Confirm Password">
-                </div>
-            </div>
-
         </div>
-
-    
-            <div class="flex justify-center mt-20">
-                <button class="">Submit</button>
-            </div>
-        
-
-        </div>
+            <a href="/profile">
+                <button
+                    class="bg-[#4D4C7D] w-[100px] h-[45px] ml-4 rounded-[15px] text-xl hover:bg-[#363062] text-white">Back</button>
+            </a>
     </div>
-</template>
+  </template>
 
-<style scoped>
-#bg {
-    background: url("@/assets/bg-pic copy.png"), lightgray 50%;
-    background: cover;
-    background: no-repeat;
-    height: 100%;
-    width: 100%;
-}
+<script setup>
+const route = useRoute()
+  const formData = ref({
+        name: "",
+        email: "",
+        phonenum:"",
+        password:"",
+    })
 
-button {
-    padding: 17px 40px;
-    border-radius: 10px;
-    border: 0;
-    background-color: #B8C1EC;
-    letter-spacing: 1.5px;
-    font-size: 26px;
-    font-weight: bold;
-    transition: all .3s ease;
-    box-shadow: #232946 0px 10px 0px 0px;
-    color: hsl(0, 0%, 100%);
-}
+    const customerShow = ref(null)
 
-button:hover {
-    box-shadow: #232946 0px 7px 0px 0px;
-}
+    const onSubmit = async () => {
+        const {
+            data: response,
+            error
+        } = await useMyFetch(`customers/${customer.id}`, {
+            method: 'PUT',
+            body: formData.value
+        })
+      }
 
-button:active {
-    background-color: #232946;
-    /*50, 168, 80*/
-    box-shadow: #232946 0px 0px 0px 0px;
-    transform: translateY(5px);
-    transition: 200ms;
-}
-</style>
+</script>

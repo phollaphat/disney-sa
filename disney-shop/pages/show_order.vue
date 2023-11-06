@@ -2,7 +2,7 @@
     <div class="bg-[#F5F7F8] m-10 rounded-[20px] h-[850px]">
         <div class="p-16">
             <div class="font-bold text-5xl">
-                checkout
+                Checkout
             </div>
             <div class="text-xl pt-2">
                 Thank you. Your order has been received.
