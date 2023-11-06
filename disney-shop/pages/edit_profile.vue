@@ -4,8 +4,12 @@
             <div class="mx-auto px-4">
                 <h1 class="text-[48px] text-[#FFFFFF] font-semibold mb-10 mx-auto w-[358px] bg-[#9985BB] text-center rounded-[20px] shadow-md">Edit Profile</h1>    
                 <div class=" place-content-center gap-5 p-10 bg-[#FFFFFECC] w-[1120px] h-[650px] rounded-[20px]" >
+<<<<<<< HEAD
                     <form class="imgForm " action="leanform.php" method="post" enctype="multipart/form-data">
                     <table class="w-full flex rows gap-[80px]">
+=======
+                    <form @submit.prevent="onSubmit()">                    <table class="w-full flex rows gap-[80px]">
+>>>>>>> bc80eb619780c1bcd4aeb99dbf4fd90427c352d0
                         <tr>
                             <div>
                             <img src="@/assets/b180691f36bd713b8c69519b8637fb8b.png" alt="" class="h-[500px] w-[500px] object-center drop-shadow-lg">
@@ -21,28 +25,48 @@
                             <h3 class="">Name</h3>
                             <input type="text"
                                     class="mb-3 w-4/4 relative bg-gray-50ring-0 outline-none border border-neutral-500 text-neutral-900 placeholder-[#9BA4B5] text-sm rounded-lg focus:ring-violet-500  focus:border-violet-500 block p-2.5"
+<<<<<<< HEAD
                                     placeholder="Name....">
+=======
+                                    placeholder="Name...." v-model="formData.name">
+>>>>>>> bc80eb619780c1bcd4aeb99dbf4fd90427c352d0
 
                             <h3 class="">Email</h3> 
                             <input type="text"
                                     class="mb-3 w-4/4 relative bg-gray-50ring-0 outline-none border border-neutral-500 text-neutral-900 placeholder-[#9BA4B5] text-sm rounded-lg focus:ring-violet-500  focus:border-violet-500 block p-2.5"
+<<<<<<< HEAD
                                     placeholder="Email....">
+=======
+                                    placeholder="Email...." v-model="formData.email">
+>>>>>>> bc80eb619780c1bcd4aeb99dbf4fd90427c352d0
                             
 
                             <h3 class="">Phone Number</h3>
                             <input type="text"
                                     class="mb-3 w-4/4 relative bg-gray-50ring-0 outline-none border border-neutral-500 text-neutral-900 placeholder-[#9BA4B5] text-sm rounded-lg focus:ring-violet-500  focus:border-violet-500 block p-2.5"
+<<<<<<< HEAD
                                     placeholder="Phone Number..">
+=======
+                                    placeholder="Phone Number.." v-model="formData.phonenum">
+>>>>>>> bc80eb619780c1bcd4aeb99dbf4fd90427c352d0
 
                             <h3 class="">Old Password</h3>
                             <input type="text"
                                     class="mb-3 w-4/4 relative bg-gray-50ring-0 outline-none border border-neutral-500 text-neutral-900 placeholder-[#9BA4B5] text-sm rounded-lg focus:ring-violet-500  focus:border-violet-500 block p-2.5"
+<<<<<<< HEAD
                                     placeholder="old Password..">
+=======
+                                    placeholder="old Password.." v-model="formData.password">
+>>>>>>> bc80eb619780c1bcd4aeb99dbf4fd90427c352d0
 
                             <h3 class="">New password</h3>
                             <input type="text"
                                     class="mb-3 w-4/4 relative bg-gray-50ring-0 outline-none border border-neutral-500 text-neutral-900 placeholder-[#9BA4B5] text-sm rounded-lg focus:ring-violet-500  focus:border-violet-500 block p-2.5"
+<<<<<<< HEAD
                                     placeholder="New password">
+=======
+                                    placeholder="New password" v-model="formData.password">
+>>>>>>> bc80eb619780c1bcd4aeb99dbf4fd90427c352d0
 
                             <div class="mt-10"> 
                                 <a href="/profile">
@@ -65,4 +89,30 @@
             </a>
     </div>
   </template>
+<<<<<<< HEAD
   
+=======
+
+<script setup>
+const route = useRoute()
+  const formData = ref({
+        name: "",
+        email: "",
+        phonenum:"",
+        password:"",
+    })
+
+    const customerShow = ref(null)
+
+    const onSubmit = async () => {
+        const {
+            data: response,
+            error
+        } = await useMyFetch(`customers/${customer.id}`, {
+            method: 'PUT',
+            body: formData.value
+        })
+      }
+
+</script>
+>>>>>>> bc80eb619780c1bcd4aeb99dbf4fd90427c352d0

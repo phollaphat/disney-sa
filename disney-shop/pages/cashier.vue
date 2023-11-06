@@ -97,11 +97,14 @@
     import { computed } from 'vue';
     import { ref } from 'vue';
 
+    import { createToast } from 'mosha-vue-toastify';
+    import 'mosha-vue-toastify/dist/style.css';
+
     const {
         data: products,
         pending
     } = await useMyFetch("products", {});
-
+    
     const selectedCategory = ref('All');
     const searchInput = ref('');
 
@@ -207,14 +210,26 @@
         }
     });
 
+    const warningAddProduct = async () => {
+        createToast({ title: 'Quantity exceeded amount left in stock'}, {type: 'warning', timeout: 1000, position: 'top-center', showIcon: 'true', hideProgressBar: 'false'})
+    }
+
+    const successAddProduct = async () => {
+        createToast({ title: 'Add product success.'}, {type: 'success', timeout: 1000, position: 'top-center', showIcon: 'true', hideProgressBar: 'false'})
+    }
+
     const cart = useCartStore();
-    const addItem = (item) => {
+    const addItem = async (item) => {
         const product = cart.items.find(row => row.id == item.id)
         if (product) {
             if (product.qty < item.stock_quantity) {
                 const price = item.price;
                 product.qty++
                 product.total += price
+                successAddProduct();
+            }
+            else {
+                warningAddProduct();
             }
         } else {
             const price = item.price;

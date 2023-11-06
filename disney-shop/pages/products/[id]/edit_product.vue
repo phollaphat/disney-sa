@@ -1,5 +1,5 @@
 <template>
-      <div class="image-container mt-[50px]">
+      <div class="image-container centered-form mt-[50px]">
         <img src="@/assets/b180691f36bd713b8c69519b8637fb8b.png" alt="Product Image" class="product-image">
       </div>
       <div class="centered-form mt-[60px]">
@@ -33,7 +33,7 @@
         </label>
       </div>
     </div>
-    <a href="/products/">
+    <a href="products">
         <button type="submit" class=" text-xl bg-[#5D12D2] w-[80px] h-[50px] rounded-[10px] text-center drop-shadow-sm hover:bg-[#9400FF] text-white">Submit</button>
     </a>
   </form>

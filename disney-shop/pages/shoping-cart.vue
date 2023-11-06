@@ -151,13 +151,14 @@
 
                             <hr class="my-3">
 
-                            <select name="" id="payment_cha" class="bg-[#FFFDFD] w-3/5 h-[60px] rounded-[20px]" v-model="payment_cha">
+                            <select name="" class="bg-[#FFFDFD] w-3/5 h-[60px] rounded-[20px]" v-model="payment_cha">
                                 <option value="">Choose Payment</option>
                                 <option value="Alipay">Alipay</option>
                                 <option value="Cash">Cash</option>
                                 <option value="Credit/Debit Card">Credit/Debit Card</option>
                                 <option value="Qr thai">Qr thai</option>
                             </select>
+<<<<<<< HEAD
                             <div class="mt-10">
                             <MenuLink to="/checkout" @click="saveCheckPayment(payment_cha), saveCustomer(customerShow.tel, customerShow.name), addOrder(auth.user.name, customer.name, cart.getTotalDiscount), saveOrder()"
                                 class="bg-[#5D12D2] hover:bg-[#9400FF] text-white w-1/4 py-4 px-4 rounded-lg mt-4 w-full text-center ml-8">
@@ -165,6 +166,12 @@
                             </MenuLink>
                             </div>
                             
+=======
+                            <MenuLink @click="go2CheckoutPage()"
+                                class="bg-[#5D12D2] hover:bg-[#9400FF] text-white w-1/4 py-4 px-4 rounded-lg mt-4 w-full text-center ml-8">
+                                checkout
+                            </MenuLink>
+>>>>>>> bc80eb619780c1bcd4aeb99dbf4fd90427c352d0
                         </div>
                     </div>
                 </div>
@@ -188,6 +195,11 @@
     import { useAuthStore } from "~/stores/useAuthStore"
     import { useOrderStore } from "~/stores/useOrderStore"
 
+    import { createToast } from 'mosha-vue-toastify';
+    import 'mosha-vue-toastify/dist/style.css';
+
+    import { useRouter } from 'vue-router';
+
     const cart = useCartStore();
     const check_payment = useCheckPaymentStore();
     const customer = useCustomerStore();
@@ -201,6 +213,19 @@
     })
 
     const customerShow = ref(null)
+    const payment_cha = ref(null)
+
+    const warningOnCustomerInfo = async () => {
+        createToast({ title: 'There is no customer information in the system'}, {type: 'warning', position: 'top-right', showIcon: 'true', hideProgressBar: 'false'})
+    }
+
+    const warningNumberFill = async () => {
+        createToast({ title: 'Please enter numerical data'}, {type: 'warning', position: 'top-right', showIcon: 'true', hideProgressBar: 'false'})
+    }
+
+    const warningAlphaFill = async () => {
+        createToast({ title: 'Please enter alphabetic characters'}, {type: 'warning', position: 'top-right', showIcon: 'true', hideProgressBar: 'false'})
+    }
 
     const onSubmit = async () => {
         const {
@@ -210,6 +235,10 @@
             method: 'POST',
             body: formData.value
         })
+
+        if (!response.value) {
+            warningOnCustomerInfo();
+        }
 
         customerShow.value = response.value;
         console.log('finding ok')
@@ -222,6 +251,9 @@
             product.qty++
             product.total += product.product.price
         }
+        else {
+            warningAddProduct();
+        }
     }
 
     const removeItemQRT = (item) => {
@@ -230,11 +262,15 @@
             product.qty--
             product.total -= product.product.price
         }
+        else {
+            warningZeroProduct();
+        }
     }
 
     const removeItem = (item) => {
         const index = cart.items.findIndex(existingItem => existingItem === item);
         if (index !== -1) {
+            successRemoveProduct();
             cart.items.splice(index, 1);
         }
     }
@@ -272,6 +308,52 @@
         })
         // console.log(response.value.id)
         order.id = response.value.id
+    }
+
+    const warningAddProduct = async () => {
+        createToast({ title: 'Quantity exceeded amount left in stock'}, {type: 'warning', position: 'top-right', showIcon: 'true', hideProgressBar: 'false'})
+    }
+
+    const warningZeroProduct = async () => {
+        createToast({ title: 'You cannot decrease the quantity of the product below 0'}, {type: 'warning', position: 'top-right', showIcon: 'true', hideProgressBar: 'false'})
+    }
+
+    const successRemoveProduct = async () => {
+        createToast({ title: 'Remove Product Success.'}, {type: 'success', position: 'top-right', showIcon: 'true', hideProgressBar: 'false'})
+    }
+
+    const router = useRouter();
+
+    const go2CheckoutPage = async () => {
+        if (payment_cha.value && cart && customerShow) {
+            saveCheckPayment(payment_cha.value);
+            saveCustomer(customerShow.value.tel, customerShow.value.name);
+            addOrder(auth.user.name, customer.name, cart.getTotalDiscount);
+            router.push('/checkout');
+        }
+        else {
+            if (!payment_cha.value && !customerShow.value) {
+                warningFillInfo()
+            }
+            else if (!payment_cha.value) {
+                warningPaymentFill()
+            }
+            else if (!customerShow.value.tel || customerShow.value.name) {
+                warningCustomerInfo()
+            }
+        }
+    }
+
+    const warningFillInfo = async () => {
+        createToast({ title: 'Please fill in all the fields with the necessary information.'}, {type: 'warning', position: 'top-right', showIcon: 'true', hideProgressBar: 'false', toastBackgroundColor: '#FF6969'})
+    }
+
+    const warningPaymentFill = async () => {
+        createToast({ title: 'Please select a payment method'}, {type: 'warning', position: 'top-right', showIcon: 'true', hideProgressBar: 'false'})
+    }
+
+    const warningCustomerInfo = async () => {
+        createToast({ title: 'Please select a payment method'}, {type: 'warning', position: 'top-right', showIcon: 'true', hideProgressBar: 'false'})
     }
 
 </script>
