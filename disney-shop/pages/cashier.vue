@@ -210,16 +210,16 @@
         }
     });
 
-    const warningAddProduct = () => {
-        createToast({ title: 'Quantity exceeded amount left in stock'}, {type: 'warning', position: 'top-center', showIcon: 'true', hideProgressBar: 'false'})
+    const warningAddProduct = async () => {
+        createToast({ title: 'Quantity exceeded amount left in stock'}, {type: 'warning', timeout: 1000, position: 'top-center', showIcon: 'true', hideProgressBar: 'false'})
     }
 
-    const successAddProduct = () => {
-        createToast({ title: 'Add product success.'}, {type: 'success', position: 'top-center', showIcon: 'true', hideProgressBar: 'false'})
+    const successAddProduct = async () => {
+        createToast({ title: 'Add product success.'}, {type: 'success', timeout: 1000, position: 'top-center', showIcon: 'true', hideProgressBar: 'false'})
     }
 
     const cart = useCartStore();
-    const addItem = (item) => {
+    const addItem = async (item) => {
         const product = cart.items.find(row => row.id == item.id)
         if (product) {
             if (product.qty < item.stock_quantity) {
