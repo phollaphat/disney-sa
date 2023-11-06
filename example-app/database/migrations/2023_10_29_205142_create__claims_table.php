@@ -3,7 +3,7 @@
 use App\Models\Customer;
 use App\Models\Product;
 use App\Models\User;
-use App\Models\WarantyCard;
+use App\Models\WarrantyCard;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,13 +15,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('_claims', function (Blueprint $table) {
+        Schema::create('claims', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(WarantyCard::class);
+            $table->foreignIdFor(WarrantyCard::class);
             $table->foreignIdFor(User::class);
             $table->foreignIdFor(Customer::class);
             $table->foreignIdFor(Product::class);
-            $table->date('date');
+            $table->date('date')->default(now());
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('_claims');
+        Schema::dropIfExists('claims');
     }
 };

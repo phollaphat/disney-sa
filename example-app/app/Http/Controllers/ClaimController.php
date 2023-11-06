@@ -3,18 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Models\Customer;
-use App\Models\Employee;
 use App\Models\Product;
+use App\Models\Claim;
+use App\Models\User;
+use App\Models\WarrantyCard;
 
 class ClaimController extends Controller
 {
-      /**
+    /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $claim = Claim::get();
+        $claim = Claim::with('product', 'customer')->get();
         return $claim;
     }
 
@@ -31,23 +34,21 @@ class ClaimController extends Controller
      */
     public function store(Request $request)
     {
-        $product_name = $request->get('product_name');
-        $product = Product::Where('name', $product_name)->first();
-        $product_id = $product->id;
+        $customer = Customer::Where('tel', $request->get('tel'))->first();
+        $user = User::Where('name', $request->get('user_name'))->first();
+        $warrantyCard = WarrantyCard::Where('id', $request->get('warrantyCard_id'))->first();
+        $product = Product::Where('name', $request->get('product_name'))->first();
 
-        $order = $request->get('order_id');
-        $order = Order::Where('id', $order)->first();
-        $order_id = $order->id;
+        $claim = new Claim();
+        $claim->product_id = $product->id;
+        $claim->user_id = $user->id;
+        $claim->customer_id = $customer->id;
+        $claim->warranty_card_id = $warrantyCard->id;
 
-        $product_list = new ProductList();
-        $product_list->product_id = $product_id;
-        $product_list->order_id = $order_id;
-        $product_list->quantity = $request->get('qty');
-        $product_list->price_sum = $request->get('subtotal');
-        $product_list->save();
-        $product_list->refresh();
+        $claim->save();
+        $claim->refresh();
 
-        return $product_list;
+        return $claim; 
     }
 
     /**

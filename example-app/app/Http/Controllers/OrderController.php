@@ -1,6 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 
 use App\Models\Customer;
 use App\Models\Order;
@@ -9,6 +13,7 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      */
@@ -76,4 +81,11 @@ class OrderController extends Controller
 
         return $order;
     }
+
+    public function orderWithReceipt()
+    {
+        $order = Order::with('receipt')->get();
+        return $order;
+    }
+
 }

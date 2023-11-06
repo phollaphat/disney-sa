@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('waranty_cards', function (Blueprint $table) {
+        Schema::create('warranty_cards', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Product::class);
             $table->foreignIdFor(Receipt::class);
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('waranty_cards');
+        Schema::dropIfExists('warranty_cards');
     }
 };

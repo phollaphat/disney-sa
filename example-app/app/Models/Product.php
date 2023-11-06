@@ -26,9 +26,9 @@ class Product extends Model
         return $this->belongToMany(ProductList::class);
     }
 
-    public function waranty(): BelongsToMany
+    public function warranty(): BelongsToMany
     {
-        return $this->belongToMany(WarantyCard::class);
+        return $this->belongToMany(WarrantyCard::class);
     }
 
     public function claim(): BelongsToMany
