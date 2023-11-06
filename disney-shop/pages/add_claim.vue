@@ -24,7 +24,7 @@
                                 class="mb-10 w-2/4 relative bg-gray-50ring-0 outline-none border border-neutral-500 text-neutral-900 placeholder-[#9BA4B5] text-sm rounded-lg focus:ring-violet-500  focus:border-violet-500 block p-2.5"
                                 placeholder="Customer tel.">
     
-                            <MenuLink to="/claim"
+                            <MenuLink to=""
                                 class="bg-[#5D12D2] hover:bg-[#9400FF] text-white text-lg w-1/4 py-5 px-10 rounded-lg mt-4 w-full text-center">
                                 <button type="submit">Submit</button>
                             </MenuLink>

@@ -38,12 +38,12 @@
 
 <script setup>
 import bgImage from '@/assets/img/login.jpg';
+import { useAuthStore } from "~/stores/useAuthStore"
 
 definePageMeta({
   layout: "login",
 });
 
-import { useAuthStore } from "~/stores/useAuthStore"
 
 const auth = useAuthStore()
 const errorMessage = ref("")

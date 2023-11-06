@@ -15,10 +15,10 @@
                 <div class="flex flex-col">
                     <div class="overflow-x-auto sm:mx-0.5 lg:mx-0.5">
                         <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
-                            <div class="overflow-hidden">
+                            <div class="overflow-hidden rounded-[15px] border-[0.2px] border-black">
                                 <table class="min-w-full">
-                                    <thead class="bg-[#EDC18D] border-b-[#48416C]">
-                                        <tr>
+                                    <thead class="bg-[#EDC18D]">
+                                        <tr class="border-b-[#48416C] border-t-0 border-l-0 border-r-0 border-[0.2px]">
                                             <th scope="col"
                                                 class="text-2xl font-bold text-gray-900 px-6 py-4 text-left">
                                                 ID
@@ -37,7 +37,7 @@
                                             </th>
                                         </tr>
                                     </thead>
-                                    <tbody v-if="claims.value" v-for="claim in claims">
+                                    <tbody v-for="claim in claims" :key="claim.id">
                                         <tr class="bg-gray-100 border-b">
                                             <td class="px-6 py-4 whitespace-nowrap text-lg font-medium text-gray-900">
                                                 {{claim.id}}
@@ -53,23 +53,6 @@
                                             </td>
                                         </tr>
                                     </tbody>
-                                    <tbody v-else class="bg-white h-[500px]">
-                                        <tr class="bg-gray-100 border-b">
-                                            <td class="px-6 py-4 whitespace-nowrap text-lg font-medium text-gray-900">
-                                                No Information
-                                            </td>
-                                            <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                No Information
-                                            </td>
-                                            <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                No Information
-                                            </td>
-                                            <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                No Information
-                                            </td>
-                                        </tr>
-                                    </tbody>
-
                                 </table>
                             </div>
                         </div>

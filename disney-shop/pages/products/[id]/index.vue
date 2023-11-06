@@ -3,7 +3,7 @@
         <div class="flex flex-row place-content-start p-10 bg-[#FFFFFECC] w-[1214px] h-[900px] rounded-[20px]">
             <div class="flex flex-col">
                 <div class="ml-[100px] mt-[50px] mr-[160px]">
-                    <img src="@/assets/b180691f36bd713b8c69519b8637fb8b.png" alt="" class="h-[400px] w-[400px] object-center drop-shadow-lg">
+                    <img :src="`http://localhost/images/${product.image_path}`" alt="" class="h-[400px] w-[400px] object-center drop-shadow-lg">
                     
                 </div>
                 <div class="pt-[250px] pl-[20px]">

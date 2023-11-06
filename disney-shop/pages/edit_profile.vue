@@ -1,69 +1,62 @@
 <template>
-    <div class="flex flex-col justify-start">
-        <div class="h-screen py-8">
-            <div class="mx-auto px-4">
-                <h1 class="text-[48px] text-[#FFFFFF] font-semibold mb-10 mx-auto w-[358px] bg-[#9985BB] text-center rounded-[20px] shadow-md">Edit Profile</h1>    
-                <div class=" place-content-center gap-5 p-10 bg-[#FFFFFECC] w-[1120px] h-[650px] rounded-[20px]" >
-                    <form @submit.prevent="onSubmit()">                    <table class="w-full flex rows gap-[80px]">
-                        <tr>
-                            <div>
-                            <img src="@/assets/b180691f36bd713b8c69519b8637fb8b.png" alt="" class="h-[500px] w-[500px] object-center drop-shadow-lg">
-                            </div>
-                            
-                                <div class="mt-6 ml-20">
-                                    <input type="file" name="upload" />
-                                    <input type="submit" name="save" value="upload" />
-                                </div>
-                            </tr>
-                            <tr>
-
-                                <h3 class="">Name</h3>
-                                <input type="text"
-                                    class="mb-3 w-4/4 relative bg-gray-50ring-0 outline-none border border-neutral-500 text-neutral-900 placeholder-[#9BA4B5] text-sm rounded-lg focus:ring-violet-500  focus:border-violet-500 block p-2.5"
-                                    placeholder="Name...." v-model="formData.name">
-
-                                <h3 class="">Email</h3>
-                                <input type="text"
-                                    class="mb-3 w-4/4 relative bg-gray-50ring-0 outline-none border border-neutral-500 text-neutral-900 placeholder-[#9BA4B5] text-sm rounded-lg focus:ring-violet-500  focus:border-violet-500 block p-2.5"
-                                    placeholder="Email...." v-model="formData.email">
-                            
-
-                                <h3 class="">Phone Number</h3>
-                                <input type="text"
-                                    class="mb-3 w-4/4 relative bg-gray-50ring-0 outline-none border border-neutral-500 text-neutral-900 placeholder-[#9BA4B5] text-sm rounded-lg focus:ring-violet-500  focus:border-violet-500 block p-2.5"
-                                    placeholder="Phone Number.." v-model="formData.phonenum">
-
-                                <h3 class="">Old Password</h3>
-                                <input type="text"
-                                    class="mb-3 w-4/4 relative bg-gray-50ring-0 outline-none border border-neutral-500 text-neutral-900 placeholder-[#9BA4B5] text-sm rounded-lg focus:ring-violet-500  focus:border-violet-500 block p-2.5"
-                                    placeholder="old Password.." v-model="formData.password">
-
-                                <h3 class="">New password</h3>
-                                <input type="text"
-                                    class="mb-3 w-4/4 relative bg-gray-50ring-0 outline-none border border-neutral-500 text-neutral-900 placeholder-[#9BA4B5] text-sm rounded-lg focus:ring-violet-500  focus:border-violet-500 block p-2.5"
-                                    placeholder="New password" v-model="formData.password">
-
-                                <div class="mt-10">
-                                    <a href="/profile">
-                                        <button
-                                            class=" bg-[#5D12D2] hover:bg-[#9400FF] text-white w-1/4 py-4 px-4 rounded-lg mt-4 w-full text-center ml-8">
-                                            Submit
-                                        </button>
-                                    </a>
-                                </div>
-                            </tr>
-                        </table>
-                    </form>
-
+    <div class="flex flex-col justify-center">
+        <div class="h-screen py-8 text-center w-full" style=" text-align: -webkit-center; ">
+            <h1
+                class="text-[48px] text-[#FFFFFF] font-semibold mb-10 mx-auto w-[358px] bg-[#9985BB] text-center rounded-[20px] shadow-md">
+                Edit Profile
+            </h1>
+            <form class="bg-white w-8/12 py-10 px-10 mx-10 rounded-[15px]">
+                <div>
+                    <label for="email" class="block font-semibold text-start">Email</label>
+                    <div class="mt-1"><input type="text" name="email" id="email" value="" autofocus="autofocus"
+                            class="bg-white shadow-sm ring-0 block w-full text-lg focus:outline-none focus:border-tan-500 border-tan-300 p-2 border-2">
+                    </div>
                 </div>
-            </div>
+
+                <div class="mt-6">
+                    <div class="flex justify-between">
+                        <label for="password" class="block font-semibold">Password</label> <a href="" tabindex="-1"
+                            class="branded-link text-sm font-semibold">Forgot your password?</a>
+                    </div>
+                    <div class="mt-1">
+                        <input type="password" name="password" id="password"
+                            class="bg-white shadow-sm ring-0 block w-full text-lg focus:outline-none focus:border-tan-500 border-tan-300 p-2 border-2">
+                    </div>
+                </div>
+
+                <div class="mt-6">
+                    <div class="flex justify-between">
+                        <label for="password" class="block font-semibold">Password</label> <a href="" tabindex="-1"
+                            class="branded-link text-sm font-semibold">Forgot your password?</a>
+                    </div>
+                    <div class="mt-1">
+                        <input type="password" name="password" id="password"
+                            class="bg-white shadow-sm ring-0 block w-full text-lg focus:outline-none focus:border-tan-500 border-tan-300 p-2 border-2">
+                    </div>
+                </div>
+
+                <div>
+                    <button class="flex flex-no-wrap mt-6 border-2 border-black bg-yellow-500 py-2 px-4">
+                        <span>Sign In</span>
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="ml-2 w-6 h-6">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </span>
+                    </button>
+                </div>
+            </form>
         </div>
+
         <a href="/profile">
             <button
                 class="bg-[#4D4C7D] w-[100px] h-[45px] ml-4 rounded-[15px] text-xl hover:bg-[#363062] text-white">Back</button>
         </a>
     </div>
-  </template>
+</template>
 
 <script setup>
     const route = useRoute()

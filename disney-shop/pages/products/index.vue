@@ -60,7 +60,7 @@
             </div>
 
             <div class="w-1/6 ml-4">
-                <a href="addProduct">
+                <a href="/addProduct">
                         <button class=" text-xl ml-[50px] bg-[#5D12D2] w-[150px] h-[50px] rounded-[10px] text-center drop-shadow-sm hover:bg-[#9400FF] text-white">Add Product</button>
                     </a>
             </div>
@@ -71,7 +71,7 @@
                 <NuxtLink :to="`/products/${product.id}`">
                     <div class="flex justify-center flex-col relative items-center">
                         <div class="card-image flex justify-center mt-3">
-                            <img src="@/assets/b180691f36bd713b8c69519b8637fb8b.png" alt=""
+                            <img :src="`http://localhost/images/${product.image_path}`" alt=""
                                 class="justify-items-center h-4/5 w-4/5">
                         </div>
                         <div class="text-center mt-3 text-xs text-[#7D7C7C]">{{ product.category }}</div>

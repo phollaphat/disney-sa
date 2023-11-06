@@ -7,7 +7,7 @@
                     Payment Report
                 </h1>
 
-                <div class="block w-full overflow-x-auto border border-[#48416C]">
+                <div class="block w-full overflow-x-auto border border-[#48416C] rounded-[15px]">
                     <table class="items-center w-full bg-transparent border-collapse">
                         <thead>
                             <tr class="bg-[#EDC18D] h-[80px] border-b-[0.2px] border-[#48416C]">

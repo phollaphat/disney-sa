@@ -166,7 +166,7 @@
                     </div>
                 </div>
             </div>
-            <a href="cashier">
+            <a href="/cashier">
                 <button
                     class="bg-[#4D4C7D] w-[100px] h-[45px] ml-4 rounded-[15px] text-xl hover:bg-[#363062] text-white">Back</button>
             </a>
