@@ -14,7 +14,7 @@ class ProductSeeder extends Seeder
      */
     public function run(): void
     {
-        Product::factory(20)->create();
+        Product::factory(30)->create();
         // // Belle
         // $product = new Product();
         // $product->model_code = "KDNP_RB005GP48";
@@ -42,7 +42,7 @@ class ProductSeeder extends Seeder
 
         $product = new Product();
         $product->model_code = "KDNP_RB005GP50";
-        $product->image_path = "@/assets/b180691f36bd713b8c69519b8637fb8b.png";
+        $product->image_path = "65491f3c6fec2.png";
         $product->category = "Jewelry";
         $product->name = "A tale of Enchantment Ring-Belle #50";
         $product->price = 1690;
@@ -54,7 +54,7 @@ class ProductSeeder extends Seeder
 
         $product = new Product();
         $product->model_code = "KDNP_RB005GP52";
-        $product->image_path = "@/assets/b180691f36bd713b8c69519b8637fb8b.png";
+        $product->image_path = "65491f3c6fec2.png";
         $product->category = "Jewelry";
         $product->name = "A tale of Enchantment Ring-Belle #52";
         $product->price = 1690;
@@ -66,7 +66,7 @@ class ProductSeeder extends Seeder
 
         $product = new Product();
         $product->model_code = "KDNP_RB005GP54";
-        $product->image_path = "@/assets/b180691f36bd713b8c69519b8637fb8b.png";
+        $product->image_path = "65491f3c6fec2.png";
         $product->category = "Jewelry";
         $product->name = "A tale of Enchantment Ring-Belle #54";
         $product->price = 1690;
@@ -78,7 +78,7 @@ class ProductSeeder extends Seeder
 
         $product = new Product();
         $product->model_code = "KDNP_RB005GP56";
-        $product->image_path = "@/assets/b180691f36bd713b8c69519b8637fb8b.png";
+        $product->image_path = "65491f3c6fec2.png";
         $product->category = "Jewelry";
         $product->name = "A tale of Enchantment Ring-Belle #56";
         $product->price = 1690;
@@ -90,7 +90,7 @@ class ProductSeeder extends Seeder
 
         $product = new Product();
         $product->model_code = "KDNP_RB005GP58";
-        $product->image_path = "@/assets/b180691f36bd713b8c69519b8637fb8b.png";
+        $product->image_path = "65491f3c6fec2.png";
         $product->category = "Jewelry";
         $product->name = "A tale of Enchantment Ring-Belle #58";
         $product->price = 1690;
@@ -102,7 +102,7 @@ class ProductSeeder extends Seeder
 
         $product = new Product();
         $product->model_code = "KDNP_RB005GP48";
-        $product->image_path = "@/assets/b180691f36bd713b8c69519b8637fb8b.png";
+        $product->image_path = "65491f3c6fec2.png";
         $product->category = "Jewelry";
         $product->name = "A tale of Enchantment Ring-Belle #60";
         $product->price = 1690;
