@@ -37,7 +37,7 @@
                                             </th>
                                         </tr>
                                     </thead>
-                                    <tbody v-for="claim in claims">
+                                    <tbody v-if="claims.value" v-for="claim in claims">
                                         <tr class="bg-gray-100 border-b">
                                             <td class="px-6 py-4 whitespace-nowrap text-lg font-medium text-gray-900">
                                                 {{claim.id}}
@@ -53,6 +53,23 @@
                                             </td>
                                         </tr>
                                     </tbody>
+                                    <tbody v-else class="bg-white h-[500px]">
+                                        <tr class="bg-gray-100 border-b">
+                                            <td class="px-6 py-4 whitespace-nowrap text-lg font-medium text-gray-900">
+                                                No Information
+                                            </td>
+                                            <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                                No Information
+                                            </td>
+                                            <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                                No Information
+                                            </td>
+                                            <td class="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                                No Information
+                                            </td>
+                                        </tr>
+                                    </tbody>
+
                                 </table>
                             </div>
                         </div>

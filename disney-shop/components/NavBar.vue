@@ -33,7 +33,7 @@
                 <MenuLink to="/claim" class="ml-5 text-xl text-white">Claim</MenuLink>
             </div>
             
-            <div class="py-3">
+            <div class="py-1">
                 <hr class="border-black" />
             </div>
             
