@@ -1,6 +1,7 @@
 <template>
     <div class="flex justify-center p-20 text-[#232946] text-xl">
         <div class="flex flex-col items-center w-4/12">
+            <div class=" place-content-center gap-5 p-10 bg-[#FFFFFECC] w-[470px]  rounded-[20px]" >
             <div class="flex flex-col items-center">
                 <div class="font-bold text-3xl">
                     APG Wholeness Co., Ltd.
@@ -89,7 +90,7 @@
                 </div>
             </div>
 
-            
+            </div>
         </div>
     </div>
 </template>

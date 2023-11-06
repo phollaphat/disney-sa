@@ -32,7 +32,7 @@ class ProductSeeder extends Seeder
         $product->model_code = "KDNP_RB005GP50";
         $product->image_path = "@/assets/b180691f36bd713b8c69519b8637fb8b.png";
         $product->category = "Jewelry";
-        $product->name = "A tale of Enchantment Ring-Belle #48";
+        $product->name = "A tale of Enchantment Ring-Belle #50";
         $product->price = 1690;
         $product->size = 50;
         $product->stock_quantity = 11;
@@ -44,7 +44,7 @@ class ProductSeeder extends Seeder
         $product->model_code = "KDNP_RB005GP52";
         $product->image_path = "@/assets/b180691f36bd713b8c69519b8637fb8b.png";
         $product->category = "Jewelry";
-        $product->name = "A tale of Enchantment Ring-Belle #48";
+        $product->name = "A tale of Enchantment Ring-Belle #52";
         $product->price = 1690;
         $product->size = 52;
         $product->stock_quantity = 7;
@@ -56,7 +56,7 @@ class ProductSeeder extends Seeder
         $product->model_code = "KDNP_RB005GP54";
         $product->image_path = "@/assets/b180691f36bd713b8c69519b8637fb8b.png";
         $product->category = "Jewelry";
-        $product->name = "A tale of Enchantment Ring-Belle #48";
+        $product->name = "A tale of Enchantment Ring-Belle #54";
         $product->price = 1690;
         $product->size = 54;
         $product->stock_quantity = 9;
@@ -68,7 +68,7 @@ class ProductSeeder extends Seeder
         $product->model_code = "KDNP_RB005GP56";
         $product->image_path = "@/assets/b180691f36bd713b8c69519b8637fb8b.png";
         $product->category = "Jewelry";
-        $product->name = "A tale of Enchantment Ring-Belle #48";
+        $product->name = "A tale of Enchantment Ring-Belle #56";
         $product->price = 1690;
         $product->size = 56;
         $product->stock_quantity = 6;
@@ -80,7 +80,7 @@ class ProductSeeder extends Seeder
         $product->model_code = "KDNP_RB005GP58";
         $product->image_path = "@/assets/b180691f36bd713b8c69519b8637fb8b.png";
         $product->category = "Jewelry";
-        $product->name = "A tale of Enchantment Ring-Belle #48";
+        $product->name = "A tale of Enchantment Ring-Belle #58";
         $product->price = 1690;
         $product->size = 58;
         $product->stock_quantity = 4;
@@ -92,7 +92,7 @@ class ProductSeeder extends Seeder
         $product->model_code = "KDNP_RB005GP48";
         $product->image_path = "@/assets/b180691f36bd713b8c69519b8637fb8b.png";
         $product->category = "Jewelry";
-        $product->name = "A tale of Enchantment Ring-Belle #48";
+        $product->name = "A tale of Enchantment Ring-Belle #60";
         $product->price = 1690;
         $product->size = 60;
         $product->stock_quantity = 4;
