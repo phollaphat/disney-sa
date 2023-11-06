@@ -98,4 +98,57 @@ class AuthController extends Controller
             'user' => auth()->user()
         ]);
     }
+
+    public function updateEmailPass(Request $request){
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|string|email|max:100|unique:users',
+            'password' => 'required|string|confirmed|min:6',
+            'user_name' => ''
+        ]);
+        if($validator->fails()){
+            return response()->json($validator->errors()->toJson(), 400);
+        }
+
+        $user = User::Where('name', $request->get('user_name'))->first();
+
+        $user->update([
+            'email' => $request->email,
+            'password' => bcrypt($request->password)
+        ]);
+
+        $user->save();
+        $user->refresh();
+
+        return response()->json([
+            'message' => 'User successfully edited',
+            'user' => $user,
+        ], 201);
+    }
+
+    public function updateNameTel(Request $request){
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|between:2,100',
+            'tel' => 'required|string|min:10',
+            'user_name' => ''
+        ]);
+        
+        if($validator->fails()){
+            return response()->json($validator->errors()->toJson(), 400);
+        }
+
+        $user = User::Where('name', $request->get('user_name'))->first();
+
+        $user->update([
+            'name' => $request->name,
+            'tel' => $request->tel
+        ]);
+
+        $user->save();
+        $user->refresh();
+
+        return response()->json([
+            'message' => 'User successfully edited',
+            'user' => $user
+        ], 201);
+    }
 }
