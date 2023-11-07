@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Tymon\JWTAuth\Claims\Claim;
 
 class Product extends Model
@@ -28,7 +29,7 @@ class Product extends Model
 
     public function warranty(): BelongsToMany
     {
-        return $this->belongToMany(WarrantyCard::class);
+        return $this->hasMany(WarrantyCard::class);
     }
 
     public function claim(): BelongsToMany

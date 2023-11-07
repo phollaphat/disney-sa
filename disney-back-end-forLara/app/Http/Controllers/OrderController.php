@@ -19,7 +19,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $order = Order::get();
+        $order = Order::with('user')->get();
         return $order;
     }
 
