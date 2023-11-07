@@ -16,11 +16,20 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+Route::get('orders/report', [OrderController::class, 'orderWithReceipt']);
+Route::resource('products', 'App\Http\Controllers\ProductController');
+Route::resource('productLists', 'App\Http\Controllers\ProductListController');
+Route::resource('orders', 'App\Http\Controllers\OrderController');
+Route::resource('customers', 'App\Http\Controllers\CustomerController');
+Route::resource('receipts', 'App\Http\Controllers\ReceiptController');
+Route::resource('WarrantyCards', 'App\Http\Controllers\WarrantyCardController');
+Route::resource('claims', 'App\Http\Controllers\ClaimController');
+Route::get('orders/report', [OrderController::class, 'orderWithReceipt']);
+
 
 Route::put('auth/userProfileEdit', [AuthController::class, 'updateEmailPass']);
 Route::put('auth/userProfileEditName', [AuthController::class, 'updateNameTel']);
 
-Route::get('orders/report', [OrderController::class, 'orderWithReceipt']);
 Route::post('products/reduceItems', [ProductController::class, 'ReduceProductQTY']);
 Route::post('orders/setStatus', [OrderController::class, 'setOrderStatus']);
 Route::get('file/{path}', function($path) {

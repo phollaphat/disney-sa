@@ -128,7 +128,7 @@ class AuthController extends Controller
     public function updateNameTel(Request $request){
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|between:2,100',
-            'tel' => 'required|string|min:10',
+            'tel' => 'required|string|min:8',
             'user_name' => ''
         ]);
         
