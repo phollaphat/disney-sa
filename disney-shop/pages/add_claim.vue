@@ -9,7 +9,7 @@
                     <!-- text-align: -webkit-center; -->
                     
                 <div class="place-items-center gap-5 p-10 bg-[#FFFFFECC] w-[1120px] h-[650px] rounded-[20px]">
-                    <form @submit.prevent="addClaim" class="mt-16">
+                    <form @submit.prevent="addClaim(), reduceProductQTY()" class="mt-16">
                         <h3 class="text-start text-xl font-bold ml-64 mb-2"> Warranty Card No</h3>
                         <input type="text" v-model="formData.warrantyCard_id"
                             class="mb-10 w-2/4 relative bg-gray-50ring-0 outline-none border border-neutral-500 text-neutral-900 placeholder-[#9BA4B5] text-sm rounded-lg focus:ring-violet-500  focus:border-violet-500 block p-2.5"
@@ -64,5 +64,18 @@
         })
     }
 
+
+    const reduceProductQTY = async () => {
+        const {
+            data: response,
+            error
+        } = useMyFetch('products/reduceItems', {
+            method: 'POST',
+            body: {
+                "product_name": formData.value.product_name,
+                "qty": 1,
+            }
+        })
+    }
     
 </script>

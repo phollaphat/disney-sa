@@ -70,7 +70,7 @@
                 </div>
             </div>
         </div>
-        <a href="products">
+        <a href="/products">
             <button
                 class="bg-[#4D4C7D] w-[100px] h-[45px] ml-4 rounded-[15px] text-xl hover:bg-[#363062] text-white">Back</button>
         </a>
@@ -79,7 +79,10 @@
 
 <script setup>
     import { ref } from 'vue';
-    const route = useRoute()
+    import { useRouter } from 'vue-router';
+
+    const router = useRouter();
+
     const formData = ref({
         name: "",
         price: "",
@@ -100,6 +103,7 @@
             method: 'POST',
             body: formData.value
         })
+        router.push('/products');
     }
 
     const imageProduct = ref("");

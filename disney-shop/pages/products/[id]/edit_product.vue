@@ -25,10 +25,8 @@
         <label class="text mr-10" for="quantity">Quantity:</label>
         <input class="ml-[45px] rounded rounded-full" type="number" id="quantity" v-model="formData.quantity" />
       </div>
-      <a href="products">
-        <button type="submit"
-          class=" text-xl bg-[#5D12D2] w-[80px] h-[50px] rounded-[10px] text-center drop-shadow-sm hover:bg-[#9400FF] text-white">Submit</button>
-      </a>
+      <button type="submit"
+        class=" text-xl bg-[#5D12D2] w-[80px] h-[50px] rounded-[10px] text-center drop-shadow-sm hover:bg-[#9400FF] text-white">Submit</button>
     </form>
 
   </div>
@@ -36,7 +34,11 @@
 </template>
 
 <script setup>
+  import { useRouter } from 'vue-router';
+  import { ref } from 'vue';
+
   const route = useRoute()
+
   const formData = ref({
     name: "",
     quantity: "",
@@ -46,6 +48,8 @@
 
   const customerShow = ref(null)
 
+  const router = useRouter();
+
   const onSubmit = async () => {
     const {
       data: response,
@@ -54,6 +58,7 @@
       method: 'PUT',
       body: formData.value
     })
+    router.push('/products');
   }
 </script>
 

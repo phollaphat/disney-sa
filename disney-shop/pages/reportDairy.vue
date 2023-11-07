@@ -37,7 +37,7 @@
     line-height: 100px;
     position: absolute;
     justify-items: top;
-    margin-top: 900px;
+    margin-top: 700px;
     border-radius: 30px;
     overflow-y: auto;
     display: flex;

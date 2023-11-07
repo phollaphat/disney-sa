@@ -103,10 +103,13 @@
     import {
         useAuthStore
     } from "~/stores/useAuthStore"
-    import {
-        useRouter
-    } from 'vue-router';
+    import { useRouter } from 'vue-router';
+    import { ref } from 'vue';
+
     const auth = useAuthStore();
+
+
+    const route = useRoute()
 
     const formDataEP = ref({
         email: "",

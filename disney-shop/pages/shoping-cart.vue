@@ -1,6 +1,6 @@
 <template>
     <div class="flex flex-col justify-start">
-        <div class="h-screen overflow-y-auto py-8">
+        <div class="h-screen  py-8">
             <div class=" mx-auto px-4">
                 <h1
                     class="text-[48px] text-[#FFFFFF] font-semibold mb-10 mx-auto w-[358px] bg-[#4D4C7D] text-center rounded-[20px] shadow-md">
@@ -151,7 +151,7 @@
 
                             <hr class="my-3">
 
-                            <select name="" class="bg-[#FFFDFD] w-3/5 h-[60px] rounded-[20px]" v-model="payment_cha">
+                            <select name="" class="bg-[#FFFDFD] w-2/5 h-[60px] rounded-[20px]" v-model="payment_cha">
                                 <option value="">Choose Payment</option>
                                 <option value="Alipay">Alipay</option>
                                 <option value="Cash">Cash</option>
