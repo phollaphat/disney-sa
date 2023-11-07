@@ -11,6 +11,10 @@ class Receipt extends Model
 {
     use HasFactory;
 
+        // protected $casts = [
+        //     'date' => 'datetime:Y-m-d',
+        // ];
+
     protected $fillable = [
         'order_id',
         'payment_channel',
