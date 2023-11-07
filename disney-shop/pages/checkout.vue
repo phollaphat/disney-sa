@@ -15,7 +15,7 @@
                                         </div>
                                         <div class="flex flex-row items-center">
                                             <div>
-                                                <img src="@/assets/b180691f36bd713b8c69519b8637fb8b.png" alt=""
+                                                <img :src="`http://localhost/images/${item.product.image_path}`" alt=""
                                                     class="h-16 w-16 mr-5">
                                             </div>
                                             <div class="text-lg">

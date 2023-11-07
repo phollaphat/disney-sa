@@ -46,11 +46,10 @@
 
     const auth = useAuthStore();
 
+    const router = useRouter();
+
     const { data: products, error } = await useMyFetch('products', {})
     
-    // const product = cart.items.find(row => row.id == item.id)
-    
-
     const formData = ref({
         "warrantyCard_id": "",
         "product_name": "",
@@ -66,7 +65,7 @@
     const addClaim = async () => {
         const product = products.value.find(product => product.name == formData.value.product_name);
         console.log(product)
-        if (product.qty > 1) {
+        if (product.stock_quantity > 1) {
             console.log(formData.value.product_name)
             const {
                 data: response,
@@ -76,7 +75,7 @@
                 body: formData.value
             })
             reduceProductQTY();
-            const router = useRouter();
+            
             router.push('/claim');
         }
         else {
