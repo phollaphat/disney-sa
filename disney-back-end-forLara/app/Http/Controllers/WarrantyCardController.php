@@ -23,9 +23,11 @@ class WarrantyCardController extends Controller
      */
     public function store(Request $request)
     {
-        $oldWaranty = WarrantyCard::Where('product_id', $request->get('product_id'))->first();
+        $oldWarranty = WarrantyCard::Where('product_id', $request->get('product_id'))
+        ->where('receipt_id', $request->get('receipt_id'))
+        ->get();
 
-        if (!$oldWaranty) {
+        if (count($oldWarranty) == 0) {
             $product = Product::Where('id', $request->get('product_id'))->first();
             $product_id = $product->id;
     
@@ -33,12 +35,11 @@ class WarrantyCardController extends Controller
             $receipt_id = $receipt->id;
     
             $WarrantyCard = new WarrantyCard();
+
             $WarrantyCard->product_id = $product_id;
             $WarrantyCard->receipt_id = $receipt_id;
-    
-            $date = strtotime($request->get('end_date')); // แปลง string เป็น timestamp
-            $dateObject = date("Y-m-d", $date); // แปลง timestamp เป็น string ที่มีรูปแบบของ
-            $WarrantyCard->end_date = $dateObject;   
+
+            $WarrantyCard->end_date = $request->get('date');
     
             $WarrantyCard->save();
             $WarrantyCard->refresh();
@@ -46,7 +47,7 @@ class WarrantyCardController extends Controller
             return $WarrantyCard;
         }
         else {
-            return $oldWaranty;
+            return $oldWarranty;
         }
     }
 
@@ -55,7 +56,10 @@ class WarrantyCardController extends Controller
      */
     public function show(string $id)
     {
-        $WarrantyCard = WarrantyCard::Where('id', $id)->first();
+        $WarrantyCard = WarrantyCard::Where('receipt_id', $id)
+        ->with('product')
+        ->get();
+
         return $WarrantyCard;
     }
 

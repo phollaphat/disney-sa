@@ -17,7 +17,7 @@ class ClaimController extends Controller
      */
     public function index()
     {
-        $claim = Claim::with('product', 'customer')->get();
+        $claim = Claim::with('product', 'customer', 'user')->get();
         return $claim;
     }
 
