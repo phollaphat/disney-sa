@@ -1,6 +1,5 @@
 <template>
-    <pre>{{ receipt.id }}</pre>
-    <div class="flex justify-center p-20 text-[#232946] text-xl" v-for="warrantyCard in WarrantyCards" :key="warrantyCard.id">
+    <div class="flex justify-center p-20 text-[#232946] text-xl" v-for="WarrantyCard in WarrantyCards" :key="WarrantyCard.id">
         <div class="flex flex-col items-center w-4/12">
             <div class=" place-content-center gap-5 p-10 bg-[#FFFFFECC] w-[900px]  rounded-[20px]">
                 <div class="flex flex-col items-center">
@@ -36,15 +35,43 @@
                         stamped witth a 925, indicating that it is made from genuine 925 sterling silver.
                     </div>
                 </div>
-                <div class="mt-20 ml-20 font-bold text-xl">
-                    Reference No. {{warrantyCard.id}}
+
+                <div class="flex flex-row mt-20 ml-20 gap-5">
+                    <div class="font-bold text-xl">
+                        Reference No.
+                    </div>
+                    <div class="text-semibold">
+                        {{WarrantyCard.id}}
+                    </div>
                 </div>
-                <div class="mt-5 ml-20 font-bold text-xl">
-                    Start Date. {{warrantyCard.state_date}}
+
+                <div class="flex flex-row mt-5 ml-20 gap-5">
+                    <div class="font-bold text-xl">
+                        Product Name:
+                    </div>
+                    <div class="text-semibold">
+                        {{WarrantyCard.product.name}}
+                    </div>
                 </div>
-                <div class="mt-5 ml-20 font-bold text-xl">
-                    End Date. {{warrantyCard.end_date}}
+                
+                <div class="flex flex-row mt-5 ml-20 gap-5">
+                    <div class="font-bold text-xl">
+                        Start Date.
+                    </div>
+                    <div class="text-semibold">
+                        {{WarrantyCard.state_date}}
+                    </div>
                 </div>
+
+                <div class="flex flex-row mt-5 ml-20 gap-5">
+                    <div class="font-bold text-xl">
+                        End Date.
+                    </div>
+                    <div class="text-semibold">
+                        {{WarrantyCard.end_date}}
+                    </div>
+                </div>
+                
                 <div class="flex flex-col items-center">
                     <div class="mt-20 font-bold text-xl">
                         MADE WITH
@@ -71,6 +98,8 @@
 </template>
 
 <script setup>
+    import {ref} from 'vue'
+
     import {
         useCheckPaymentStore
     } from "~/stores/useCheckPaymentStore"
@@ -97,4 +126,7 @@
         data: WarrantyCards,
         pending
     } = await useMyFetch(`WarrantyCards/${receipt.id}`, {})
+
+    console.log(WarrantyCards)
+
 </script>

@@ -72,7 +72,7 @@
                     <div class="flex justify-center flex-col relative items-center">
                         <div class="card-image flex justify-center mt-3">
                             <img :src="`http://localhost/images/${product.image_path}`" alt=""
-                                class="justify-items-center h-4/5 w-4/5">
+                                class="justify-items-center h-[250px] w-[250px] object-cover">
                         </div>
                         <div class="text-center mt-3 text-xs text-[#7D7C7C]">{{ product.category }}</div>
                         <div class="text-center font-bold pt-1 text-2xl">{{ product.name }}</div>

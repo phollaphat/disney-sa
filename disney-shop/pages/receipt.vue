@@ -1,5 +1,4 @@
 <template>
-    <pre>{{ receipt.id }}</pre>
     <div class="flex justify-center p-20 text-[#232946] text-xl">
         <div class="flex flex-col items-center w-4/12">
             <div class=" place-content-center gap-5 p-10 bg-[#FFFFFECC] w-[470px]  rounded-[20px]" >

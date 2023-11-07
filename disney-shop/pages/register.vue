@@ -3,7 +3,7 @@
     <div class="bg-element">
       <img src="@/assets/img/login.jpg" alt="Background Image" class="background-image">
       <div class="centered-box-register">
-        <div class="textLogin text-center">Register</div>
+        <div class="textLogin text-center">Employee registration</div>
         <form>
           <div class="">
             <label class="text flex justify-start pl-[220px] p-3" for="name">Name</label>
@@ -25,14 +25,16 @@
             <label class="text flex justify-start pl-[220px] p-3" for="password">Confirm Password</label>
           </div>
           <input class="input-container pl-10" type="password" id="password" v-model="formData.password_confirmation" required>
-          <div class="pt-10 pl-[350px]">
+          <div class="pt-10 flex flex-row justify-between">
+            <a href="/cashier" class="bg-[#9985BB] w-32 h-12 font-bold text-xl py-3 px-2 rounded-[20px] text-white ml-44" style="font-family: Inria Serif;">
+              Back
+            </a>
             <MenuLink to="/cashier">
-              <button @click="signUp" class="custom-button">Sign up</button>
+              <button @click="signUp" class="custom-button">Submit</button>
               <img src="@/assets/Sign_in_squre.png" alt="" />
             </MenuLink>
           </div>
         </form>
-
       </div>
     </div>
   </div>
@@ -114,16 +116,16 @@
 
   .textLogin {
     color: #151515;
-    font-size: 64px;
+    font-size: 40px;
     font-family: Inria Serif;
-    font-weight: 500;
+    font-weight: 900;
     word-wrap: break-word
       /* Adjust the margin between text elements */
   }
 
   .input-container {
     width: 450px;
-    height: 50px;
+    height: 30px;
     background: #D9D9D9;
     border-radius: 20px;
     z-index: 2;
@@ -135,7 +137,7 @@
     color: #151515;
     font-size: 20px;
     font-family: Inria Serif;
-    font-weight: 700;
+    font-weight: 600;
     word-wrap: break-word
   }
 
@@ -153,6 +155,7 @@
     border-radius: 5px;
     cursor: pointer;
     border-radius: 20px;
+    margin-right: 175px;
   }
 
   /* Style for button on hover */

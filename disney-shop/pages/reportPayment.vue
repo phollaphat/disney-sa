@@ -145,7 +145,7 @@
     const QrThai = ref(0.00);
 
     var currentDate = new Date();
-    var currentDateWithFormat = new Date().toJSON().slice(0, 10).replace(/-/g, '-');
+    var currentDateWithFormat = new Date().toLocaleDateString('en-CA').slice(0, 10).replace(/-/g, '-');
 
     orders.value.map(order => {
         console.log(order.receipt.date)

@@ -85,7 +85,7 @@
                 </div>
                 <div>
                     <button class="bg-[#4D4C7D] py-5 px-10 rounded-[20px] text-white text-xl hover:bg-[#363062]"
-                        @click="reduceProductQTY(), setStatusOrder(), createReceipt(), openNewTap('receipt')">
+                        @click="setStatusOrder(), createReceipt(), openNewTap('receipt')">
                         Receipt Print
                     </button>
                 </div>
@@ -151,6 +151,9 @@
                 "payment_cha": check_payment.payment,
             }
         })
+        if (receipt.id == 0) {
+            reduceProductQTY();
+        }
         receipt.id = response.value.id
     }
 
@@ -188,18 +191,16 @@
         products.forEach(item => {
             const product = cart.items.find(row => row.id == item.id)
             console.log(product.qty)
-            if (product.product.category == '') {
-                const {
-                    data: response,
-                    error
-                } = useMyFetch('products/reduceItems', {
-                    method: 'POST',
-                    body: {
-                        "product_name": product.product.name,
-                        "qty": product.qty,
-                    }
-                })
-            }
+            const {
+                data: response,
+                error
+            } = useMyFetch('products/reduceItems', {
+                method: 'POST',
+                body: {
+                    "product_name": product.product.name,
+                    "qty": product.qty,
+                }
+            })
         })
     }
 
