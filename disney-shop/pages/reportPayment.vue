@@ -147,33 +147,38 @@
     var currentDate = new Date();
     var currentDateWithFormat = new Date().toLocaleDateString('en-CA').slice(0, 10).replace(/-/g, '-');
 
-    orders.value.map(order => {
-        console.log(order.receipt.date)
-        switch (order.receipt.payment_channel) {
-            case 'Alipay':
-                if (order.receipt.date === currentDateWithFormat) {
-                    Alipay.value += order.total_price;
-                    break;
-                }
-            case 'Cash':
-                if (order.receipt.date === currentDateWithFormat) {
-                    Cash.value += order.total_price;
-                    break;
-                }
-            case 'Credit/Debit Card':
-                if (order.receipt.date === currentDateWithFormat) {
-                    CreditDebitCard.value += order.total_price;
-                    break;
-                }
-            case 'Qr thai':
-                if (order.receipt.date === currentDateWithFormat) {
-                    QrThai.value += order.total_price;
-                    break;
-                }
-                default:
-                    break;
-        }
-    });
+    const myArrayLength = ref(orders.value.length)
+    console.log(myArrayLength.value)
+
+    if (myArrayLength.value != 0) {
+        orders.value.map(order => {
+            console.log(order.receipt.date)
+            switch (order.receipt.payment_channel) {
+                case 'Alipay':
+                    if (order.receipt.date === currentDateWithFormat) {
+                        Alipay.value += order.total_price;
+                        break;
+                    }
+                case 'Cash':
+                    if (order.receipt.date === currentDateWithFormat) {
+                        Cash.value += order.total_price;
+                        break;
+                    }
+                case 'Credit/Debit Card':
+                    if (order.receipt.date === currentDateWithFormat) {
+                        CreditDebitCard.value += order.total_price;
+                        break;
+                    }
+                case 'Qr thai':
+                    if (order.receipt.date === currentDateWithFormat) {
+                        QrThai.value += order.total_price;
+                        break;
+                    }
+                    default:
+                        break;
+            }
+        });
+    }
 
     const PerAlipay = ref(Alipay.value / 400);
     const PerCash = ref(Cash.value / 400);

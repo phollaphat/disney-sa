@@ -5,25 +5,25 @@
   <div class="image-container centered-form mt-[50px]">
   </div>
   <div class="centered-form mt-10">
-    <form @submit.prevent="onSubmit()" class="bg-[#818FB4] pb-44 pt-36 px-80 rounded-[15px]">
+    <form @submit.prevent="onSubmit()" class="bg-[#FDF7FF] pb-44 pt-36 px-80 rounded-[15px]">
       <div class="form-group">
         <label class="text mr-10" for="productName">Product Name:</label>
-        <input class="rounded rounded-full" type="text" id="productName" v-model="formData.name" />
+        <input class="rounded rounded-full bg-[#AFA8BA]" type="text" id="productName" v-model="formData.name" />
       </div>
       <div class="form-group">
         <label class="text mr-10" for="price">Price:</label>
-        <input class="ml-[80px] rounded rounded-full" type="number" id="price" v-model="formData.price" />
+        <input class="ml-[80px] rounded rounded-full bg-[#AFA8BA] pl-3" type="number" id="price" v-model="formData.price" />
       </div>
       <div class="form-group">
         <label class="text mr-10" for="category">Category:</label>
-        <select class="ml-[45px] rounded rounded-full h-[25px]" id="category" v-model="formData.category">
+        <select class="ml-[45px] rounded rounded-full h-[25px] bg-[#AFA8BA]" id="category" v-model="formData.category">
           <option value="Jewelry">Jewelry</option>
           <option value="Scented Candle">Scented Candle</option>
         </select>
       </div>
       <div class="form-group">
         <label class="text mr-10" for="quantity">Quantity:</label>
-        <input class="ml-[45px] rounded rounded-full" type="number" id="quantity" v-model="formData.quantity" />
+        <input class="ml-[42px] rounded rounded-full bg-[#AFA8BA] pl-3" type="number" id="quantity" v-model="formData.quantity" />
       </div>
       <button type="submit"
         class=" text-xl bg-[#5D12D2] w-[80px] h-[50px] rounded-[10px] text-center drop-shadow-sm hover:bg-[#9400FF] text-white">Submit</button>
